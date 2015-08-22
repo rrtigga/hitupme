@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18B48F291B879B970032C193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F281B879B970032C193 /* AppDelegate.swift */; };
+		18B48F301B879B970032C193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F2E1B879B970032C193 /* Main.storyboard */; };
+		18B48F321B879B970032C193 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F311B879B970032C193 /* Images.xcassets */; };
+		18B48F351B879B970032C193 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F331B879B970032C193 /* LaunchScreen.xib */; };
+		18B48F411B879B970032C193 /* HitupMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F401B879B970032C193 /* HitupMeTests.swift */; };
+		18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F4A1B879F260032C193 /* HitupFeed.swift */; };
+		18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F4C1B87B0280032C193 /* ExploreTable.swift */; };
+		18B48F4F1B87B2D90032C193 /* MyHitupsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F4E1B87B2D90032C193 /* MyHitupsTab.swift */; };
+		18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F501B87B3E50032C193 /* HitupCell.swift */; };
+		18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F531B87D8080032C193 /* DefaultNavController.swift */; };
+		18B48F561B87E02A0032C193 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F551B87E02A0032C193 /* Functions.swift */; };
+		18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F591B87E9370032C193 /* CreateController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		18B48F3B1B879B970032C193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18B48F1B1B879B970032C193 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18B48F221B879B970032C193;
+			remoteInfo = HitupMe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		18B48F231B879B970032C193 /* HitupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B48F271B879B970032C193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18B48F281B879B970032C193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18B48F2F1B879B970032C193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18B48F311B879B970032C193 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		18B48F341B879B970032C193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		18B48F3A1B879B970032C193 /* HitupMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitupMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18B48F3F1B879B970032C193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18B48F401B879B970032C193 /* HitupMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitupMeTests.swift; sourceTree = "<group>"; };
+		18B48F4A1B879F260032C193 /* HitupFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupFeed.swift; sourceTree = "<group>"; };
+		18B48F4C1B87B0280032C193 /* ExploreTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreTable.swift; sourceTree = "<group>"; };
+		18B48F4E1B87B2D90032C193 /* MyHitupsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHitupsTab.swift; sourceTree = "<group>"; };
+		18B48F501B87B3E50032C193 /* HitupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupCell.swift; sourceTree = "<group>"; };
+		18B48F531B87D8080032C193 /* DefaultNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultNavController.swift; sourceTree = "<group>"; };
+		18B48F551B87E02A0032C193 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		18B48F591B87E9370032C193 /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		18B48F201B879B970032C193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B48F371B879B970032C193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18B48F1A1B879B970032C193 = {
+			isa = PBXGroup;
+			children = (
+				18B48F251B879B970032C193 /* HitupMe */,
+				18B48F3D1B879B970032C193 /* HitupMeTests */,
+				18B48F241B879B970032C193 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		18B48F241B879B970032C193 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F231B879B970032C193 /* HitupMe.app */,
+				18B48F3A1B879B970032C193 /* HitupMeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		18B48F251B879B970032C193 /* HitupMe */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F571B87E8F40032C193 /* Controllers */,
+				18B48F521B87B3EB0032C193 /* Custom */,
+				18B48F581B87E91A0032C193 /* Core Files */,
+				18B48F261B879B970032C193 /* Supporting Files */,
+			);
+			path = HitupMe;
+			sourceTree = "<group>";
+		};
+		18B48F261B879B970032C193 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F271B879B970032C193 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18B48F3D1B879B970032C193 /* HitupMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F401B879B970032C193 /* HitupMeTests.swift */,
+				18B48F3E1B879B970032C193 /* Supporting Files */,
+			);
+			path = HitupMeTests;
+			sourceTree = "<group>";
+		};
+		18B48F3E1B879B970032C193 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F3F1B879B970032C193 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		18B48F521B87B3EB0032C193 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F551B87E02A0032C193 /* Functions.swift */,
+				18B48F501B87B3E50032C193 /* HitupCell.swift */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
+		18B48F571B87E8F40032C193 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F531B87D8080032C193 /* DefaultNavController.swift */,
+				18B48F4A1B879F260032C193 /* HitupFeed.swift */,
+				18B48F4C1B87B0280032C193 /* ExploreTable.swift */,
+				18B48F4E1B87B2D90032C193 /* MyHitupsTab.swift */,
+				18B48F591B87E9370032C193 /* CreateController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		18B48F581B87E91A0032C193 /* Core Files */ = {
+			isa = PBXGroup;
+			children = (
+				18B48F2E1B879B970032C193 /* Main.storyboard */,
+				18B48F281B879B970032C193 /* AppDelegate.swift */,
+				18B48F311B879B970032C193 /* Images.xcassets */,
+				18B48F331B879B970032C193 /* LaunchScreen.xib */,
+			);
+			name = "Core Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		18B48F221B879B970032C193 /* HitupMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B48F441B879B970032C193 /* Build configuration list for PBXNativeTarget "HitupMe" */;
+			buildPhases = (
+				18B48F1F1B879B970032C193 /* Sources */,
+				18B48F201B879B970032C193 /* Frameworks */,
+				18B48F211B879B970032C193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HitupMe;
+			productName = HitupMe;
+			productReference = 18B48F231B879B970032C193 /* HitupMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		18B48F391B879B970032C193 /* HitupMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B48F471B879B970032C193 /* Build configuration list for PBXNativeTarget "HitupMeTests" */;
+			buildPhases = (
+				18B48F361B879B970032C193 /* Sources */,
+				18B48F371B879B970032C193 /* Frameworks */,
+				18B48F381B879B970032C193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18B48F3C1B879B970032C193 /* PBXTargetDependency */,
+			);
+			name = HitupMeTests;
+			productName = HitupMeTests;
+			productReference = 18B48F3A1B879B970032C193 /* HitupMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18B48F1B1B879B970032C193 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = HitupDev;
+				TargetAttributes = {
+					18B48F221B879B970032C193 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					18B48F391B879B970032C193 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 18B48F221B879B970032C193;
+					};
+				};
+			};
+			buildConfigurationList = 18B48F1E1B879B970032C193 /* Build configuration list for PBXProject "HitupMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 18B48F1A1B879B970032C193;
+			productRefGroup = 18B48F241B879B970032C193 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				18B48F221B879B970032C193 /* HitupMe */,
+				18B48F391B879B970032C193 /* HitupMeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		18B48F211B879B970032C193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B48F301B879B970032C193 /* Main.storyboard in Resources */,
+				18B48F351B879B970032C193 /* LaunchScreen.xib in Resources */,
+				18B48F321B879B970032C193 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B48F381B879B970032C193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18B48F1F1B879B970032C193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */,
+				18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */,
+				18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */,
+				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
+				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
+				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
+				18B48F4F1B87B2D90032C193 /* MyHitupsTab.swift in Sources */,
+				18B48F291B879B970032C193 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18B48F361B879B970032C193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18B48F411B879B970032C193 /* HitupMeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		18B48F3C1B879B970032C193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18B48F221B879B970032C193 /* HitupMe */;
+			targetProxy = 18B48F3B1B879B970032C193 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		18B48F2E1B879B970032C193 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18B48F2F1B879B970032C193 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18B48F331B879B970032C193 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18B48F341B879B970032C193 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		18B48F421B879B970032C193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		18B48F431B879B970032C193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		18B48F451B879B970032C193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HitupMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		18B48F461B879B970032C193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HitupMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		18B48F481B879B970032C193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HitupMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HitupMe.app/HitupMe";
+			};
+			name = Debug;
+		};
+		18B48F491B879B970032C193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HitupMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HitupMe.app/HitupMe";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18B48F1E1B879B970032C193 /* Build configuration list for PBXProject "HitupMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B48F421B879B970032C193 /* Debug */,
+				18B48F431B879B970032C193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18B48F441B879B970032C193 /* Build configuration list for PBXNativeTarget "HitupMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B48F451B879B970032C193 /* Debug */,
+				18B48F461B879B970032C193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		18B48F471B879B970032C193 /* Build configuration list for PBXNativeTarget "HitupMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18B48F481B879B970032C193 /* Debug */,
+				18B48F491B879B970032C193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 18B48F1B1B879B970032C193 /* Project object */;
+}
