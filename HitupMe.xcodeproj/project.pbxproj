@@ -19,6 +19,7 @@
 		18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F531B87D8080032C193 /* DefaultNavController.swift */; };
 		18B48F561B87E02A0032C193 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F551B87E02A0032C193 /* Functions.swift */; };
 		18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F591B87E9370032C193 /* CreateController.swift */; };
+		18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		18B48F531B87D8080032C193 /* DefaultNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultNavController.swift; sourceTree = "<group>"; };
 		18B48F551B87E02A0032C193 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		18B48F591B87E9370032C193 /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
+		18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				18B48F4C1B87B0280032C193 /* ExploreTable.swift */,
 				18B48F4E1B87B2D90032C193 /* MyHitupsTab.swift */,
 				18B48F591B87E9370032C193 /* CreateController.swift */,
+				18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */,
+				18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */,
 				18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */,
 				18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */,
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
