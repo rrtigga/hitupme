@@ -9,22 +9,22 @@
 import UIKit
 
 class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    // Concrete UI Elements
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var joinButton: UIButton!
+    
+    // Base Information
     @IBOutlet var profilePicture: UIImageView!
-    
     @IBOutlet var headerLabel: UITextView!
-    
+    // Logistical Labels
     @IBOutlet var descriptionLabel: UITextView!
-    
     @IBOutlet var locationLabel: UILabel!
-    
     @IBOutlet var joinedLabel: UILabel!
-    
     @IBOutlet var distanceLabel: UILabel!
-    
     @IBOutlet var timeLabel: UILabel!
     
-    @IBOutlet var joinButton: UIButton!
+
     
     
     func configureTableView() {
@@ -53,7 +53,6 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         joinButton.setTitle("Joined", forState: UIControlState.Normal)
         joinButton.layer.borderColor = UIColor.blackColor().CGColor
         joinButton.layer.borderWidth = 1
-        navigationItem.title = "JOINED!"
     }
     
     
