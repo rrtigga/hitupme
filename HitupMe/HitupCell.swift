@@ -9,9 +9,21 @@
 import UIKit
 
 class HitupCell: UITableViewCell {
-
+    
+    // Base Information
+    @IBOutlet var profilePic: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var HeaderLabel: UITextView!
+    // Logistical Labels
+    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var joinedLabel: UILabel!
+    @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var pastTimeLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        HeaderLabel.text = "ksdjfld"
         // Initialization code
     }
 

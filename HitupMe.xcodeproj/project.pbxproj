@@ -20,6 +20,7 @@
 		18B48F561B87E02A0032C193 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F551B87E02A0032C193 /* Functions.swift */; };
 		18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F591B87E9370032C193 /* CreateController.swift */; };
 		18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */; };
+		18D24D9D1B8B9A950098F4D9 /* DetailActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		18B48F551B87E02A0032C193 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		18B48F591B87E9370032C193 /* CreateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
 		18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupDetailViewController.swift; sourceTree = "<group>"; };
+		18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailActionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			children = (
 				18B48F551B87E02A0032C193 /* Functions.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
+				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D24D9D1B8B9A950098F4D9 /* DetailActionCell.swift in Sources */,
 				18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */,
 				18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */,
 				18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */,
@@ -463,6 +467,7 @@
 				18B48F461B879B970032C193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18B48F471B879B970032C193 /* Build configuration list for PBXNativeTarget "HitupMeTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +476,7 @@
 				18B48F491B879B970032C193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

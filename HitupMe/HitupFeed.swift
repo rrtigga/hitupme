@@ -10,6 +10,7 @@ import UIKit
 
 class HitupFeed: UITableViewController {
 
+    
     func configureTableView() {
         tableView.rowHeight = 108
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None

@@ -10,7 +10,23 @@ import UIKit
 
 class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
-
+    @IBOutlet var profilePicture: UIImageView!
+    
+    @IBOutlet var headerLabel: UITextView!
+    
+    @IBOutlet var descriptionLabel: UITextView!
+    
+    @IBOutlet var locationLabel: UILabel!
+    
+    @IBOutlet var joinedLabel: UILabel!
+    
+    @IBOutlet var distanceLabel: UILabel!
+    
+    @IBOutlet var timeLabel: UILabel!
+    
+    @IBOutlet var joinButton: UIButton!
+    
+    
     func configureTableView() {
         tableView.rowHeight = 34
         tableView.delegate = self
@@ -20,6 +36,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        joinButton.addTarget(self, action: "touchJoinButton", forControlEvents: UIControlEvents.TouchUpInside)
+        joinButton.layer.borderWidth = 0
+        
         // Do any additional setup after loading the view.
     }
 
@@ -28,6 +47,18 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
 
+    func touchJoinButton() {
+        joinButton.backgroundColor = UIColor.whiteColor()
+        joinButton.tintColor = Functions.themeColor()
+        joinButton.setTitle("Joined", forState: UIControlState.Normal)
+        joinButton.layer.borderColor = UIColor.blackColor().CGColor
+        joinButton.layer.borderWidth = 1
+        navigationItem.title = "JOINED!"
+    }
+    
+    
+    
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.

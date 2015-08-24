@@ -10,6 +10,10 @@ import UIKit
 
 class Functions: NSObject {
    
+    class func themeColor() -> UIColor {
+    return Functions.colorWithHexString("F9687E")
+    }
+    
     class func colorWithHexString (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
