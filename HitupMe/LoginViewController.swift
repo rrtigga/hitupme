@@ -8,28 +8,61 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
-
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
+    @IBOutlet var loginButton: FBSDKLoginButton!
+    let askedPermissions = ["public_profile", "user_friends"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        loginButton.delegate = self
+        loginButton.readPermissions = askedPermissions
         
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            // User is already logged in, do work such as go to next view controller.
-        }
-        else
-        {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            /*self.view.addSubview(loginView)
-            loginView.center = self.view.center*/
-        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
+        // User is already logged in
+        if (FBSDKAccessToken.currentAccessToken() != nil){
+            println("Already Logged in")
+            performSegueWithIdentifier("afterLoginNoAnimate", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Facebook Delegate Methods
+
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        
+        if ((error) != nil)
+        {
+            // Process error
+            println("error %@", error.description)
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+            println("FB Login was Canceled")
+        }
+        else {
+            // Check if specific permissions missing
+            if result.grantedPermissions == NSSet( array: askedPermissions )
+            {
+                println("Login Success")
+                performSegueWithIdentifier("afterLogin", sender: nil)
+            } else {
+                println("Missing Permissions?")
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        println("User Logged Out")
     }
     
 

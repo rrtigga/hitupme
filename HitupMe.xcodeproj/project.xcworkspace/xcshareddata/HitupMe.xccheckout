@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>5D662718-76FA-4120-AC91-367D49D0C2FE</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>HitupMe</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>DADFD7A7F898A90C4E93F0D766B1B45EB008A5B0</key>
 		<string>https://github.com/rrtigga/hitupme.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>HitupMe.xcodeproj/project.xcworkspace</string>
+	<string>HitupMe.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>DADFD7A7F898A90C4E93F0D766B1B45EB008A5B0</key>

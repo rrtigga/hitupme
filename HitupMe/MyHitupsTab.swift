@@ -8,29 +8,41 @@
 
 import UIKit
 
-class MyHitupsTab: UITableViewController {
+class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
 
+    @IBOutlet var profilePic: UIImageView!
+    @IBOutlet var friendCountLabel: UILabel!
+    @IBOutlet var hitupCountLabel: UILabel!
+    @IBOutlet var userNameLabel: UILabel!
     @IBAction func touchProfileButton(sender: AnyObject) {
        loginView.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
     }
     
     let loginView : FBSDKLoginButton = FBSDKLoginButton()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        loginView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    }
 
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        performSegueWithIdentifier("logout", sender: nil)
+        println("User Logged Out of App")
+    }
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
