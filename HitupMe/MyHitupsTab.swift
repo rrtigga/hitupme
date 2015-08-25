@@ -10,9 +10,15 @@ import UIKit
 
 class MyHitupsTab: UITableViewController {
 
+    @IBAction func touchProfileButton(sender: AnyObject) {
+       loginView.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+    }
+    
+    let loginView : FBSDKLoginButton = FBSDKLoginButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
