@@ -48,24 +48,65 @@ class CreateController: UIViewController, UITextViewDelegate {
     // ---------- These two functions Reset the TextViews to Placeholder Text ---------- //
     func setHeaderDefault() {
         headerTextView.text = defaultHeaderText
-        headerTextView.textColor = Functions.defaultFadedColor()
+        headerTextView.textColor = UIColor.lightGrayColor()
     }
     func setDetailsDefault() {
         detailsTextView.text = defaultDetailsText
-        detailsTextView.textColor = Functions.defaultFadedColor()
+        detailsTextView.textColor = UIColor.lightGrayColor()
     }
     
     
     // ---------- These Callbacks run when Actions take place ---------- //
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        // Combine the textView text and the replacement text to
+        // create the updated text string
+        let currentText:NSString = textView.text
+        let updatedText = currentText.stringByReplacingCharactersInRange(range, withString:text)
+        
+        // If updated text view will be empty, add the placeholder
+        // and set the cursor to the beginning of the text view
+        if updatedText.isEmpty {
+            
+            //textView.text = "Placeholder"
+            if textView.tag == FieldType.header.rawValue {
+                textView.text = defaultHeaderText
+                // headerTextView.selectedRange = NSRange(location: 0,length: 0)
+                    
+            }
+            else if textView.tag == FieldType.details.rawValue {
+                textView.text=defaultDetailsText
+                // detailsTextView.selectedRange = NSRange(location: 0,length: 0)
+            }
+
+            textView.textColor = UIColor.lightGrayColor()
+            
+            textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+            
+            return false
+        }
+            
+            // Else if the text view's placeholder is showing and the
+            // length of the replacement string is greater than 0, clear
+            // the text view and set its color to black to prepare for
+            // the user's entry
+        else if textView.textColor == UIColor.lightGrayColor() && !text.isEmpty {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+        
+        return true
+    }
+    
     func textViewDidChangeSelection(textView: UITextView) {
         //println(textView.tag)
         // Set Cursor
         if textView.tag == FieldType.header.rawValue {
-            if textView.text == defaultHeaderText {
+            if textView.textColor == UIColor.lightGrayColor() {
                 headerTextView.selectedRange = NSRange(location: 0,length: 0)
             }
         } else if textView.tag == FieldType.details.rawValue {
-            if textView.text == defaultDetailsText {
+            if textView.textColor == UIColor.lightGrayColor() {
                 detailsTextView.selectedRange = NSRange(location: 0,length: 0)
             }
         } else if textView.tag == FieldType.location.rawValue {
@@ -73,16 +114,13 @@ class CreateController: UIViewController, UITextViewDelegate {
                 //locationTextView.selectedRange = NSRange(location: 0,length: 0)
             }
         }
-        // Reset Text if needed
-        if headerTextView.text == "" {
-            headerTextView.text = defaultHeaderText
-        }
-        if detailsTextView.text == "" {
-            detailsTextView.text = defaultDetailsText
-        }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
+        
+        
+        
+        
         
     }
     
