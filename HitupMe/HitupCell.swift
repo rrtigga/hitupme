@@ -25,7 +25,7 @@ class HitupCell: UITableViewCell {
         case Joined, Hosted, NotResponded
     }
     
-    var savedCellType = cellType.Hosted
+    var savedCellType = cellType.Joined
     
     override func awakeFromNib() {
         super.awakeFromNib()

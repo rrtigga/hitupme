@@ -23,12 +23,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // User is already logged in
-        if (FBSDKAccessToken.currentAccessToken() != nil){
-            println("Already Logged in")
-            performSegueWithIdentifier("afterLoginNoAnimate", sender: nil)
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,13 +48,65 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             if result.grantedPermissions == NSSet( array: askedPermissions )
             {
                 println("Login Success")
+                
+                // Test SID Retrieval
+                var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/connect")!)
+                var session = NSURLSession.sharedSession()
+                var params = ["apiKey":"U5KMDLQ9KHN4G8MO54EH9DKG896NUETMH4DYT98W3N0HAMSO4E"] as Dictionary<String, String>
+                var err: NSError?
+                request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.addValue("application/json", forHTTPHeaderField: "Accept")
+                var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                        println("Response: \(response)")
+                        var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+                        println("Body: \(strData)")
+                        var err: NSError?
+                        var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+                        
+                        // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
+                        if(err != nil) {
+                            println(err!.localizedDescription)
+                            let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                            println("Error could not parse JSON: '\(jsonStr)'")
+                        }
+                        else {
+                            // The JSONObjectWithData constructor didn't return an error. But, we should still
+                            // check and make sure that json has a value using optional binding.
+                            if let parseJSON = json {
+                                // Okay, the parsedJSON is here, let's get the value for 'success' out of it
+                                var success = parseJSON["success"] as? Int
+                                println("Succes: \(success)")
+                            }
+                            else {
+                                // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
+                                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                                println("Error could not parse JSON: \(jsonStr)")
+                            }
+                        }
+                    })
+                request.HTTPMethod = "POST"
+                task.resume()
+                
+                /*
+                var request2 = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/user/addUser")!)
+                var session2 = NSURLSession.sharedSession()
+                var params2 = ["userId":"111", "picUrl":"1111", "firstName":"FirstTest", "lastName":"lastTest", "friends[]":["1","2"] ] as Dictionary<String, String>
+                var task2 = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                    println("Response: \(response)")
+                })
+                request2.HTTPMethod = "POST"
+                */
+            
+            
+            
                 performSegueWithIdentifier("afterLogin", sender: nil)
             } else {
                 println("Missing Permissions?")
             }
         }
     }
-    
+
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("User Logged Out")
     }

@@ -14,6 +14,10 @@ class Functions: NSObject {
     return Functions.colorWithHexString("F9687E")
     }
     
+    class func defaultFadedColor() -> UIColor {
+    return Functions.colorWithHexString("ADB4BD")
+    }
+    
     class func colorWithHexString (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
