@@ -18,6 +18,10 @@ class Functions: NSObject {
     return Functions.colorWithHexString("ADB4BD")
     }
     
+    class func defaultLocationColor() -> UIColor {
+        return Functions.colorWithHexString("4A90E2")
+    }
+    
     class func colorWithHexString (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         

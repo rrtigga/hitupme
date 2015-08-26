@@ -780,16 +780,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ic-B4-10p">
                                 <rect key="frame" x="7" y="210" width="577" height="37"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location name (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLm-H3-y9d">
-                                        <rect key="frame" x="19" y="8" width="162" height="20"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1XG-UP-k00">
+                                        <rect key="frame" x="8" y="4" width="561" height="30"/>
+                                        <color key="textColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.29019607843137257" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="1XG-UP-k00" secondAttribute="centerY" constant="-0.5" id="Js9-60-P62"/>
                                     <constraint firstAttribute="height" constant="37" id="YDw-Fc-dmu"/>
+                                    <constraint firstItem="1XG-UP-k00" firstAttribute="leading" secondItem="7Ic-B4-10p" secondAttribute="leading" constant="8" id="h5C-h2-U60"/>
+                                    <constraint firstAttribute="trailing" secondItem="1XG-UP-k00" secondAttribute="trailing" constant="8" id="yW5-q1-Yy1"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="NO"/>
@@ -849,6 +852,7 @@
                     <connections>
                         <outlet property="detailsTextView" destination="0Gn-rR-gj8" id="NRO-Ow-BcF"/>
                         <outlet property="headerTextView" destination="ZkZ-S8-5SN" id="nTd-4t-riO"/>
+                        <outlet property="locationTextField" destination="1XG-UP-k00" id="eAX-3L-sm8"/>
                         <outlet property="profilePic" destination="rhP-kc-0cg" id="5Dy-Qu-NFb"/>
                     </connections>
                 </viewController>

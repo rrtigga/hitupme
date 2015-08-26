@@ -22,6 +22,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var headerTextView: UITextView!
     @IBOutlet var detailsTextView: UITextView!
+    @IBOutlet var locationTextField: UITextField!
     @IBAction func touchDone(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: {})
     }
@@ -33,10 +34,12 @@ class CreateController: UIViewController, UITextViewDelegate {
         // Set TextViews
         setHeaderDefault()
         setDetailsDefault()
+        setLocationDefault()
         headerTextView.tag = FieldType.header.rawValue
         detailsTextView.tag = FieldType.details.rawValue
         headerTextView.delegate = self
         detailsTextView.delegate = self
+        
         
         
         // Set First Responder
@@ -53,6 +56,12 @@ class CreateController: UIViewController, UITextViewDelegate {
     func setDetailsDefault() {
         detailsTextView.text = defaultDetailsText
         detailsTextView.textColor = UIColor.lightGrayColor()
+    }
+    func setLocationDefault() {
+        
+        let str = NSAttributedString(string: defaultLocationText, attributes: [NSForegroundColorAttributeName:Functions.defaultLocationColor()])
+        locationTextField.attributedPlaceholder = str
+        locationTextField.borderStyle = UITextBorderStyle.None
     }
     
     
@@ -78,6 +87,10 @@ class CreateController: UIViewController, UITextViewDelegate {
                 textView.text=defaultDetailsText
                 // detailsTextView.selectedRange = NSRange(location: 0,length: 0)
             }
+            
+            else if textView.tag == FieldType.location.rawValue {
+                textView.text=defaultLocationText
+            }
 
             textView.textColor = UIColor.lightGrayColor()
             
@@ -101,17 +114,15 @@ class CreateController: UIViewController, UITextViewDelegate {
     func textViewDidChangeSelection(textView: UITextView) {
         //println(textView.tag)
         // Set Cursor
-        if textView.tag == FieldType.header.rawValue {
-            if textView.textColor == UIColor.lightGrayColor() {
-                headerTextView.selectedRange = NSRange(location: 0,length: 0)
-            }
-        } else if textView.tag == FieldType.details.rawValue {
-            if textView.textColor == UIColor.lightGrayColor() {
-                detailsTextView.selectedRange = NSRange(location: 0,length: 0)
-            }
-        } else if textView.tag == FieldType.location.rawValue {
-            if textView.text == defaultLocationText {
-                //locationTextView.selectedRange = NSRange(location: 0,length: 0)
+        if (textView.textColor != nil) {
+            if textView.tag == FieldType.header.rawValue {
+                if textView.textColor == UIColor.lightGrayColor() {
+                    headerTextView.selectedRange = NSRange(location: 0,length: 0)
+                }
+            } else if textView.tag == FieldType.details.rawValue {
+                if textView.textColor == UIColor.lightGrayColor() {
+                    detailsTextView.selectedRange = NSRange(location: 0,length: 0)
+                }
             }
         }
     }
