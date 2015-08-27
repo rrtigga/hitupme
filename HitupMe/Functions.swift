@@ -9,7 +9,7 @@
 import UIKit
 
 class Functions: NSObject {
-   
+    
     class func themeColor() -> UIColor {
     return Functions.colorWithHexString("F9687E")
     }
@@ -20,6 +20,13 @@ class Functions: NSObject {
     
     class func defaultLocationColor() -> UIColor {
         return Functions.colorWithHexString("4A90E2")
+    }
+    
+    class func getPictureFromFBId(fbId:String, completion: ((image: UIImage?) -> Void)) {
+        var urL: NSURL = NSURL(fileURLWithPath: String(format: "https://graph.facebook.com/%@/picture?type=small", fbId) )!
+        NSURLSession.sharedSession().dataTaskWithURL(urL) { (data, response, error) in
+            completion(image: UIImage(data: data) )
+            }.resume()
     }
     
     class func colorWithHexString (hex:String) -> UIColor {

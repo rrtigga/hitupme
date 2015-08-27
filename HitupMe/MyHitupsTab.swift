@@ -25,7 +25,20 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.delegate = self
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var userInfo = defaults.objectForKey("userInfo_dict") as! NSDictionary
+        // Set Name
+        userNameLabel.text = String(format:"%@ %@", (userInfo.objectForKey("first_name") as? String)! , (userInfo.objectForKey("last_name") as? String)! )
+        // Set Friend Num
+        var friendArray: NSArray = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
+        friendCountLabel.text = String(friendArray.count)
+        // Set Picture
+        Functions.getPictureFromFBId(userInfo.objectForKey("id"), completion: { (image) -> Void in
+             profilePic.image = image
+        })
+        
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

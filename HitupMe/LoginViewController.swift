@@ -117,19 +117,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         var connection = FBSDKGraphRequestConnection()
         connection.addRequest(requestMe, completionHandler: { (connection, result, error) -> Void in
             if error == nil {
-                println(result)
+                var defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(result, forKey: "userInfo_dict")
             }
         })
-        connection.addRequest(requestFriends, completionHandler: { (connection, result, error) -> Void in
+        connection.addRequest(requestFriends, completionHandler: { (connection, result, error: NSError!) -> Void in
             
             if error == nil {
-                 var friendObjects = result["data"] as! [NSDictionary]
-                 //for friend in friendObjects
-                    
-                //}
-                
-                println(result)
-                var dic = NSDictionary(objects: [""], forKeys: ["first_name", "last_name", "person_id"])
+                var friends = result["friends"] as! NSDictionary
+                var friendData = friends["data"] as! NSArray
+                var defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(friendData, forKey: "arrayOfFriend_dicts")
                 
             }
         })
