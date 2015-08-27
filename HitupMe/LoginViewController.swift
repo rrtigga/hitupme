@@ -53,10 +53,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/connect")!)
                 var session = NSURLSession.sharedSession()
                 var params = ["apiKey":"U5KMDLQ9KHN4G8MO54EH9DKG896NUETMH4DYT98W3N0HAMSO4E"] as Dictionary<String, String>
+                var postString = "apiKey=U5KMDLQ9KHN4G8MO54EH9DKG896NUETMH4DYT98W3N0HAMSO4E"
                 var err: NSError?
-                request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+                request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.addValue("application/json", forHTTPHeaderField: "Accept")
+
                 var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                         println("Response: \(response)")
                         var strData = NSString(data: data, encoding: NSUTF8StringEncoding)

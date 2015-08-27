@@ -23,9 +23,11 @@ class CreateController: UIViewController, UITextViewDelegate {
     @IBOutlet var headerTextView: UITextView!
     @IBOutlet var detailsTextView: UITextView!
     @IBOutlet var locationTextField: UITextField!
+    @IBOutlet var locationView: UIView!
     @IBAction func touchDone(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: {})
     }
+
 
     
     // ---------- This runs right after Create Hitup Button is touched ---------- //
@@ -39,8 +41,6 @@ class CreateController: UIViewController, UITextViewDelegate {
         detailsTextView.tag = FieldType.details.rawValue
         headerTextView.delegate = self
         detailsTextView.delegate = self
-        
-        
         
         // Set First Responder
         headerTextView.becomeFirstResponder()
@@ -62,6 +62,13 @@ class CreateController: UIViewController, UITextViewDelegate {
         let str = NSAttributedString(string: defaultLocationText, attributes: [NSForegroundColorAttributeName:Functions.defaultLocationColor()])
         locationTextField.attributedPlaceholder = str
         locationTextField.borderStyle = UITextBorderStyle.None
+        let gesture = UIGestureRecognizer(target: self, action: Selector(touchLocation()))
+        locationView.addGestureRecognizer(gesture)
+    }
+    
+    func touchLocation() {
+        println("sdfds")
+        locationTextField.becomeFirstResponder()
     }
     
     

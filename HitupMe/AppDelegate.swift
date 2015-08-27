@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var didFinish = FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        
+        /*
         // Override point for customization after application launch.
         if (FBSDKAccessToken.currentAccessToken() != nil){
             println("Skip Login")
@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         }
+        */
+        
         
         return didFinish
     }
