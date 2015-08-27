@@ -25,9 +25,25 @@ class CreateController: UIViewController, UITextViewDelegate {
     @IBOutlet var locationTextField: UITextField!
     @IBOutlet var locationView: UIView!
     @IBAction func touchDone(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: {})
+        view.endEditing(true)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        var window: UIWindowLevel
+        let windowTest = appDelegate.window
+        var tabBarController: UITabBarController = windowTest!.rootViewController as! UITabBarController
+        tabBarController.selectedIndex = 0
+        var num = 0
+        var firstNav = tabBarController.viewControllers![0] as! UINavigationController
+        firstNav.popToRootViewControllerAnimated(true)
+        
+        dismissViewControllerAnimated(true, completion: {
+        })
     }
 
+    @IBAction func touchCancel(sender: AnyObject) {
+        view.endEditing(true)
+        dismissViewControllerAnimated(true, completion: {})
+    }
 
     
     // ---------- This runs right after Create Hitup Button is touched ---------- //
@@ -62,7 +78,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         let str = NSAttributedString(string: defaultLocationText, attributes: [NSForegroundColorAttributeName:Functions.defaultLocationColor()])
         locationTextField.attributedPlaceholder = str
         locationTextField.borderStyle = UITextBorderStyle.None
-        let gesture = UIGestureRecognizer(target: self, action: Selector(touchLocation()))
+        let gesture = UIGestureRecognizer(target: self, action: Selector("touchLocation"))
         locationView.addGestureRecognizer(gesture)
     }
     

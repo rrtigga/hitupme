@@ -689,7 +689,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchDone:" destination="QOa-c0-6JS" eventType="touchUpInside" id="2Od-s3-7rM"/>
+                                    <action selector="touchCancel:" destination="QOa-c0-6JS" eventType="touchUpInside" id="T2i-NL-scg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqX-j8-mPn">

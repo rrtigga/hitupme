@@ -88,6 +88,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         }
                     })
                 request.HTTPMethod = "POST"
+                
+                updateFacebook()
                 task.resume()
                 
                 /*
@@ -109,6 +111,33 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
 
+    func updateFacebook() {
+        var requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
+        var requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
+        var connection = FBSDKGraphRequestConnection()
+        connection.addRequest(requestMe, completionHandler: { (connection, result, error) -> Void in
+            if error == nil {
+                println(result)
+            }
+        })
+        connection.addRequest(requestFriends, completionHandler: { (connection, result, error) -> Void in
+            
+            if error == nil {
+                 var friendObjects = result["data"] as! [NSDictionary]
+                 //for friend in friendObjects
+                    
+                //}
+                
+                println(result)
+                var dic = NSDictionary(objects: [""], forKeys: ["first_name", "last_name", "person_id"])
+                
+            }
+        })
+        
+        connection.start()
+    }
+    
+    
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("User Logged Out")
     }
