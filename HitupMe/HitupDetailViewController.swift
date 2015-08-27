@@ -23,8 +23,26 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var joinedLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var typePicture: UIImageView!
     
-
+    enum pictureType{
+        case Hosted, NotHosted,Joined
+    }
+    
+    var savedPictureType = pictureType.Hosted
+    
+    internal func setPictureType(type: pictureType){
+        savedPictureType=type
+        switch savedPictureType {
+        case .Hosted:
+            typePicture.image = UIImage(named:"Cell_Hosted")
+        case .NotHosted:
+            typePicture.image = nil
+        case .Joined:
+            typePicture.image = UIImage(named:"Cell_Joined")
+        }
+    }
+    
     
     
     func configureTableView() {
@@ -38,6 +56,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         configureTableView()
         joinButton.addTarget(self, action: "touchJoinButton", forControlEvents: UIControlEvents.TouchUpInside)
         joinButton.layer.borderWidth = 0
+        //setting the picture event label
+        setPictureType(savedPictureType)
         
         // Do any additional setup after loading the view.
     }
@@ -54,6 +74,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         joinButton.layer.borderColor = UIColor.blackColor().CGColor
         joinButton.layer.borderWidth = 1
     }
+    
+    
     
     
     
