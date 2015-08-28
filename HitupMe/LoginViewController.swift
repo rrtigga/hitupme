@@ -18,11 +18,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
         loginButton.delegate = self
         loginButton.readPermissions = askedPermissions
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        Functions.updateLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +49,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             {
                 println("Login Success")
                 
+                /*
                 // Test SID Retrieval
                 var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/connect")!)
                 var session = NSURLSession.sharedSession()
@@ -91,18 +92,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 
                 updateFacebook()
                 task.resume()
-                
-                /*
-                var request2 = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/user/addUser")!)
-                var session2 = NSURLSession.sharedSession()
-                var params2 = ["userId":"111", "picUrl":"1111", "firstName":"FirstTest", "lastName":"lastTest", "friends[]":["1","2"] ] as Dictionary<String, String>
-                var task2 = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                    println("Response: \(response)")
-                })
-                request2.HTTPMethod = "POST"
                 */
             
-            
+                BackendAPI.connect({ (success) -> Void in
+                })
             
                 performSegueWithIdentifier("afterLogin", sender: nil)
             } else {

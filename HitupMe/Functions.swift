@@ -32,6 +32,49 @@ class Functions: NSObject {
         
     }
     
+    class func updateLocation() {
+        // Update one Guaranteed
+        var locationManager = LocationManager.sharedInstance
+        locationManager.showVerboseMessage = false
+        locationManager.autoUpdate = true
+        locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
+            println("lat:\(latitude) lon:\(longitude) status:\(status) error:\(error)")
+            //println(verboseMessage)
+            var defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setDouble(latitude, forKey: "latitude")
+            defaults.setDouble(longitude, forKey: "longitude")
+            locationManager.stopUpdatingLocation()
+            
+            locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
+                var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
+                println( geoInfo)
+                defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
+                defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
+                defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+            })
+            
+            
+            
+            // Update Location when significant changes
+            locationManager.autoUpdate = false
+            locationManager.startUpdatingLocationWithCompletionHandler(completionHandler: { (latitude, longitude, status, verboseMessage, error) -> () in
+                println("lat:\(latitude) lon:\(longitude) status:\(status) error:\(error)")
+                //println(verboseMessage)
+                defaults.setDouble(latitude, forKey: "latitude")
+                defaults.setDouble(longitude, forKey: "longitude")
+                
+                locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
+                    var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
+                    println( geoInfo)
+                    defaults.setValue( geoInfo["locality"] as! String, forKey: "City")
+                    defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "State")
+                    defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+                })
+            })
+            
+        }
+    }
+    
     class func colorWithHexString (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         

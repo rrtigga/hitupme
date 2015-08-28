@@ -26,23 +26,22 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var typePicture: UIImageView!
     
     enum pictureType{
-        case Hosted, NotHosted,Joined
+        case Hosted, NotResponded ,Joined
     }
     
-    var savedPictureType = pictureType.Joined
+    var savedPictureType = pictureType.NotResponded
     
     internal func setPictureType(type: pictureType){
         savedPictureType=type
         switch savedPictureType {
         case .Hosted:
             typePicture.image = UIImage(named:"Cell_Hosted")
-        case .NotHosted:
+        case .NotResponded:
             typePicture.image = nil
         case .Joined:
             typePicture.image = UIImage(named:"Cell_Joined")
         }
     }
-    
     
     
     func configureTableView() {
@@ -73,6 +72,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         joinButton.setTitle("Joined", forState: UIControlState.Normal)
         joinButton.layer.borderColor = UIColor.blackColor().CGColor
         joinButton.layer.borderWidth = 1
+        setPictureType(pictureType.Joined)
     }
     
     

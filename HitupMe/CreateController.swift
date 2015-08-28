@@ -17,27 +17,48 @@ class CreateController: UIViewController, UITextViewDelegate {
         case location
     }
     var defaultHeaderText = "What are you doing"
-    var defaultDetailsText = "What are the Details?"
-    var defaultLocationText = "Add a location (optional)"
+    var defaultDetailsText = "Details? (optional)"
+    var defaultLocationText = "Location name? (optional)"
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var headerTextView: UITextView!
     @IBOutlet var detailsTextView: UITextView!
     @IBOutlet var locationTextField: UITextField!
     @IBOutlet var locationView: UIView!
+    @IBOutlet var cityLabel: UILabel!
     @IBAction func touchDone(sender: AnyObject) {
-        view.endEditing(true)
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        var window: UIWindowLevel
-        let windowTest = appDelegate.window
-        var tabBarController: UITabBarController = windowTest!.rootViewController as! UITabBarController
-        tabBarController.selectedIndex = 0
-        var num = 0
-        var firstNav = tabBarController.viewControllers![0] as! UINavigationController
-        firstNav.popToRootViewControllerAnimated(true)
-        
-        dismissViewControllerAnimated(true, completion: {
-        })
+        if headerTextView.textColor != UIColor.lightGrayColor() {
+            view.endEditing(true)
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            var window: UIWindowLevel
+            let windowTest = appDelegate.window
+            var tabBarController: UITabBarController = windowTest!.rootViewController as! UITabBarController
+            tabBarController.selectedIndex = 0
+            var num = 0
+            var firstNav = tabBarController.viewControllers![0] as! UINavigationController
+            firstNav.popToRootViewControllerAnimated(true)
+            var hitupFeed = firstNav.viewControllers![0] as! HitupFeed
+            
+            var details = " "
+            if (detailsTextView.textColor != UIColor.lightGrayColor()) {details = detailsTextView.text}
+            
+            var hitup = NSDictionary(objects: [headerTextView.text, locationTextField.text, "0 joined", "<0.1 miles away", "<1m", details, true, false ], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ])
+            hitupFeed.addTopHitup(hitup)
+            
+            var locationText = " "
+            if locationTextField.hasText() { locationText = locationTextField.text}
+            
+            var defaults = NSUserDefaults.standardUserDefaults()
+            var userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+            var userId = userDict.objectForKey("id") as! String
+            var firstName = userDict.objectForKey("first_name") as! String
+            BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
+                if success == true {
+                    println("Successful Post")
+                }
+            })
+            
+            dismissViewControllerAnimated(true, completion: {})
+        }
     }
 
     @IBAction func touchCancel(sender: AnyObject) {
@@ -61,6 +82,10 @@ class CreateController: UIViewController, UITextViewDelegate {
         // Set First Responder
         headerTextView.becomeFirstResponder()
         headerTextView.selectedRange = NSRange(location: 0,length: 0)
+        
+        Functions.updateLocation()
+        var defaults = NSUserDefaults.standardUserDefaults()
+        cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
     }
 
     

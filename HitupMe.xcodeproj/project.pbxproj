@@ -29,6 +29,8 @@
 		18D24DAA1B8BE58E0098F4D9 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D24DA41B8BE58E0098F4D9 /* FBSDKShareKit.framework */; };
 		18D24DAC1B8BE5950098F4D9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D24DAB1B8BE5950098F4D9 /* Bolts.framework */; };
 		18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */; };
+		18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6F91B8FE461009783D7 /* BackendAPI.swift */; };
+		18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FB1B901A87009783D7 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		18D24DAB1B8BE5950098F4D9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		18E2D6F91B8FE461009783D7 /* BackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendAPI.swift; sourceTree = "<group>"; };
+		18E2D6FB1B901A87009783D7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 			children = (
 				18B48F571B87E8F40032C193 /* Controllers */,
 				18B48F521B87B3EB0032C193 /* Custom */,
+				18E2D6FD1B901A8C009783D7 /* Open-Sourced */,
 				18B48F581B87E91A0032C193 /* Core Files */,
 				18B48F261B879B970032C193 /* Supporting Files */,
 			);
@@ -154,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				18B48F551B87E02A0032C193 /* Functions.swift */,
+				18E2D6F91B8FE461009783D7 /* BackendAPI.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
 				18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */,
@@ -199,6 +205,14 @@
 			);
 			name = Frameworks;
 			path = HitupMe;
+			sourceTree = "<group>";
+		};
+		18E2D6FD1B901A8C009783D7 /* Open-Sourced */ = {
+			isa = PBXGroup;
+			children = (
+				18E2D6FB1B901A87009783D7 /* LocationManager.swift */,
+			);
+			name = "Open-Sourced";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,12 +322,14 @@
 				18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */,
 				18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */,
 				18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */,
+				18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */,
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
 				18B48F4F1B87B2D90032C193 /* MyHitupsTab.swift in Sources */,
 				18B48F291B879B970032C193 /* AppDelegate.swift in Sources */,
 				18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */,
+				18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

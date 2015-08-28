@@ -9,7 +9,8 @@
 import UIKit
 
 class HitupFeed: UITableViewController {
-
+    
+    var hitups = NSMutableArray()
     
     func configureTableView() {
         tableView.rowHeight = 108
@@ -19,7 +20,12 @@ class HitupFeed: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-
+        Functions.updateLocation()
+        
+        hitups.addObject(NSDictionary(objects: ["Studying ECS150 at Temple", "Temple Coffee", "2 Joined", "0.5 miles away", "30m", "Gon be here like 2 hours", false, false], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ]))
+        hitups.addObject(NSDictionary(objects: ["Chilling at Teabo, feel free to join!", "Teabo, South Davis", "0 Joined", "<0.1 miles away", "3h", "Gon be here like 10 hours", false, true], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ]))
+        hitups.addObject(NSDictionary(objects: ["Studying at Library :'( Have snacks! Come join", "ShieldsLibrary", "5 Joined" , "1 mile away", "4h", "I'm dying :(", false, false], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ]))
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,6 +40,10 @@ class HitupFeed: UITableViewController {
 
     // MARK: - Table view data source
 
+    internal func addTopHitup(hitupDict:NSDictionary) {
+        hitups.insertObject(hitupDict, atIndex: 0)
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
+    }
 
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -45,14 +55,29 @@ class HitupFeed: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 3
+        return hitups.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! HitupCell
+        
+        var hitupDict : NSDictionary = hitups.objectAtIndex(indexPath.row ) as! NSDictionary
+        
+        cell.HeaderLabel.text = hitupDict["header"] as? String
+        cell.locationLabel.text = hitupDict["locationName"] as? String
+        cell.joinedLabel.text = hitupDict["numberJoined"] as? String
+        cell.distanceLabel.text = hitupDict["distance"] as? String
+        cell.pastTimeLabel.text = hitupDict["recency"] as? String
 
+        if (hitupDict["joined"] as? Bool == true) {
+            cell.setCellType(HitupCell.cellType.Joined)
+        } else if (hitupDict["hosted"] as? Bool == true) {
+            cell.setCellType(HitupCell.cellType.Hosted)
+        } else {
+            cell.setCellType(HitupCell.cellType.NotResponded)
+        }
+        
         return cell
     }
 
