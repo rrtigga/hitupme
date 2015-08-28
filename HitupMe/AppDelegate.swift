@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
             var initialViewController = storyboard.instantiateViewControllerWithIdentifier("mainTab") as! UIViewController
-            println( FBSDKAccessToken.currentAccessToken().tokenString )
+            //println( FBSDKAccessToken.currentAccessToken().tokenString )
             
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()

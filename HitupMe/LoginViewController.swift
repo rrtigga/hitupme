@@ -94,6 +94,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 task.resume()
                 */
             
+                updateFacebook()
                 BackendAPI.connect({ (success) -> Void in
                 })
             
