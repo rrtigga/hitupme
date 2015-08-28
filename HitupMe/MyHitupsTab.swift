@@ -33,8 +33,8 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         var friendArray: NSArray = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
         friendCountLabel.text = String(friendArray.count)
         // Set Picture
-        Functions.getPictureFromFBId(userInfo.objectForKey("id"), completion: { (image) -> Void in
-             profilePic.image = image
+        Functions.getPictureFromFBId(userInfo.objectForKey("id") as! String, completion: { (image) -> Void in
+             self.profilePic.image = image
         })
         
     }

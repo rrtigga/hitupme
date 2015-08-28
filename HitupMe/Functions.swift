@@ -23,10 +23,13 @@ class Functions: NSObject {
     }
     
     class func getPictureFromFBId(fbId:String, completion: ((image: UIImage?) -> Void)) {
-        var urL: NSURL = NSURL(fileURLWithPath: String(format: "https://graph.facebook.com/%@/picture?type=small", fbId) )!
-        NSURLSession.sharedSession().dataTaskWithURL(urL) { (data, response, error) in
-            completion(image: UIImage(data: data) )
-            }.resume()
+        var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=large", fbId) )!
+        let request = NSURLRequest(URL: urL)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
+            (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            completion( image: UIImage(data: data) )
+        }
+        
     }
     
     class func colorWithHexString (hex:String) -> UIColor {

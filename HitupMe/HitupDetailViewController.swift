@@ -29,7 +29,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         case Hosted, NotHosted,Joined
     }
     
-    var savedPictureType = pictureType.Hosted
+    var savedPictureType = pictureType.Joined
     
     internal func setPictureType(type: pictureType){
         savedPictureType=type
