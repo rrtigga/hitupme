@@ -31,6 +31,7 @@
 		18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */; };
 		18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6F91B8FE461009783D7 /* BackendAPI.swift */; };
 		18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FB1B901A87009783D7 /* LocationManager.swift */; };
+		18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FE1B911CDD009783D7 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		18E2D6F91B8FE461009783D7 /* BackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendAPI.swift; sourceTree = "<group>"; };
 		18E2D6FB1B901A87009783D7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		18E2D6FE1B911CDD009783D7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				18B48F551B87E02A0032C193 /* Functions.swift */,
+				18E2D6FE1B911CDD009783D7 /* Model.swift */,
 				18E2D6F91B8FE461009783D7 /* BackendAPI.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
@@ -324,6 +327,7 @@
 				18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */,
 				18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */,
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
+				18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */,
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
 				18B48F4F1B87B2D90032C193 /* MyHitupsTab.swift in Sources */,

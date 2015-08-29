@@ -11,6 +11,8 @@ import UIKit
 class HitupFeed: UITableViewController {
     
     var hitups = NSMutableArray()
+    var hitupToBeSent = NSDictionary(objects: ["Studying ECS150 at Temple", "Temple Coffee", "2 Joined", "0.5 miles away", "30m", "Gon be here like 2 hours", false, false], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ])
+    var hitupToBeSentIndex = 0
     
     func configureTableView() {
         tableView.rowHeight = 108
@@ -21,10 +23,6 @@ class HitupFeed: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         Functions.updateLocation()
-        
-        hitups.addObject(NSDictionary(objects: ["Studying ECS150 at Temple", "Temple Coffee", "2 Joined", "0.5 miles away", "30m", "Gon be here like 2 hours", false, false], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ]))
-        hitups.addObject(NSDictionary(objects: ["Chilling at Teabo, feel free to join!", "Teabo, South Davis", "0 Joined", "<0.1 miles away", "3h", "Gon be here like 10 hours", false, true], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ]))
-        hitups.addObject(NSDictionary(objects: ["Studying at Library :'( Have snacks! Come join", "ShieldsLibrary", "5 Joined" , "1 mile away", "4h", "I'm dying :(", false, false], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ]))
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -41,7 +39,7 @@ class HitupFeed: UITableViewController {
     // MARK: - Table view data source
 
     internal func addTopHitup(hitupDict:NSDictionary) {
-        hitups.insertObject(hitupDict, atIndex: 0)
+        Model.addToLocalNearbyHitups(hitupDict)
         tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
     }
 
@@ -55,14 +53,14 @@ class HitupFeed: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return hitups.count
+        return Model.getLocalNearbyHitupsCount()
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! HitupCell
         
-        var hitupDict : NSDictionary = hitups.objectAtIndex(indexPath.row ) as! NSDictionary
+        var hitupDict : NSDictionary =  Model.getLocalNearbyHitupsAtIndex(indexPath.row )
         
         cell.HeaderLabel.text = hitupDict["header"] as? String
         cell.locationLabel.text = hitupDict["locationName"] as? String
@@ -117,14 +115,29 @@ class HitupFeed: UITableViewController {
     }
     */
 
-    /*
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Create a variable that you want to send based on the destination view controller
+        // You can get a reference to the data by using indexPath shown below
+        println("select")
+        hitupToBeSentIndex = indexPath.row
+        performSegueWithIdentifier("detail", sender: self)
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println("Showing Detail")
+        if segue.identifier == "detail" {
+            var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
+            detailController.hitupIndex = hitupToBeSentIndex
+        }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

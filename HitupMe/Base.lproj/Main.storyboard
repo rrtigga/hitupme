@@ -127,7 +127,6 @@
                                     <outlet property="pastTimeLabel" destination="3nr-65-JEK" id="10w-Ty-CcL"/>
                                     <outlet property="profilePic" destination="PFz-Wc-1hz" id="sEO-yX-pFS"/>
                                     <outlet property="typePic" destination="e3H-6r-egV" id="872-8K-B1l"/>
-                                    <segue destination="CCW-3i-e78" kind="show" id="c0u-IP-XcY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -148,6 +147,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="navigationItem.title" value="Hitups Nearby"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="CCW-3i-e78" kind="show" identifier="detail" id="Tg9-Ea-eBS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hL4-Yt-sNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1428,6 +1430,12 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cell_Hosted" translatesAutoresizingMaskIntoConstraints="NO" id="9gO-Fk-7et">
                                             <rect key="frame" x="8" y="0.0" width="34" height="34"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rohit Tigga" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ony-7L-DuY">
+                                            <rect key="frame" x="3" y="80" width="100" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -1516,6 +1524,7 @@
                         <outlet property="joinButton" destination="6lJ-pY-Jrd" id="G6g-xH-G5n"/>
                         <outlet property="joinedLabel" destination="EqA-AK-aCd" id="fw6-vr-zDq"/>
                         <outlet property="locationLabel" destination="GpU-8b-m7F" id="Fw2-2N-KnE"/>
+                        <outlet property="nameLabel" destination="ony-7L-DuY" id="3d8-b2-IFP"/>
                         <outlet property="profilePicture" destination="40x-24-DJQ" id="v0k-w4-WAN"/>
                         <outlet property="tableView" destination="HoZ-CN-WBA" id="Ins-nt-xFc"/>
                         <outlet property="timeLabel" destination="XmS-Zr-OQU" id="gSS-9I-0hX"/>
