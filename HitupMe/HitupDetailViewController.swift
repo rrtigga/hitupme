@@ -72,6 +72,11 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             setPictureType(pictureType.Joined)
         } else if (savedHitup["hosted"] as? Bool == true) {
             setPictureType(pictureType.Hosted)
+            joinButton.setTitle("Cancel Hitup?", forState: UIControlState.Normal)
+            joinButton.backgroundColor = UIColor.whiteColor()
+            joinButton.tintColor = Functions.defaultLocationColor()
+            joinButton.layer.borderColor = UIColor.blackColor().CGColor
+            joinButton.layer.borderWidth = 1
         } else {
             setPictureType(pictureType.NotResponded)
         }
@@ -86,24 +91,40 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
 
     func touchJoinButton() {
         
-        if (savedHitup.objectForKey("joined") as! Bool != true) {
+        if (savedHitup["hosted"] as? Bool == true) {
+            
+            var alert = UIAlertController(title: "Cancel Hitup?", message: "😦", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
+                println("Yes")
+                self.navigationController?.popViewControllerAnimated(true)
+                var feed = self.navigationController?.topViewController as! HitupFeed
+                feed.removeHitupfrom(self.hitupIndex)
+                /*BackendAPI.removeHitup(savedHitup.objectForKey("hitupId") as! String, completion: { (success) -> Void in
+                    println("Successful Remove")
+                })*/
+                
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
+                println("No")
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        } else if (savedHitup.objectForKey("joined") as! Bool != true) {
             joinButton.backgroundColor = UIColor.whiteColor()
             joinButton.tintColor = Functions.themeColor()
             joinButton.setTitle("Joined", forState: UIControlState.Normal)
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
             joinButton.layer.borderWidth = 1
-            var temp: NSDictionary = savedHitup.mutableCopy() as! NSDictionary
-            temp.setValue(true, forKey: "joined")
-            savedHitup = temp
+            Model.setJoinLocalNearbyHitupsAtIndex(hitupIndex, joined: true)
+            savedHitup = Model.getLocalNearbyHitupsAtIndex(hitupIndex)
             setPictureType(pictureType.Joined)
         } else {
             joinButton.backgroundColor = Functions.themeColor()
             joinButton.tintColor = UIColor.whiteColor()
             joinButton.setTitle("Join", forState: UIControlState.Normal)
             joinButton.layer.borderWidth = 0
-            var temp: NSDictionary = savedHitup.mutableCopy() as! NSDictionary
-            temp.setValue(false, forKey: "joined")
-            savedHitup = temp
+            Model.setJoinLocalNearbyHitupsAtIndex(hitupIndex, joined: false)
+            savedHitup = Model.getLocalNearbyHitupsAtIndex(hitupIndex)
             setPictureType(pictureType.NotResponded)
             
         }

@@ -32,6 +32,8 @@
 		18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6F91B8FE461009783D7 /* BackendAPI.swift */; };
 		18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FB1B901A87009783D7 /* LocationManager.swift */; };
 		18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FE1B911CDD009783D7 /* Model.swift */; };
+		18E2D7031B925555009783D7 /* NotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D7021B925555009783D7 /* NotificationFeed.swift */; };
+		18E2D7051B926B3D009783D7 /* HighLevelCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		18E2D6F91B8FE461009783D7 /* BackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendAPI.swift; sourceTree = "<group>"; };
 		18E2D6FB1B901A87009783D7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		18E2D6FE1B911CDD009783D7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		18E2D7021B925555009783D7 /* NotificationFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationFeed.swift; sourceTree = "<group>"; };
+		18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighLevelCalls.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 				18B48F551B87E02A0032C193 /* Functions.swift */,
 				18E2D6FE1B911CDD009783D7 /* Model.swift */,
 				18E2D6F91B8FE461009783D7 /* BackendAPI.swift */,
+				18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
 				18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */,
@@ -180,6 +185,7 @@
 				18B48F4E1B87B2D90032C193 /* MyHitupsTab.swift */,
 				18B48F591B87E9370032C193 /* CreateController.swift */,
 				18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */,
+				18E2D7021B925555009783D7 /* NotificationFeed.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 				18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */,
 				18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */,
 				18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */,
+				18E2D7051B926B3D009783D7 /* HighLevelCalls.swift in Sources */,
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
 				18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */,
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
@@ -334,6 +341,7 @@
 				18B48F291B879B970032C193 /* AppDelegate.swift in Sources */,
 				18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */,
 				18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */,
+				18E2D7031B925555009783D7 /* NotificationFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

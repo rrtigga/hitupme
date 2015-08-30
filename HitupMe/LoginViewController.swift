@@ -94,11 +94,24 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 task.resume()
                 */
             
-                updateFacebook()
-                BackendAPI.connect({ (success) -> Void in
+                Functions.updateFacebook({ (success) -> Void in
+                    BackendAPI.connect({ (success) -> Void in
+                        var defaults = NSUserDefaults.standardUserDefaults()
+                        var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+
+                        
+                        /*BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
+                            first_Name: userInfo_dict.objectForKey("first_name") as! String,
+                            last_Name: userInfo_dict.objectForKey("last_name") as! String,
+                            friends: defaults.objectForKey("arrayOfFriend_dicts") as! NSArray,
+                            completion: { (success) -> Void in
+                                self.performSegueWithIdentifier("afterLogin", sender: nil)
+                        })*/
+                        
+                        self.performSegueWithIdentifier("afterLogin", sender: nil)
+                        
+                    })
                 })
-            
-                performSegueWithIdentifier("afterLogin", sender: nil)
             } else {
                 println("Missing Permissions?")
             }

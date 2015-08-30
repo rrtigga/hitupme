@@ -43,7 +43,7 @@ class BackendAPI: NSObject {
         
     }
     
-    class func postUser(userId:String, first_Name:String, last_Name:String, friends:NSArray, completion: ((success: Bool?) -> Void)) {
+    class func addUser(userId:String, first_Name:String, last_Name:String, friends:NSArray, completion: ((success: Bool?) -> Void)) {
         // Uses Saved SID
         var defaults = NSUserDefaults.standardUserDefaults()
         var sid = defaults.objectForKey("sid") as! String
@@ -53,11 +53,18 @@ class BackendAPI: NSObject {
             "sid": sid
         ]
         let parameters = [
+            /*
             "userId": userId,
-            "picUrl": "",
+            "picUrl": " ",
             "firstName": first_Name,
             "lastName": last_Name,
             "friends": friends
+            */
+            "userId": "111",
+            "picUrl": "10101",
+            "firstName": "Arthurtest",
+            "lastName": "Shirtest",
+            "friends": ["123", "153"]
         ]
         
         let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: nil)
@@ -158,6 +165,38 @@ class BackendAPI: NSObject {
                 let httpResponse = response as? NSHTTPURLResponse
                 println(httpResponse)
                 completion(success: true)
+            }
+        })
+        
+        dataTask.resume()
+    }
+    
+    class func removeHitup(hitupId:String, completion: ((success: Bool?) -> Void)) {
+        // Uses Saved SID
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var sid = defaults.objectForKey("sid") as! String
+        let headers = [
+            "content-type": "application/json",
+            "sid": sid
+        ]
+        let parameters = ["hitupId": hitupId]
+        
+        let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: nil)
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/hitup/removeHitup")!,
+            cachePolicy: .UseProtocolCachePolicy,
+            timeoutInterval: 10.0)
+        request.HTTPMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.HTTPBody = postData
+        
+        let session = NSURLSession.sharedSession()
+        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                println(error)
+            } else {
+                let httpResponse = response as? NSHTTPURLResponse
+                println(httpResponse)
             }
         })
         

@@ -15,7 +15,7 @@ class Functions: NSObject {
     }
     
     class func defaultFadedColor() -> UIColor {
-    return Functions.colorWithHexString("ADB4BD")
+    return Functions.colorWithHexString("F6F6F6")
     }
     
     class func defaultLocationColor() -> UIColor {
@@ -77,6 +77,34 @@ class Functions: NSObject {
         }
     }
     
+    class func updateFacebook( completion: ((success: Bool?) -> Void)) {
+        var requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
+        var requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
+        var connection = FBSDKGraphRequestConnection()
+        connection.addRequest(requestMe, completionHandler: { (connection, result, error) -> Void in
+            if error == nil {
+            var defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(result, forKey: "userInfo_dict")
+            } else {
+                completion(success: false)
+            }
+        })
+        connection.addRequest(requestFriends, completionHandler: { (connection, result, error: NSError!) -> Void in
+        
+            if error == nil {
+            var friends = result["friends"] as! NSDictionary
+            var friendData = friends["data"] as! NSArray
+            var defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(friendData, forKey: "arrayOfFriend_dicts")
+            completion(success: true)
+            } else {
+                completion(success: false)
+            }
+        })
+        
+        connection.start()
+    }
+
     class func colorWithHexString (hex:String) -> UIColor {
         var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         

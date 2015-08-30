@@ -17,13 +17,12 @@ class CreateController: UIViewController, UITextViewDelegate {
         case location
     }
     var defaultHeaderText = "What are you doing"
-    var defaultDetailsText = "Details? (optional)"
-    var defaultLocationText = "Location name? (optional)"
+    var defaultDetailsText = "Details (optional)"
+    var defaultLocationText = "Location name (optional)"
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var headerTextView: UITextView!
     @IBOutlet var detailsTextView: UITextView!
     @IBOutlet var locationTextField: UITextField!
-    @IBOutlet var locationView: UIView!
     @IBOutlet var cityLabel: UILabel!
     @IBAction func touchDone(sender: AnyObject) {
         if headerTextView.textColor != UIColor.lightGrayColor() {
@@ -104,7 +103,6 @@ class CreateController: UIViewController, UITextViewDelegate {
         locationTextField.attributedPlaceholder = str
         locationTextField.borderStyle = UITextBorderStyle.None
         let gesture = UIGestureRecognizer(target: self, action: Selector("touchLocation"))
-        locationView.addGestureRecognizer(gesture)
     }
     
     func touchLocation() {
