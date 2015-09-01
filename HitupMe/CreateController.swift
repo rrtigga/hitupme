@@ -157,9 +157,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         return true
     }
     
-    func textViewDidChangeSelection(textView: UITextView) {
-        //println(textView.tag)
-        // Set Cursor
+    func textViewDidBeginEditing(textView: UITextView) {
         if (textView.textColor != nil) {
             if textView.tag == FieldType.header.rawValue {
                 if textView.textColor == UIColor.lightGrayColor() {
@@ -173,15 +171,35 @@ class CreateController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
-        
-        
-        
-        
-        
+    func textViewDidChange(textView: UITextView) {
+        if (textView.textColor != nil) {
+            if textView.tag == FieldType.header.rawValue {
+                if textView.textColor == UIColor.lightGrayColor() {
+                    headerTextView.selectedRange = NSRange(location: 0,length: 0)
+                }
+            } else if textView.tag == FieldType.details.rawValue {
+                if textView.textColor == UIColor.lightGrayColor() {
+                    detailsTextView.selectedRange = NSRange(location: 0,length: 0)
+                }
+            }
+        }
     }
     
-    
+    /*func textViewDidChangeSelection(textView: UITextView) {
+        //println(textView.tag)
+        // Set Cursor
+        if (textView.textColor != nil) {
+            if textView.tag == FieldType.header.rawValue {
+                if textView.textColor == UIColor.lightGrayColor() {
+                    headerTextView.selectedRange = NSRange(location: 0,length: 0)
+                }
+            } else if textView.tag == FieldType.details.rawValue {
+                if textView.textColor == UIColor.lightGrayColor() {
+                    detailsTextView.selectedRange = NSRange(location: 0,length: 0)
+                }
+            }
+        }
+    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

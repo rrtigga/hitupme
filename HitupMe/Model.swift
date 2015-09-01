@@ -8,6 +8,8 @@
 
 import UIKit
 
+// For each insert, make sure its in the right order.
+
 class Model: NSObject {
     class func createKeysIfEmpty() {
         var defaults = NSUserDefaults.standardUserDefaults()

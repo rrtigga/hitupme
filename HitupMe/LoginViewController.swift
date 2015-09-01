@@ -48,51 +48,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             if result.grantedPermissions == NSSet( array: askedPermissions )
             {
                 println("Login Success")
-                
-                /*
-                // Test SID Retrieval
-                var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/connect")!)
-                var session = NSURLSession.sharedSession()
-                var params = ["apiKey":"U5KMDLQ9KHN4G8MO54EH9DKG896NUETMH4DYT98W3N0HAMSO4E"] as Dictionary<String, String>
-                var postString = "apiKey=U5KMDLQ9KHN4G8MO54EH9DKG896NUETMH4DYT98W3N0HAMSO4E"
-                var err: NSError?
-                request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-                var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                        println("Response: \(response)")
-                        var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                        println("Body: \(strData)")
-                        var err: NSError?
-                        var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
-                        
-                        // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
-                        if(err != nil) {
-                            println(err!.localizedDescription)
-                            let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                            println("Error could not parse JSON: '\(jsonStr)'")
-                        }
-                        else {
-                            // The JSONObjectWithData constructor didn't return an error. But, we should still
-                            // check and make sure that json has a value using optional binding.
-                            if let parseJSON = json {
-                                // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                                var success = parseJSON["success"] as? Int
-                                println("Succes: \(success)")
-                            }
-                            else {
-                                // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-                                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                                println("Error could not parse JSON: \(jsonStr)")
-                            }
-                        }
-                    })
-                request.HTTPMethod = "POST"
-                
-                updateFacebook()
-                task.resume()
-                */
             
                 Functions.updateFacebook({ (success) -> Void in
                     BackendAPI.connect({ (success) -> Void in
@@ -100,15 +55,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
 
                         
-                        /*BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
+                        BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
                             first_Name: userInfo_dict.objectForKey("first_name") as! String,
                             last_Name: userInfo_dict.objectForKey("last_name") as! String,
                             friends: defaults.objectForKey("arrayOfFriend_dicts") as! NSArray,
                             completion: { (success) -> Void in
+                                
                                 self.performSegueWithIdentifier("afterLogin", sender: nil)
-                        })*/
-                        
-                        self.performSegueWithIdentifier("afterLogin", sender: nil)
+                        })
                         
                     })
                 })

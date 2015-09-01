@@ -253,7 +253,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rohit Joined your event 30m ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXL-tQ-cXv">
                                             <rect key="frame" x="52" y="7" width="498" height="28"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -614,7 +614,7 @@
                                     <constraint firstAttribute="height" constant="21" id="vy8-Hu-bny"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1XG-UP-k00">
@@ -725,7 +725,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="1118"/>
         </scene>
-        <!--Title-->
+        <!--San Jose, CA-->
         <scene sceneID="fca-gb-g7Z">
             <objects>
                 <tableViewController id="9vE-u4-bwH" customClass="HitupFeed" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -856,7 +856,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="Elr-r6-JC7">
+                    <navigationItem key="navigationItem" title="San Jose, CA" id="Elr-r6-JC7">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="z9I-2r-Wvt">
                             <connections>
                                 <segue destination="QOa-c0-6JS" kind="popoverPresentation" popoverAnchorBarButtonItem="z9I-2r-Wvt" id="FXG-FN-nNu">
@@ -925,18 +925,18 @@
                                     <constraint firstAttribute="width" constant="262" id="jSh-KT-v3v"/>
                                     <constraint firstAttribute="height" constant="63" id="v9J-HS-LBx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hitup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQ3-pU-dxe">
-                                <rect key="frame" x="160" y="70" width="280" height="95"/>
+                                <rect key="frame" x="160" y="80" width="280" height="95"/>
                                 <color key="tintColor" red="0.97647058819999999" green="0.40784313729999999" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="8gD-ye-2OW"/>
                                     <constraint firstAttribute="width" constant="280" id="c6v-JK-Xeu"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="100"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="100"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -945,7 +945,7 @@
                         <constraints>
                             <constraint firstItem="nec-C4-pXj" firstAttribute="top" secondItem="zM5-mH-obi" secondAttribute="bottom" constant="89" id="Cou-Kg-FHM"/>
                             <constraint firstAttribute="centerY" secondItem="7JT-vD-3J4" secondAttribute="centerY" constant="0.5" id="GPQ-ZT-kx7"/>
-                            <constraint firstItem="OQ3-pU-dxe" firstAttribute="top" secondItem="WtU-0K-vac" secondAttribute="bottom" constant="50" id="KlX-Qi-JAe"/>
+                            <constraint firstItem="OQ3-pU-dxe" firstAttribute="top" secondItem="WtU-0K-vac" secondAttribute="bottom" constant="60" id="KlX-Qi-JAe"/>
                             <constraint firstAttribute="centerX" secondItem="zM5-mH-obi" secondAttribute="centerX" id="fXR-JZ-BRp"/>
                             <constraint firstAttribute="centerX" secondItem="OQ3-pU-dxe" secondAttribute="centerX" id="n7D-KU-uD7"/>
                             <constraint firstAttribute="centerX" secondItem="7JT-vD-3J4" secondAttribute="centerX" id="zQI-bh-LEe"/>
@@ -1569,6 +1569,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IUs-sf-CvK"/>
-        <segue reference="SOV-95-UY4"/>
+        <segue reference="h2r-UG-oBM"/>
     </inferredMetricsTieBreakers>
 </document>
