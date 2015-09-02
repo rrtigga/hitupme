@@ -40,9 +40,6 @@ class CreateController: UIViewController, UITextViewDelegate {
             var details = " "
             if (detailsTextView.textColor != UIColor.lightGrayColor()) {details = detailsTextView.text}
             
-            var hitup = NSDictionary(objects: [headerTextView.text, locationTextField.text, "0 joined", "<0.1 miles away", "<1m", details, true, false ], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ])
-            hitupFeed.addTopHitup(hitup)
-            
             var locationText = " "
             if locationTextField.hasText() { locationText = locationTextField.text}
             
@@ -51,6 +48,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             var userId = userDict.objectForKey("id") as! String
             var firstName = userDict.objectForKey("first_name") as! String
             
+            Hitup.makeHitup(headerTextView.text, desc: details, latitude: 0, locationName: locationText, longtitude: 0)
             
             BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
                 if success == true {

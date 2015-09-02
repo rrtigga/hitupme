@@ -31,8 +31,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     var savedPictureType = pictureType.NotResponded
-    var hitupIndex = 0
-    
+    var savedHitup:Hitup?
     
     func configureTableView() {
         tableView.rowHeight = 34
@@ -47,13 +46,12 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         joinButton.layer.borderWidth = 0
         
         // Set Hitup Inforamtion
-        var savedHitup = Model.getLocalNearbyHitupsAtIndex(hitupIndex)
-        headerLabel.text = savedHitup["header"] as? String
-        descriptionLabel.text = savedHitup["details"] as? String
-        locationLabel.text = savedHitup["locationName"] as? String
-        joinedLabel.text = savedHitup["numberJoined"] as? String
-        distanceLabel.text = savedHitup["distance"] as? String
-        timeLabel.text = savedHitup["recency"] as? String
+        headerLabel.text = savedHitup?.header
+        descriptionLabel.text = savedHitup?.desc
+        locationLabel.text = savedHitup?.locationName
+        joinedLabel.text = "2 Joined"
+        distanceLabel.text = "how far lolol"
+        timeLabel.text = "1 hr"
         
         setType()
     }
@@ -64,14 +62,10 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func touchJoinButton() {
-        var savedHitup = Model.getLocalNearbyHitupsAtIndex(hitupIndex)
-        if (savedHitup["hosted"] as? Bool == true) {
+        if (savedHitup?.hosted == true) {
             promptDeleteAlert()
-        } else if (savedHitup.objectForKey("joined") as! Bool != true) {
-            Model.setJoinLocalNearbyHitupsAtIndex(hitupIndex, joined: true)
-            setType()
-        } else {
-            Model.setJoinLocalNearbyHitupsAtIndex(hitupIndex, joined: false)
+        } else if (savedHitup?.joined != true) {
+            savedHitup?.toggleJoin()
             setType()
         }
         
@@ -84,7 +78,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             println("Yes")
             self.navigationController?.popViewControllerAnimated(true)
             var feed = self.navigationController?.topViewController as! HitupFeed
-            feed.removeHitupfrom(self.hitupIndex)
+            
+            Hitup.remove(self.savedHitup!)
+            //feed.removeHitupfrom(self.hitupIndex)
             /*BackendAPI.removeHitup(savedHitup.objectForKey("hitupId") as! String, completion: { (success) -> Void in
             println("Successful Remove")
             })*/
@@ -99,8 +95,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     func setType() {
-        var savedHitup = Model.getLocalNearbyHitupsAtIndex(hitupIndex)
-        if (savedHitup["hosted"] as? Bool == true) {
+        if (savedHitup?.hosted == true) {
             // Set Hosted
             typePicture.image = UIImage(named:"Cell_Hosted")
             joinButton.setTitle("Cancel Hitup?", forState: UIControlState.Normal)
@@ -108,7 +103,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             joinButton.tintColor = Functions.defaultLocationColor()
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
             joinButton.layer.borderWidth = 1
-        } else if (savedHitup["joined"] as? Bool == true) {
+        } else if (savedHitup?.joined == true) {
             // Set Joined
             typePicture.image = UIImage(named:"Cell_Joined")
             joinButton.backgroundColor = UIColor.whiteColor()

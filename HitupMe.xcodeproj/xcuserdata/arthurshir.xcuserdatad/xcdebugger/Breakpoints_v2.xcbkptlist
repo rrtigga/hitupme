@@ -26,29 +26,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HitupMe/CreateController.swift"
-            timestampString = "462839248.355172"
+            timestampString = "462865876.074814"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "textViewDidBeginEditing(_:)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "touchDone(_:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HitupMe/Functions.swift"
-            timestampString = "462767553.185876"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "updateLocation()"
-            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HitupMe.CreateController.touchDone (HitupMe.CreateController)(Swift.AnyObject) -&gt; ()"
+                  moduleName = "HitupMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/CreateController.swift"
+                  timestampString = "462866636.013257"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "7352">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HitupMe.CreateController.(touchDone (HitupMe.CreateController) -&gt; (Swift.AnyObject) -&gt; ()).(closure #1)"
+                  moduleName = "HitupMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/CreateController.swift"
+                  timestampString = "462866636.013552"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -29,7 +29,7 @@ class Hitup: NSManagedObject {
     
     
     // Each hitup keeps track of where it is in Near Array and My Array
-    class func makeHitup(header:String, desc:String, latitude:NSNumber, locationName:String, longtitude:NSNumber, uniqueId:String) {
+    class func makeHitup(header:String, desc:String, latitude:NSNumber, locationName:String, longtitude:NSNumber) {
         
         // Preliminary Information
         var defaults = NSUserDefaults.standardUserDefaults()
@@ -66,8 +66,7 @@ class Hitup: NSManagedObject {
         if !context.save(&error) {
             println("Could not save \(error), \(error?.userInfo)")
         } else {
-            println("CoreData Save Success")
-            Hitup.remove(hitup)
+            Hitup.checkCoreData()
         }
     }
     
@@ -143,8 +142,20 @@ class Hitup: NSManagedObject {
         }
     }
 
+    class func resetCoreData() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        var fetch = NSFetchRequest(entityName: "Hitup")
+        
+        if let fetchResults = context.executeFetchRequest(fetch, error: nil) as? [NSManagedObject] {
+            for h in fetchResults {
+                context.deleteObject(h)
+            }
+            println("Finished Deleting")
+        }
+    }
     
-    class func checkCoreData {
+    class func checkCoreData() {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
@@ -153,10 +164,12 @@ class Hitup: NSManagedObject {
         fetch.sortDescriptors = [sort]
         
         if let fetchResults = context.executeFetchRequest(fetch, error: nil) as? [NSManagedObject] {
+            println("Checking Core Data")
             for h in fetchResults {
                 var hit = h as! Hitup
                 println(String(format: " - %@, %d, %@", hit.firstName, hit.timeCreated, hit.uniqueId))
             }
+            println("Fin Checking")
         }
     }
     

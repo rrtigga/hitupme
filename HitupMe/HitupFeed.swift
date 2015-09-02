@@ -24,7 +24,8 @@ class HitupFeed: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         Functions.updateLocation()
-        Hitup.makeHitup()
+        hitups = NSMutableArray(array: HighLevelCalls.getNearbyData() )
+        //Hitup.resetCoreData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,6 +36,8 @@ class HitupFeed: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        hitups = NSMutableArray(array: HighLevelCalls.getNearbyData() )
+        tableView.reloadData()
         
     }
     
@@ -45,6 +48,7 @@ class HitupFeed: UITableViewController {
 
     // MARK: - Table view data source
 
+    /*
     internal func addTopHitup(hitupDict:NSDictionary) {
         Model.addToLocalNearbyHitups(hitupDict)
         tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Top)
@@ -53,7 +57,7 @@ class HitupFeed: UITableViewController {
     internal func removeHitupfrom(index: NSInteger) {
         Model.deleteLocalNearbyHitupAtIndex(index)
         tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Bottom)
-    }
+    }*/
 
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -65,21 +69,35 @@ class HitupFeed: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return Model.getLocalNearbyHitupsCount()
+        return hitups.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! HitupCell
+        var hitup = hitups.objectAtIndex(indexPath.row) as! Hitup
         
+        cell.HeaderLabel.text = hitup.header
+        cell.locationLabel.text = hitup.locationName
+        cell.joinedLabel.text = "2 Joined"
+        cell.distanceLabel.text = "<1 mile away"
+        cell.pastTimeLabel.text = "1hr"
+        
+        if (hitup.joined == true) {
+            cell.setCellType(HitupCell.cellType.Joined)
+        } else if (hitup.hosted == true) {
+            cell.setCellType(HitupCell.cellType.Hosted)
+        } else {
+            cell.setCellType(HitupCell.cellType.NotResponded)
+        }
+        
+        /*
         var hitupDict : NSDictionary =  Model.getLocalNearbyHitupsAtIndex(indexPath.row )
-        
         cell.HeaderLabel.text = hitupDict["header"] as? String
         cell.locationLabel.text = hitupDict["locationName"] as? String
         cell.joinedLabel.text = hitupDict["numberJoined"] as? String
         cell.distanceLabel.text = hitupDict["distance"] as? String
         cell.pastTimeLabel.text = hitupDict["recency"] as? String
-
         if (hitupDict["joined"] as? Bool == true) {
             cell.setCellType(HitupCell.cellType.Joined)
         } else if (hitupDict["hosted"] as? Bool == true) {
@@ -87,6 +105,7 @@ class HitupFeed: UITableViewController {
         } else {
             cell.setCellType(HitupCell.cellType.NotResponded)
         }
+        */
         
         return cell
     }
@@ -108,7 +127,7 @@ class HitupFeed: UITableViewController {
         println("Showing Detail")
         if segue.identifier == "detail" {
             var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
-            detailController.hitupIndex = hitupToBeSentIndex
+            detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
         }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.

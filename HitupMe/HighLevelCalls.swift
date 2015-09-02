@@ -7,18 +7,35 @@
 //
 
 import UIKit
+import CoreData
 
 class HighLevelCalls: NSObject {
     
     
     // ---------- 1. Main Tab ---------- //
-    class func updateMainFeedData( completion: ((success: Bool?) -> Void)) {
-        var hitups = NSArray() // BackendAPI.getMainHitups
-        Model.setLocalNearbyHitups(hitups)
+    class func updateMainFeedData( completion: (( success: Bool?) -> Void)) {
+        //var hitups = NSArray() // BackendAPI.getMainHitups
+        
         // Signal that MyHitups needs to be updated next WillAppear
         completion(success: true)
     }
     
+    class func getNearbyData() -> NSArray {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+    
+        var fetch = NSFetchRequest(entityName: "Hitup")
+        var sort = NSSortDescriptor(key: "timeCreated", ascending: true)
+        fetch.sortDescriptors = [sort]
+        var predicate = NSPredicate(format: "nearby == %@", true)
+        fetch.predicate = predicate
+        
+        if let fetchResults = context.executeFetchRequest(fetch, error: nil) as? [NSManagedObject] {
+            return fetchResults
+        } else {
+            return NSArray()
+        }
+    }
     
     // ---------- 2. City Tab ---------- //
     class func getCitiesData( completion: ((success: Bool?, cities: NSArray) -> Void)) {

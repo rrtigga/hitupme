@@ -129,12 +129,19 @@ class BackendAPI: NSObject {
     
     class func addHitup(header:String, description:String, locationName:String, coordinates:String, timeCreated:String, userId:String, firstName:String, completion: ((success: Bool?) -> Void)) {
         // Uses Saved SID
+        var sid : String?
         var defaults = NSUserDefaults.standardUserDefaults()
-        var sid = defaults.objectForKey("sid") as! String
+        if let tempSid = defaults.objectForKey("sid") as? String {
+            sid = tempSid
+        } else {
+            sid = " No SID????"
+        }
+        
         let headers = [
             "content-type": "application/json",
-            "sid": sid
+            "sid": " "
         ]
+        
         let parameters = [
             "name": header,
             "description": description,
