@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		180D5EEF1B954A5C00233284 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D5EEE1B954A5C00233284 /* Hitup.swift */; };
 		184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */; };
+		184A72311B96638E002194B0 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A72301B96638E002194B0 /* Hitup.swift */; };
 		18B48F291B879B970032C193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F281B879B970032C193 /* AppDelegate.swift */; };
 		18B48F301B879B970032C193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F2E1B879B970032C193 /* Main.storyboard */; };
 		18B48F321B879B970032C193 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F311B879B970032C193 /* Images.xcassets */; };
@@ -49,8 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		180D5EEE1B954A5C00233284 /* Hitup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hitup.swift; sourceTree = "<group>"; };
 		184A71FA1B965254002194B0 /* HitupModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HitupModel.xcdatamodel; sourceTree = "<group>"; };
+		184A72301B96638E002194B0 /* Hitup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hitup.swift; path = ../Hitup.swift; sourceTree = "<group>"; };
 		18B48F231B879B970032C193 /* HitupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B48F271B879B970032C193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B48F281B879B970032C193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +168,7 @@
 		18B48F521B87B3EB0032C193 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				184A72301B96638E002194B0 /* Hitup.swift */,
 				18B48F551B87E02A0032C193 /* Functions.swift */,
 				18E2D6FE1B911CDD009783D7 /* Model.swift */,
 				18E2D6F91B8FE461009783D7 /* BackendAPI.swift */,
@@ -175,7 +176,6 @@
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
 				18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */,
-				180D5EEE1B954A5C00233284 /* Hitup.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -343,13 +343,13 @@
 				18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */,
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
+				184A72311B96638E002194B0 /* Hitup.swift in Sources */,
 				18B48F4F1B87B2D90032C193 /* MyHitupsTab.swift in Sources */,
 				184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */,
 				18B48F291B879B970032C193 /* AppDelegate.swift in Sources */,
 				18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */,
 				18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */,
 				18E2D7031B925555009783D7 /* NotificationFeed.swift in Sources */,
-				180D5EEF1B954A5C00233284 /* Hitup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

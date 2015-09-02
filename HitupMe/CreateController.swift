@@ -50,6 +50,8 @@ class CreateController: UIViewController, UITextViewDelegate {
             var userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
             var userId = userDict.objectForKey("id") as! String
             var firstName = userDict.objectForKey("first_name") as! String
+            
+            
             BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
                 if success == true {
                     println("Successful Post")

@@ -24,6 +24,7 @@ class HitupFeed: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         Functions.updateLocation()
+        Hitup.makeHitup()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

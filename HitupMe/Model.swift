@@ -11,6 +11,9 @@ import UIKit
 // For each insert, make sure its in the right order.
 
 class Model: NSObject {
+    
+    
+    
     class func createKeysIfEmpty() {
         var defaults = NSUserDefaults.standardUserDefaults()
         if defaults.objectForKey("NearbyHitups") == nil {

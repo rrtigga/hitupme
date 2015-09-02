@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Hitup" syncable="YES">
+    <entity name="Hitup" representedClassName="HitupMe.Hitup" syncable="YES">
         <attribute name="creatorName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="header" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hosted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="joined" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longtitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nearby" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="timeCreated" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="mine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Mine" inverseName="mine" inverseEntity="Mine" syncable="YES"/>
-    </entity>
-    <entity name="Mine" syncable="YES">
-        <relationship name="mine" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hitup" inverseName="mine" inverseEntity="Hitup" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Hitup" positionX="-72" positionY="54" width="128" height="208"/>
-        <element name="Mine" positionX="97" positionY="68" width="128" height="58"/>
+        <element name="Hitup" positionX="-99" positionY="90" width="128" height="253"/>
     </elements>
 </model>
