@@ -49,6 +49,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             var firstName = userDict.objectForKey("first_name") as! String
             
             Hitup.makeHitup(headerTextView.text, desc: details, latitude: 0, locationName: locationText, longtitude: 0)
+            HighLevelCalls.refreshAfterCreateHitup()
             
             BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
                 if success == true {

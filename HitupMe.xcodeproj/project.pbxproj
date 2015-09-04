@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18202A6A1B96D3A300D41249 /* myHitupCell.swift */; };
 		184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */; };
 		184A72311B96638E002194B0 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A72301B96638E002194B0 /* Hitup.swift */; };
 		18B48F291B879B970032C193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F281B879B970032C193 /* AppDelegate.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18202A6A1B96D3A300D41249 /* myHitupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myHitupCell.swift; sourceTree = "<group>"; };
 		184A71FA1B965254002194B0 /* HitupModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HitupModel.xcdatamodel; sourceTree = "<group>"; };
 		184A72301B96638E002194B0 /* Hitup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hitup.swift; path = ../Hitup.swift; sourceTree = "<group>"; };
 		18B48F231B879B970032C193 /* HitupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,10 +111,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180F71921B980EFA003E1C44 /* ToBeRetired */ = {
+			isa = PBXGroup;
+			children = (
+				18E2D6FE1B911CDD009783D7 /* Model.swift */,
+			);
+			name = ToBeRetired;
+			path = HitupMe;
+			sourceTree = "<group>";
+		};
+		18202A691B96D34800D41249 /* InvolvingModel */ = {
+			isa = PBXGroup;
+			children = (
+				18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */,
+				18E2D6F91B8FE461009783D7 /* BackendAPI.swift */,
+				184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */,
+			);
+			name = InvolvingModel;
+			sourceTree = "<group>";
+		};
 		18B48F1A1B879B970032C193 = {
 			isa = PBXGroup;
 			children = (
 				18B48F251B879B970032C193 /* HitupMe */,
+				180F71921B980EFA003E1C44 /* ToBeRetired */,
 				18D24D9E1B8BE5790098F4D9 /* Frameworks */,
 				18B48F3D1B879B970032C193 /* HitupMeTests */,
 				18B48F241B879B970032C193 /* Products */,
@@ -133,8 +155,9 @@
 			children = (
 				18B48F571B87E8F40032C193 /* Controllers */,
 				18B48F521B87B3EB0032C193 /* Custom */,
-				18E2D6FD1B901A8C009783D7 /* Open-Sourced */,
+				18202A691B96D34800D41249 /* InvolvingModel */,
 				18B48F581B87E91A0032C193 /* Core Files */,
+				18E2D6FD1B901A8C009783D7 /* Open-Sourced */,
 				18B48F261B879B970032C193 /* Supporting Files */,
 			);
 			path = HitupMe;
@@ -170,10 +193,8 @@
 			children = (
 				184A72301B96638E002194B0 /* Hitup.swift */,
 				18B48F551B87E02A0032C193 /* Functions.swift */,
-				18E2D6FE1B911CDD009783D7 /* Model.swift */,
-				18E2D6F91B8FE461009783D7 /* BackendAPI.swift */,
-				18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
+				18202A6A1B96D3A300D41249 /* myHitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
 				18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */,
 			);
@@ -198,7 +219,6 @@
 		18B48F581B87E91A0032C193 /* Core Files */ = {
 			isa = PBXGroup;
 			children = (
-				184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */,
 				18B48F281B879B970032C193 /* AppDelegate.swift */,
 				18B48F2E1B879B970032C193 /* Main.storyboard */,
 				18B48F311B879B970032C193 /* Images.xcassets */,
@@ -344,6 +364,7 @@
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
 				184A72311B96638E002194B0 /* Hitup.swift in Sources */,
+				18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */,
 				18B48F4F1B87B2D90032C193 /* MyHitupsTab.swift in Sources */,
 				184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */,
 				18B48F291B879B970032C193 /* AppDelegate.swift in Sources */,

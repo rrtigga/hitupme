@@ -13,19 +13,31 @@ class HighLevelCalls: NSObject {
     
     
     // ---------- 1. Main Tab ---------- //
-    class func updateMainFeedData( completion: (( success: Bool?) -> Void)) {
-        //var hitups = NSArray() // BackendAPI.getMainHitups
+    class func updateNearbyData( completion: (( success: Bool?) -> Void)) {
+        
+        // 1 - Remove all local Hitups
+        Hitup.resetCoreData()
+        
+        
+        // 2 - Get Array of Hitup Data from Server
+        var hitups = NSArray() // BackendAPI.getMainHitups
+        
+        // 3 - Make a Hitup object for each Hitup Data in Array
+        
+        
+        // 4 - Make sure to reload whichever view you're in
+        
         
         // Signal that MyHitups needs to be updated next WillAppear
         completion(success: true)
     }
     
-    class func getNearbyData() -> NSArray {
+    class func getLocalNearbyHitups() -> NSArray {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
     
         var fetch = NSFetchRequest(entityName: "Hitup")
-        var sort = NSSortDescriptor(key: "timeCreated", ascending: true)
+        var sort = NSSortDescriptor(key: "timeCreated", ascending: false)
         fetch.sortDescriptors = [sort]
         var predicate = NSPredicate(format: "nearby == %@", true)
         fetch.predicate = predicate
@@ -35,6 +47,28 @@ class HighLevelCalls: NSObject {
         } else {
             return NSArray()
         }
+    }
+    
+    class func getLocalMyHitups() -> NSArray {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        
+        var fetch = NSFetchRequest(entityName: "Hitup")
+        var sort = NSSortDescriptor(key: "timeCreated", ascending: false)
+        fetch.sortDescriptors = [sort]
+        var predicate = NSPredicate(format: "hosted == %@ || joined == %@ ", true, true)
+        fetch.predicate = predicate
+        
+        if let fetchResults = context.executeFetchRequest(fetch, error: nil) as? [NSManagedObject] {
+            return fetchResults
+        } else {
+            return NSArray()
+        }
+    }
+    
+    class func refreshAfterCreateHitup() {
+        Functions.setRefreshTabTrue(0)
+        Functions.setRefreshTabTrue(3)
     }
     
     // ---------- 2. City Tab ---------- //

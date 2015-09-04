@@ -10,6 +10,10 @@ import UIKit
 
 class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
 
+    var hitups = NSMutableArray()
+    var refreshController = UIRefreshControl()
+    var refresh = true
+    
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var friendCountLabel: UILabel!
     @IBOutlet var hitupCountLabel: UILabel!
@@ -25,17 +29,39 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.delegate = self
+        hitups = NSMutableArray(array: HighLevelCalls.getLocalMyHitups())
+        
+        // Set Profile Information
         var defaults = NSUserDefaults.standardUserDefaults()
         var userInfo = defaults.objectForKey("userInfo_dict") as! NSDictionary
-        // Set Name
         userNameLabel.text = String(format:"%@ %@", (userInfo.objectForKey("first_name") as? String)! , (userInfo.objectForKey("last_name") as? String)! )
-        // Set Friend Num
         var friendArray: NSArray = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
         friendCountLabel.text = String(friendArray.count)
-        // Set Picture
         Functions.getPictureFromFBId(userInfo.objectForKey("id") as! String, completion: { (image) -> Void in
              self.profilePic.image = image
         })
+        // Refresh Controller
+        tableView.addSubview(refreshController)
+        refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)
+    }
+
+    func pullRefresh() {
+        tableView.userInteractionEnabled = false
+        
+        // Get Hitups from Server
+        hitups = NSMutableArray(array: HighLevelCalls.getLocalMyHitups() )
+        tableView.reloadData()
+        refreshController.endRefreshing()
+        tableView.userInteractionEnabled = true
+        //
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if Functions.refreshTab(3) == true {
+            pullRefresh()
+        }
         
     }
     
@@ -67,13 +93,21 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 4
+        return hitups.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! myHitupCell
+        
+        var hitup = hitups.objectAtIndex(indexPath.row) as! Hitup
+        cell.headerLabel.text = hitup.header
+        if hitup.hosted == true {
+            cell.setCellType(myHitupCell.cellType.Hosted)
+        } else {
+            cell.setCellType(myHitupCell.cellType.Joined)
+        }
+        
         // Configure the cell...
 
         return cell
@@ -115,14 +149,13 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

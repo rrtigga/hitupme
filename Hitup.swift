@@ -70,6 +70,52 @@ class Hitup: NSManagedObject {
         }
     }
     
+    // Each hitup keeps track of where it is in Near Array and My Array
+    class func addHitupFromServer(header:String, desc:String, latitude:NSNumber, locationName:String, longtitude:NSNumber, userId:String, firstName:String, lastName:String, joined:Bool) {
+        
+        // Preliminary Information
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+        var savedId = userDict.objectForKey("id") as! String
+        
+        // 1 Core Data object creation
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        var error: NSError?
+        let entity =  NSEntityDescription.entityForName("Hitup", inManagedObjectContext: context)
+        let hitup = Hitup(entity:entity!, insertIntoManagedObjectContext: context) as Hitup
+        
+        // 3 Set
+        hitup.header = header
+        hitup.desc = desc
+        hitup.latitude = latitude
+        hitup.longtitude = longtitude
+        hitup.locationName = locationName
+        hitup.timeCreated = NSDate().timeIntervalSince1970
+        hitup.userId = userId
+        hitup.firstName = firstName
+        hitup.lastName = lastName
+        hitup.nearby = true
+        hitup.timeCreated = NSDate().timeIntervalSince1970
+        hitup.uniqueId = String(format: "%d-%@-%@", hitup.timeCreated, hitup.header, hitup.userId)
+        
+        // 4 Set Joined / Hosted
+        if savedId == userId {
+            hitup.hosted = true
+            hitup.joined = false
+        } else {
+            hitup.hosted = false
+            hitup.joined = joined
+        }
+        
+        // 5
+        if !context.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        } else {
+            Hitup.checkCoreData()
+        }
+    }
+    
     // Good
     func toggleJoin() {
         

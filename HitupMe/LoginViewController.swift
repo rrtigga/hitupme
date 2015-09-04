@@ -61,10 +61,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             friends: defaults.objectForKey("arrayOfFriend_dicts") as! NSArray,
                             completion: { (success) -> Void in
                                 
-                                self.performSegueWithIdentifier("afterLogin", sender: nil)
+                                //self.performSegueWithIdentifier("afterLogin", sender: nil)
                         })
                         
                     })
+                    self.performSegueWithIdentifier("afterLogin", sender: nil)
                 })
             } else {
                 println("Missing Permissions?")

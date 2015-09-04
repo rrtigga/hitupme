@@ -10,6 +10,7 @@ import UIKit
 
 class HitupFeed: UITableViewController {
     
+    var refreshController = UIRefreshControl()
     var hitups = NSMutableArray()
     var hitupToBeSent = NSDictionary(objects: ["Studying ECS150 at Temple", "Temple Coffee", "2 Joined", "0.5 miles away", "30m", "Gon be here like 2 hours", false, false], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ])
     var hitupToBeSentIndex = 0
@@ -24,20 +25,31 @@ class HitupFeed: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         Functions.updateLocation()
-        hitups = NSMutableArray(array: HighLevelCalls.getNearbyData() )
-        //Hitup.resetCoreData()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // Refresh Controller
+        tableView.addSubview(refreshController)
+        refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        
+        //Hitup.resetCoreData()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        hitups = NSMutableArray(array: HighLevelCalls.getNearbyData() )
+    func pullRefresh() {
+        tableView.userInteractionEnabled = false
+        
+        // Get Hitups from Server
+        hitups = NSMutableArray(array: HighLevelCalls.getLocalNearbyHitups() )
         tableView.reloadData()
+        refreshController.endRefreshing()
+        tableView.userInteractionEnabled = true
+        //
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if Functions.refreshTab(0) == true {
+            pullRefresh()
+        }
         
     }
     

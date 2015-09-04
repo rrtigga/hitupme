@@ -398,13 +398,13 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="36" id="ntQ-PP-o84">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="36" id="ntQ-PP-o84" customClass="myHitupCell" customModule="HitupMe" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ntQ-PP-o84" id="SHT-av-8Gw">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="JOINED" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcK-bP-nQb">
-                                            <rect key="frame" x="20" y="6" width="41" height="14"/>
+                                            <rect key="frame" x="13" y="6" width="48" height="14"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                             <color key="textColor" red="0.47058823529411764" green="0.71372549019607845" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -459,6 +459,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="headerLabel" destination="vyg-CE-u7N" id="I4k-hl-CD9"/>
+                                    <outlet property="timeLabel" destination="QPq-Ao-9xU" id="cu8-5g-CKO"/>
+                                    <outlet property="typeLabel" destination="vcK-bP-nQb" id="6hD-EC-9ia"/>
                                     <segue destination="wXo-CO-Ifd" kind="show" id="0o9-y4-grc"/>
                                 </connections>
                             </tableViewCell>
@@ -1569,6 +1572,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IUs-sf-CvK"/>
-        <segue reference="h2r-UG-oBM"/>
+        <segue reference="56n-zI-q1l"/>
     </inferredMetricsTieBreakers>
 </document>

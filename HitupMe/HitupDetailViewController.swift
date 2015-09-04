@@ -80,6 +80,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             var feed = self.navigationController?.topViewController as! HitupFeed
             
             Hitup.remove(self.savedHitup!)
+            
+            HighLevelCalls.refreshAfterCreateHitup()
+            
             //feed.removeHitupfrom(self.hitupIndex)
             /*BackendAPI.removeHitup(savedHitup.objectForKey("hitupId") as! String, completion: { (success) -> Void in
             println("Successful Remove")

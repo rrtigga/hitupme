@@ -10,6 +10,58 @@ import UIKit
 
 class Functions: NSObject {
     
+    
+    // ----- These functions manage refreshing of each tab ----- //
+    
+    class func refreshTab(num:NSNumber) -> Bool {
+        
+        var defaults = NSUserDefaults.standardUserDefaults()
+        switch num {
+            case 0:
+                var refresh = defaults.objectForKey("refreshTab0") as! Bool
+                defaults.setObject(false, forKey: "refreshTab0")
+                return refresh
+            case 1:
+                var refresh = defaults.objectForKey("refreshTab1") as! Bool
+                defaults.setObject(false, forKey: "refreshTab1")
+                return refresh
+            case 2:
+                var refresh = defaults.objectForKey("refreshTab2") as! Bool
+                defaults.setObject(false, forKey: "refreshTab2")
+                return refresh
+            case 3:
+                var refresh = defaults.objectForKey("refreshTab3") as! Bool
+                defaults.setObject(false, forKey: "refreshTab3")
+                return refresh
+            default:
+                println("Unexpected number: %i", num)
+                return true
+            }
+    }
+    
+    class func setRefreshAllTabsTrue() {
+        for (var i=0; i<4; i++) {
+            Functions.setRefreshTabTrue(i)
+        }
+    }
+    
+    class func setRefreshTabTrue(num:NSNumber) {
+        var defaults = NSUserDefaults.standardUserDefaults()
+        switch num {
+        case 0:
+            defaults.setObject(true, forKey: "refreshTab0")
+        case 1:
+            defaults.setObject(true, forKey: "refreshTab1")
+        case 2:
+            defaults.setObject(true, forKey: "refreshTab2")
+        case 3:
+            defaults.setObject(true, forKey: "refreshTab3")
+        default:
+            println("Unexpected number:", num)
+        }
+    }
+    
+    
     class func themeColor() -> UIColor {
     return Functions.colorWithHexString("F9687E")
     }
