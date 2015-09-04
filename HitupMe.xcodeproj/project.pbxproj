@@ -37,6 +37,7 @@
 		18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FE1B911CDD009783D7 /* Model.swift */; };
 		18E2D7031B925555009783D7 /* NotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D7021B925555009783D7 /* NotificationFeed.swift */; };
 		18E2D7051B926B3D009783D7 /* HighLevelCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */; };
+		6F9858AB812361FE9A9056CB /* libPods-HitupMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B584752CF40D86C19FA91148 /* libPods-HitupMe.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,9 @@
 		18E2D6FE1B911CDD009783D7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		18E2D7021B925555009783D7 /* NotificationFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationFeed.swift; sourceTree = "<group>"; };
 		18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighLevelCalls.swift; sourceTree = "<group>"; };
+		68972CE3A80B839540BD3296 /* Pods-HitupMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitupMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HitupMe/Pods-HitupMe.debug.xcconfig"; sourceTree = "<group>"; };
+		78338728FF69ADE6E3D6F237 /* Pods-HitupMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HitupMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-HitupMe/Pods-HitupMe.release.xcconfig"; sourceTree = "<group>"; };
+		B584752CF40D86C19FA91148 /* libPods-HitupMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HitupMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 				18D24DAC1B8BE5950098F4D9 /* Bolts.framework in Frameworks */,
 				18D24DA71B8BE58E0098F4D9 /* FBSDKCoreKit.framework in Frameworks */,
 				18D24DA81B8BE58E0098F4D9 /* FBSDKLoginKit.framework in Frameworks */,
+				6F9858AB812361FE9A9056CB /* libPods-HitupMe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,27 +122,26 @@
 				18E2D6FE1B911CDD009783D7 /* Model.swift */,
 			);
 			name = ToBeRetired;
-			path = HitupMe;
 			sourceTree = "<group>";
 		};
-		18202A691B96D34800D41249 /* InvolvingModel */ = {
+		18202A691B96D34800D41249 /* ModelStuff */ = {
 			isa = PBXGroup;
 			children = (
-				18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */,
+				184A72301B96638E002194B0 /* Hitup.swift */,
 				18E2D6F91B8FE461009783D7 /* BackendAPI.swift */,
 				184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */,
 			);
-			name = InvolvingModel;
+			name = ModelStuff;
 			sourceTree = "<group>";
 		};
 		18B48F1A1B879B970032C193 = {
 			isa = PBXGroup;
 			children = (
 				18B48F251B879B970032C193 /* HitupMe */,
-				180F71921B980EFA003E1C44 /* ToBeRetired */,
 				18D24D9E1B8BE5790098F4D9 /* Frameworks */,
 				18B48F3D1B879B970032C193 /* HitupMeTests */,
 				18B48F241B879B970032C193 /* Products */,
+				F6C2118C9DAC5A00350285FA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,7 +159,8 @@
 			children = (
 				18B48F571B87E8F40032C193 /* Controllers */,
 				18B48F521B87B3EB0032C193 /* Custom */,
-				18202A691B96D34800D41249 /* InvolvingModel */,
+				18202A691B96D34800D41249 /* ModelStuff */,
+				180F71921B980EFA003E1C44 /* ToBeRetired */,
 				18B48F581B87E91A0032C193 /* Core Files */,
 				18E2D6FD1B901A8C009783D7 /* Open-Sourced */,
 				18B48F261B879B970032C193 /* Supporting Files */,
@@ -166,6 +171,7 @@
 		18B48F261B879B970032C193 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */,
 				18B48F271B879B970032C193 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -191,12 +197,11 @@
 		18B48F521B87B3EB0032C193 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				184A72301B96638E002194B0 /* Hitup.swift */,
+				18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */,
 				18B48F551B87E02A0032C193 /* Functions.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
 				18202A6A1B96D3A300D41249 /* myHitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
-				18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				18D24DA21B8BE58E0098F4D9 /* FBSDKLoginKit.framework */,
 				18D24DA31B8BE58E0098F4D9 /* FBSDKMessengerShareKit.framework */,
 				18D24DA41B8BE58E0098F4D9 /* FBSDKShareKit.framework */,
+				B584752CF40D86C19FA91148 /* libPods-HitupMe.a */,
 			);
 			name = Frameworks;
 			path = HitupMe;
@@ -250,6 +256,15 @@
 			name = "Open-Sourced";
 			sourceTree = "<group>";
 		};
+		F6C2118C9DAC5A00350285FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				68972CE3A80B839540BD3296 /* Pods-HitupMe.debug.xcconfig */,
+				78338728FF69ADE6E3D6F237 /* Pods-HitupMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,9 +272,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18B48F441B879B970032C193 /* Build configuration list for PBXNativeTarget "HitupMe" */;
 			buildPhases = (
+				BA8CB4B3E603985CD4695183 /* Check Pods Manifest.lock */,
 				18B48F1F1B879B970032C193 /* Sources */,
 				18B48F201B879B970032C193 /* Frameworks */,
 				18B48F211B879B970032C193 /* Resources */,
+				876B73CED486B17A193EB2ED /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,6 +363,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		876B73CED486B17A193EB2ED /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HitupMe/Pods-HitupMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA8CB4B3E603985CD4695183 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18B48F1F1B879B970032C193 /* Sources */ = {
@@ -495,6 +545,7 @@
 		};
 		18B48F451B879B970032C193 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68972CE3A80B839540BD3296 /* Pods-HitupMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -514,6 +565,7 @@
 		};
 		18B48F461B879B970032C193 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78338728FF69ADE6E3D6F237 /* Pods-HitupMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
