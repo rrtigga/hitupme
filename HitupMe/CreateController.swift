@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class CreateController: UIViewController, UITextViewDelegate {
     
@@ -51,11 +52,27 @@ class CreateController: UIViewController, UITextViewDelegate {
             Hitup.makeHitup(headerTextView.text, desc: details, latitude: 0, locationName: locationText, longtitude: 0)
             HighLevelCalls.refreshAfterCreateHitup()
             
-            BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
-                if success == true {
-                    println("Successful Post")
+            //BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
+              //  if success == true {
+                //    println("Successful Post")
+                //}
+            //})
+            
+            var newHitup = PFObject(className:"Hitups")
+            newHitup["description"] = details
+            newHitup["header"] = headerTextView.text
+            newHitup["location_name"] = locationText
+            newHitup["coordinates"] = PFGeoPoint(latitude: 0,longitude: 1)
+            newHitup.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    println("Hitup was stored")
+                } else {
+                    println("Error adding Hitup")
                 }
-            })
+            }
+            
+            
             
             dismissViewControllerAnimated(true, completion: {})
         }
@@ -85,7 +102,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         
         Functions.updateLocation()
         var defaults = NSUserDefaults.standardUserDefaults()
-        cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
+        //cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
     }
 
     
