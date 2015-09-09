@@ -49,8 +49,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             var userId = userDict.objectForKey("id") as! String
             var firstName = userDict.objectForKey("first_name") as! String
             
-            Hitup.makeHitup(headerTextView.text, desc: details, latitude: 0, locationName: locationText, longtitude: 0)
-            HighLevelCalls.refreshAfterCreateHitup()
+            //Hitup.makeHitup(headerTextView.text, desc: details, latitude: 0, locationName: locationText, longtitude: 0)
             
             //BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
               //  if success == true {
@@ -63,10 +62,18 @@ class CreateController: UIViewController, UITextViewDelegate {
             newHitup["header"] = headerTextView.text
             newHitup["location_name"] = locationText
             newHitup["coordinates"] = PFGeoPoint(latitude: 0,longitude: 1)
+            newHitup["user_host"] = "11111"
+            newHitup["user_hostName"] = "Arthur Shirrr"
+            newHitup.addObject( "11111" , forKey: "users_joined")
+            newHitup.addObject( "Arthur Shirrr" , forKey: "users_joinedNames")
+            
             newHitup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
                     println("Hitup was stored")
+                    let rel = PFUser.currentUser()?.relationForKey("my_hitups")
+                    rel?.addObject(newHitup)
+                    PFUser.currentUser()?.saveInBackground()
                 } else {
                     println("Error adding Hitup")
                 }
