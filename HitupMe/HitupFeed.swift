@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class HitupFeed: UITableViewController {
     
     var refreshController = UIRefreshControl()
-    var hitups = NSMutableArray()
-    var hitupToBeSent = NSDictionary(objects: ["Studying ECS150 at Temple", "Temple Coffee", "2 Joined", "0.5 miles away", "30m", "Gon be here like 2 hours", false, false], forKeys: ["header", "locationName", "numberJoined", "distance", "recency", "details", "hosted", "joined" ])
-    var hitupToBeSentIndex = 0
+    var hitups = [AnyObject]()
     
     func configureTableView() {
         tableView.rowHeight = 108
@@ -39,12 +38,12 @@ class HitupFeed: UITableViewController {
     func pullRefresh() {
         tableView.userInteractionEnabled = false
         
-        // Get Hitups from Server
-        hitups = NSMutableArray(array: HighLevelCalls.getLocalNearbyHitups() )
-        tableView.reloadData()
-        refreshController.endRefreshing()
-        tableView.userInteractionEnabled = true
-        //
+        HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
+                self.hitups = objects!
+                self.tableView.reloadData()
+                self.refreshController.endRefreshing()
+                self.tableView.userInteractionEnabled = true
+        }
         
     }
     
@@ -90,21 +89,23 @@ class HitupFeed: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! HitupCell
-        var hitup = hitups.objectAtIndex(indexPath.row) as! Hitup
+        var hitup = hitups[indexPath.row] as! PFObject
         
-        cell.HeaderLabel.text = hitup.header
-        cell.locationLabel.text = hitup.locationName
+        cell.HeaderLabel.text = hitup.objectForKey("header") as! String
+        cell.locationLabel.text = hitup.objectForKey("location_name") as? String
         cell.joinedLabel.text = "2 Joined"
+        
         cell.distanceLabel.text = "<1 mile away"
         cell.pastTimeLabel.text = "1hr"
         
+        /*
         if (hitup.joined == true) {
             cell.setCellType(HitupCell.cellType.Joined)
         } else if (hitup.hosted == true) {
             cell.setCellType(HitupCell.cellType.Hosted)
         } else {
             cell.setCellType(HitupCell.cellType.NotResponded)
-        }
+        }*/
         
         /*
         var hitupDict : NSDictionary =  Model.getLocalNearbyHitupsAtIndex(indexPath.row )
@@ -130,7 +131,6 @@ class HitupFeed: UITableViewController {
         // Create a variable that you want to send based on the destination view controller
         // You can get a reference to the data by using indexPath shown below
         println("select")
-        hitupToBeSentIndex = indexPath.row
         performSegueWithIdentifier("detail", sender: self)
     }
     
@@ -142,7 +142,7 @@ class HitupFeed: UITableViewController {
         println("Showing Detail")
         if segue.identifier == "detail" {
             var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
-            detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
+            //detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
         }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.

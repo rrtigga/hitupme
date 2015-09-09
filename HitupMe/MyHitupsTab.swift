@@ -31,6 +31,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         loginView.delegate = self
         hitups = NSMutableArray(array: HighLevelCalls.getLocalMyHitups())
         
+        /*
         // Set Profile Information
         var defaults = NSUserDefaults.standardUserDefaults()
         var userInfo = defaults.objectForKey("userInfo_dict") as! NSDictionary
@@ -40,6 +41,8 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         Functions.getPictureFromFBId(userInfo.objectForKey("id") as! String, completion: { (image) -> Void in
              self.profilePic.image = image
         })
+        */
+
         // Refresh Controller
         tableView.addSubview(refreshController)
         refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)
