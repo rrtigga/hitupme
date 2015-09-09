@@ -11,15 +11,11 @@ import ParseFacebookUtilsV4
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
-    @IBOutlet var loginButton: FBSDKLoginButton!
+    @IBOutlet var loginButton: UIButton!
     let askedPermissions = ["public_profile", "user_friends"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loginButton.delegate = self
-        loginButton.readPermissions = askedPermissions
-        loginButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.AllEvents)
         loginButton.addTarget(nil , action: Selector("touchLogin"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
@@ -27,9 +23,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         PFFacebookUtils.logInInBackgroundWithReadPermissions(askedPermissions) {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
-                if user.isNew {
-                    //println("User signed up and logged in through Facebook!")
-                } else {
+                //if user.isNew {
+                //    println("User signed up and logged in through Facebook!")
+                //} else {
                     println("User logged in through Facebook!")
                     Functions.updateFacebook({ (success) -> Void in
                         BackendAPI.connect({ (success) -> Void in
@@ -49,7 +45,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         })
                         self.performSegueWithIdentifier("afterLogin", sender: nil)
                     })
-                }
+                //}
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
             }

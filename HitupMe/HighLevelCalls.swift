@@ -8,28 +8,23 @@
 
 import UIKit
 import CoreData
+import Parse
 
 class HighLevelCalls: NSObject {
     
-    
     // ---------- 1. Main Tab ---------- //
-    class func updateNearbyData( completion: (( success: Bool?) -> Void)) {
+    class func updateNearbyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
         // 1 - Remove all local Hitups
         Hitup.resetCoreData()
         
-        
-        // 2 - Get Array of Hitup Data from Server
-        var hitups = NSArray() // BackendAPI.getMainHitups
-        
-        // 3 - Make a Hitup object for each Hitup Data in Array
-        
+        var query = PFQuery(className: "Hitups")
+        var hitups = query.findObjects()
         
         // 4 - Make sure to reload whichever view you're in
         
-        
         // Signal that MyHitups needs to be updated next WillAppear
-        completion(success: true)
+        completion(success: true, objects: hitups)
     }
     
     class func getLocalNearbyHitups() -> NSArray {

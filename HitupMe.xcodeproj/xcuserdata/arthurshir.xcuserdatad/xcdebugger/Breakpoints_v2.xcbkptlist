@@ -10,12 +10,121 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HitupMe/HitupFeed.swift"
-            timestampString = "463097849.486569"
+            timestampString = "463530695.517466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HitupMe/HitupFeed.swift"
+            timestampString = "463528325.208727"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "HitupFeed"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HitupMe.HitupFeed.hitups.getter : Swift.Array&lt;Swift.AnyObject&gt;"
+                  moduleName = "HitupMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/HitupFeed.swift"
+                  timestampString = "463528361.747558"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HitupMe.HitupFeed.hitups.materializeForSet : Swift.Array&lt;Swift.AnyObject&gt;"
+                  moduleName = "HitupMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/HitupFeed.swift"
+                  timestampString = "463528361.748192"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HitupMe.HitupFeed.init (HitupMe.HitupFeed.Type)(style : C.UITableViewStyle) -&gt; HitupMe.HitupFeed"
+                  moduleName = "HitupMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/HitupFeed.swift"
+                  timestampString = "463528361.748439"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HitupMe.HitupFeed.init (HitupMe.HitupFeed.Type)(nibName : Swift.ImplicitlyUnwrappedOptional&lt;Swift.String&gt;, bundle : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSBundle&gt;) -&gt; Swift.ImplicitlyUnwrappedOptional&lt;HitupMe.HitupFeed&gt;"
+                  moduleName = "HitupMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/HitupFeed.swift"
+                  timestampString = "463528361.748782"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HitupMe.HitupFeed.init (HitupMe.HitupFeed.Type)(coder : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.NSCoder&gt;) -&gt; Swift.ImplicitlyUnwrappedOptional&lt;HitupMe.HitupFeed&gt;"
+                  moduleName = "HitupMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/HitupFeed.swift"
+                  timestampString = "463528361.749023"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "55">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HitupMe/HitupFeed.swift"
+            timestampString = "463530695.517466"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

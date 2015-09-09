@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        // ...
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         
         var didFinish = FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -50,9 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         }
-        
-        Parse.setApplicationId("parseAppId", clientKey:"parseClientKey")
-        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         return didFinish
     }
