@@ -27,6 +27,18 @@ class HighLevelCalls: NSObject {
         completion(success: true, objects: hitups)
     }
     
+    class func getMyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+        
+        // create a relation based on the myhitups key
+        let relation = PFUser.currentUser()!.relationForKey("myhitups")
+        
+        //generate a query based on that relation
+        let query = relation.query()
+        var myHitups = query?.findObjects()
+        
+        completion(success: true, objects: myHitups)
+    }
+    
     class func getLocalNearbyHitups() -> NSArray {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
