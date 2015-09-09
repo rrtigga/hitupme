@@ -28,22 +28,29 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 //} else {
                     println("User logged in through Facebook!")
                     Functions.updateFacebook({ (success) -> Void in
-                        BackendAPI.connect({ (success) -> Void in
+                        if (success == true) {
                             var defaults = NSUserDefaults.standardUserDefaults()
                             var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
                             
+                            user["first_name"] = userInfo_dict.objectForKey("first_name") as! String
+                            user["last_name"] = userInfo_dict.objectForKey("last_name") as! String
                             
-                            BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
+                            
+                            user.saveInBackground()
+                            
+                            /*BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
                                 first_Name: userInfo_dict.objectForKey("first_name") as! String,
                                 last_Name: userInfo_dict.objectForKey("last_name") as! String,
                                 friends: defaults.objectForKey("arrayOfFriend_dicts") as! NSArray,
                                 completion: { (success) -> Void in
                                     
                                     //self.performSegueWithIdentifier("afterLogin", sender: nil)
-                            })
-                            
-                        })
-                        self.performSegueWithIdentifier("afterLogin", sender: nil)
+                            })*/
+                            self.performSegueWithIdentifier("afterLogin", sender: nil)
+                        } else {
+                            println("error retrieving FB infromation")
+                        }
+                        
                     })
                 //}
             } else {

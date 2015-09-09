@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Parse
 
 class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
 
-    var hitups = NSMutableArray()
+    var hitups = [AnyObject]()
     var refreshController = UIRefreshControl()
     var refresh = true
     
@@ -29,9 +30,8 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.delegate = self
-        hitups = NSMutableArray(array: HighLevelCalls.getLocalMyHitups())
         
-        /*
+        
         // Set Profile Information
         var defaults = NSUserDefaults.standardUserDefaults()
         var userInfo = defaults.objectForKey("userInfo_dict") as! NSDictionary
@@ -41,7 +41,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         Functions.getPictureFromFBId(userInfo.objectForKey("id") as! String, completion: { (image) -> Void in
              self.profilePic.image = image
         })
-        */
+        
 
         // Refresh Controller
         tableView.addSubview(refreshController)
@@ -51,12 +51,12 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     func pullRefresh() {
         tableView.userInteractionEnabled = false
         
-        // Get Hitups from Server
-        hitups = NSMutableArray(array: HighLevelCalls.getLocalMyHitups() )
-        tableView.reloadData()
-        refreshController.endRefreshing()
-        tableView.userInteractionEnabled = true
-        //
+        HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
+            self.hitups = objects!
+            self.tableView.reloadData()
+            self.refreshController.endRefreshing()
+            self.tableView.userInteractionEnabled = true
+        }
         
     }
     
@@ -102,14 +102,16 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! myHitupCell
+        var hitup = hitups[indexPath.row] as! PFObject
         
-        var hitup = hitups.objectAtIndex(indexPath.row) as! Hitup
-        cell.headerLabel.text = hitup.header
+        cell.headerLabel.text = hitup.objectForKey("header") as? String
+       
+        /*
         if hitup.hosted == true {
             cell.setCellType(myHitupCell.cellType.Hosted)
         } else {
             cell.setCellType(myHitupCell.cellType.Joined)
-        }
+        }*/
         
         // Configure the cell...
 
