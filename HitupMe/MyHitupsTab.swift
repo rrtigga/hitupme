@@ -51,7 +51,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     func pullRefresh() {
         tableView.userInteractionEnabled = false
         
-        HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
+        HighLevelCalls.getMyHitups { (success, objects) -> Void in
             self.hitups = objects!
             self.tableView.reloadData()
             self.refreshController.endRefreshing()

@@ -30,7 +30,7 @@ class HighLevelCalls: NSObject {
     class func getMyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
         // create a relation based on the myhitups key
-        let relation = PFUser.currentUser()!.relationForKey("myhitups")
+        let relation = PFUser.currentUser()!.relationForKey("my_hitups")
         
         //generate a query based on that relation
         let query = relation.query()
