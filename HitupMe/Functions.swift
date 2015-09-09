@@ -85,6 +85,8 @@ class Functions: NSObject {
     }
     
     class func updateLocation() {
+        
+        /*
         // Update one Guaranteed
         var locationManager = LocationManager.sharedInstance
         locationManager.showVerboseMessage = false
@@ -129,6 +131,8 @@ class Functions: NSObject {
             
             }
         }
+        */
+
     }
     
     class func updateFacebook( completion: ((success: Bool?) -> Void)) {

@@ -13,7 +13,6 @@
 		184A72311B96638E002194B0 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A72301B96638E002194B0 /* Hitup.swift */; };
 		185C1E2A1BA0CA6600D079DC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E241BA0CA6600D079DC /* Parse.framework */; };
 		185C1E2B1BA0CA6600D079DC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E251BA0CA6600D079DC /* ParseCrashReporting.framework */; };
-		185C1E2C1BA0CA6600D079DC /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E261BA0CA6600D079DC /* ParseFacebookUtils.framework */; };
 		185C1E2D1BA0CA6600D079DC /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E271BA0CA6600D079DC /* ParseFacebookUtilsV4.framework */; };
 		185C1E2E1BA0CA6600D079DC /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E281BA0CA6600D079DC /* ParseTwitterUtils.framework */; };
 		185C1E2F1BA0CA6600D079DC /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E291BA0CA6600D079DC /* ParseUI.framework */; };
@@ -138,16 +137,15 @@
 				185C1E311BA0CABC00D079DC /* AudioToolbox.framework in Frameworks */,
 				185C1E2A1BA0CA6600D079DC /* Parse.framework in Frameworks */,
 				185C1E2B1BA0CA6600D079DC /* ParseCrashReporting.framework in Frameworks */,
-				185C1E2C1BA0CA6600D079DC /* ParseFacebookUtils.framework in Frameworks */,
 				185C1E2D1BA0CA6600D079DC /* ParseFacebookUtilsV4.framework in Frameworks */,
 				185C1E2E1BA0CA6600D079DC /* ParseTwitterUtils.framework in Frameworks */,
 				185C1E2F1BA0CA6600D079DC /* ParseUI.framework in Frameworks */,
 				18D24DAC1B8BE5950098F4D9 /* Bolts.framework in Frameworks */,
-				18D24DA91B8BE58E0098F4D9 /* FBSDKMessengerShareKit.framework in Frameworks */,
 				18D24DA61B8BE58E0098F4D9 /* FBAudienceNetwork.framework in Frameworks */,
-				18D24DAA1B8BE58E0098F4D9 /* FBSDKShareKit.framework in Frameworks */,
 				18D24DA71B8BE58E0098F4D9 /* FBSDKCoreKit.framework in Frameworks */,
 				18D24DA81B8BE58E0098F4D9 /* FBSDKLoginKit.framework in Frameworks */,
+				18D24DA91B8BE58E0098F4D9 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				18D24DAA1B8BE58E0098F4D9 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

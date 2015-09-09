@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParseFacebookUtilsV4
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
@@ -18,6 +19,41 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
         loginButton.delegate = self
         loginButton.readPermissions = askedPermissions
+        loginButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.AllEvents)
+        loginButton.addTarget(nil , action: Selector("touchLogin"), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    func touchLogin() {
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(askedPermissions) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if let user = user {
+                if user.isNew {
+                    //println("User signed up and logged in through Facebook!")
+                } else {
+                    println("User logged in through Facebook!")
+                    Functions.updateFacebook({ (success) -> Void in
+                        BackendAPI.connect({ (success) -> Void in
+                            var defaults = NSUserDefaults.standardUserDefaults()
+                            var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+                            
+                            
+                            BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
+                                first_Name: userInfo_dict.objectForKey("first_name") as! String,
+                                last_Name: userInfo_dict.objectForKey("last_name") as! String,
+                                friends: defaults.objectForKey("arrayOfFriend_dicts") as! NSArray,
+                                completion: { (success) -> Void in
+                                    
+                                    //self.performSegueWithIdentifier("afterLogin", sender: nil)
+                            })
+                            
+                        })
+                        self.performSegueWithIdentifier("afterLogin", sender: nil)
+                    })
+                }
+            } else {
+                println("Uh oh. The user cancelled the Facebook login.")
+            }
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import Parse
 import Bolts
+import FBSDKCoreKit
+import ParseFacebookUtilsV4
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
-        Parse.enableLocalDatastore()
+        //Parse.enableLocalDatastore()
         
         // Initialize Parse.
         Parse.setApplicationId("oGxgYJBtKcR5JNuST5uQw7mjHUApMHobZ0GUXHI7",
@@ -49,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
-        
+        Parse.setApplicationId("parseAppId", clientKey:"parseClientKey")
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         return didFinish
     }
@@ -64,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 sourceApplication: sourceApplication,
                 annotation: annotation)
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
