@@ -114,6 +114,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             rel?.removeObject(thisHitup)
             PFUser.currentUser()?.saveInBackground()
             setType(2)
+            
+            Functions.setRefreshTabTrue(3)
         } else {
             thisHitup.addUniqueObjectsFromArray( [ currentUser_fbId ], forKey: "users_joined")
             thisHitup.addUniqueObjectsFromArray( [ fullName ] , forKey: "users_joinedNames")
@@ -122,6 +124,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             rel?.addObject(thisHitup)
             PFUser.currentUser()?.saveInBackground()
             setType(1)
+            
+            Functions.setRefreshTabTrue(3)
         }
         
         
@@ -135,6 +139,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             //var feed = self.navigationController?.topViewController as! HitupFeed
             
             self.thisHitup.deleteInBackground()
+            Functions.setRefreshAllTabsTrue()
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in

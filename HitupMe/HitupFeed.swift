@@ -50,6 +50,8 @@ class HitupFeed: UITableViewController {
         super.viewDidAppear(animated)
         if Functions.refreshTab(0) == true {
             pullRefresh()
+        } else {
+            tableView.reloadData()
         }
         
     }

@@ -28,15 +28,6 @@ class CreateController: UIViewController, UITextViewDelegate {
     @IBAction func touchDone(sender: AnyObject) {
         if headerTextView.textColor != UIColor.lightGrayColor() {
             view.endEditing(true)
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            var window: UIWindowLevel
-            let windowTest = appDelegate.window
-            var tabBarController: UITabBarController = windowTest!.rootViewController as! UITabBarController
-            tabBarController.selectedIndex = 0
-            var num = 0
-            var firstNav = tabBarController.viewControllers![0] as! UINavigationController
-            firstNav.popToRootViewControllerAnimated(true)
-            var hitupFeed = firstNav.viewControllers![0] as! HitupFeed
             
             var details = " "
             if (detailsTextView.textColor != UIColor.lightGrayColor()) {details = detailsTextView.text}
@@ -44,20 +35,14 @@ class CreateController: UIViewController, UITextViewDelegate {
             var locationText = " "
             if locationTextField.hasText() { locationText = locationTextField.text}
             
+            // Load Information
+            
             var user = PFUser.currentUser()
             var userId = user?.objectForKey("fb_id") as! String
             var firstName = user?.objectForKey("first_name") as! String
             var lastName = user?.objectForKey("last_name") as! String
             
-            //Hitup.makeHitup(headerTextView.text, desc: details, latitude: 0, locationName: locationText, longtitude: 0)
-            
-            //BackendAPI.addHitup(headerTextView.text, description: details, locationName: locationText, coordinates: "placeholder", timeCreated: "temp", userId: userId, firstName: firstName, completion: { (success) -> Void in
-              //  if success == true {
-                //    println("Successful Post")
-                //}
-            //})
-            
-            
+            // Make PFObject
             var newHitup = PFObject(className:"Hitups")
             newHitup["description"] = details
             newHitup["header"] = headerTextView.text
@@ -80,10 +65,21 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             }
             
+            Functions.setRefreshAllTabsTrue()
             
-            
-            dismissViewControllerAnimated(true, completion: {})
+            popToMainFeed()
         }
+    }
+    
+    func popToMainFeed() {
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var tabBarController = storyboard.instantiateViewControllerWithIdentifier("mainTab") as! UITabBarController
+        tabBarController.selectedIndex = 0
+        var num = 0
+        var firstNav = tabBarController.viewControllers![0] as! UINavigationController
+        firstNav.popToRootViewControllerAnimated(true)
+        var hitupFeed = firstNav.viewControllers![0] as! HitupFeed
+        dismissViewControllerAnimated(true, completion: {})
     }
 
     @IBAction func touchCancel(sender: AnyObject) {

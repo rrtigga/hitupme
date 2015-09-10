@@ -66,6 +66,8 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         super.viewDidAppear(animated)
         if Functions.refreshTab(3) == true {
             pullRefresh()
+        } else {
+            tableView.reloadData()
         }
         
     }

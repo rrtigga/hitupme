@@ -26,6 +26,7 @@
 		185C1E3F1BA0CAED00D079DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E3E1BA0CAED00D079DC /* SystemConfiguration.framework */; };
 		185C1E411BA0CAF600D079DC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E401BA0CAF600D079DC /* libz.dylib */; };
 		185C1E431BA0CAFD00D079DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E421BA0CAFD00D079DC /* libsqlite3.dylib */; };
+		185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C1E451BA2092800D079DC /* ExploreMap.swift */; };
 		18B48F291B879B970032C193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F281B879B970032C193 /* AppDelegate.swift */; };
 		18B48F301B879B970032C193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F2E1B879B970032C193 /* Main.storyboard */; };
 		18B48F321B879B970032C193 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F311B879B970032C193 /* Images.xcassets */; };
@@ -86,6 +87,7 @@
 		185C1E3E1BA0CAED00D079DC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		185C1E401BA0CAF600D079DC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		185C1E421BA0CAFD00D079DC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		185C1E451BA2092800D079DC /* ExploreMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreMap.swift; sourceTree = "<group>"; };
 		18B48F231B879B970032C193 /* HitupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B48F271B879B970032C193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B48F281B879B970032C193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				18B48F591B87E9370032C193 /* CreateController.swift */,
 				18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */,
 				18E2D7021B925555009783D7 /* NotificationFeed.swift */,
+				185C1E451BA2092800D079DC /* ExploreMap.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
 				184A72311B96638E002194B0 /* Hitup.swift in Sources */,
+				185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */,
 				18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */,
 				18B48F4F1B87B2D90032C193 /* MyHitupsTab.swift in Sources */,
 				184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */,

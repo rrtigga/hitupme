@@ -213,7 +213,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zC1-dc-dpK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1416" y="-286"/>
+            <point key="canvasLocation" x="2058" y="-270"/>
         </scene>
         <!--Default Nav Controller-->
         <scene sceneID="ybV-Fp-Oaw">
@@ -225,12 +225,51 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="e3C-he-KMH" kind="relationship" relationship="rootViewController" id="hk5-G5-YxL"/>
+                        <segue destination="XCh-VQ-Sbf" kind="relationship" relationship="rootViewController" id="Xz4-3d-S52"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJZ-th-8Ku" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-286"/>
+        </scene>
+        <!--Explore Map-->
+        <scene sceneID="ziB-If-Y6a">
+            <objects>
+                <viewController id="XCh-VQ-Sbf" customClass="ExploreMap" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ru5-cs-5i4"/>
+                        <viewControllerLayoutGuide type="bottom" id="u5c-iS-nHJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aje-pV-FKl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8GK-8Y-qT1">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="8GK-8Y-qT1" secondAttribute="trailing" constant="-16" id="14o-45-lIX"/>
+                            <constraint firstItem="8GK-8Y-qT1" firstAttribute="leading" secondItem="aje-pV-FKl" secondAttribute="leadingMargin" constant="-16" id="Btv-f7-LHP"/>
+                            <constraint firstItem="8GK-8Y-qT1" firstAttribute="top" secondItem="Ru5-cs-5i4" secondAttribute="bottom" id="QB0-St-kID"/>
+                            <constraint firstItem="u5c-iS-nHJ" firstAttribute="top" secondItem="8GK-8Y-qT1" secondAttribute="bottom" id="hF9-WM-zgt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5QI-Ia-WTL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="J72-sy-ilA">
+                            <connections>
+                                <action selector="touchRefresh:" destination="XCh-VQ-Sbf" id="TBV-eg-JRO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="8GK-8Y-qT1" id="PS9-mm-7XY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="22b-27-Idp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1416" y="-286"/>
         </scene>
         <!--Title-->
         <scene sceneID="sQQ-H2-az1">
@@ -871,7 +910,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ys4-GJ-hwL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2052" y="-286"/>
+            <point key="canvasLocation" x="2694" y="-270"/>
         </scene>
         <!--Default Nav Controller-->
         <scene sceneID="YBo-Vf-jV1">
@@ -1174,7 +1213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCw-km-5XO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2694" y="-286"/>
+            <point key="canvasLocation" x="3336" y="-270"/>
         </scene>
         <!--Hitup Detail View Controller-->
         <scene sceneID="LX7-60-Xhw">
@@ -1579,6 +1618,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IUs-sf-CvK"/>
-        <segue reference="g5n-5q-IJ1"/>
+        <segue reference="4Ag-gP-mYd"/>
     </inferredMetricsTieBreakers>
 </document>
