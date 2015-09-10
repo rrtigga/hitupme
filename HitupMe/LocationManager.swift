@@ -155,7 +155,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     locationManager = CLLocationManager()
     locationManager.delegate = self
     // locationManager.locationServicesEnabled
-    locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     
     if NSString(string: UIDevice.currentDevice().systemVersion).doubleValue >= 8 {
       

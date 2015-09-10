@@ -86,16 +86,16 @@ class Functions: NSObject {
     
     class func updateLocation() {
         
-        /*
+        
         // Update one Guaranteed
         var locationManager = LocationManager.sharedInstance
         locationManager.showVerboseMessage = false
         locationManager.autoUpdate = true
         locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
             
-            if error != nil {
+            if error == nil {
                 println("Erorr updating Location, trying again", error)
-            } else if error == nil {
+            } else if error != nil {
                 println("lat:\(latitude) lon:\(longitude)")
                 //println(verboseMessage)
                 var defaults = NSUserDefaults.standardUserDefaults()
@@ -104,11 +104,15 @@ class Functions: NSObject {
                 locationManager.stopUpdatingLocation()
                 
                 locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
-                    var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
-                    println( geoInfo["locality"], geoInfo["postalCode"])
-                    defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
-                    defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
-                    defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+                    if error == nil {
+                        var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
+                        println( geoInfo["locality"], geoInfo["postalCode"])
+                        defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
+                        defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
+                        defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+                    } else {
+                        println(error)
+                    }
                 })
             
                 
@@ -121,17 +125,21 @@ class Functions: NSObject {
                     defaults.setDouble(longitude, forKey: "longitude")
                     
                     locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
-                        var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
-                        println( geoInfo)
-                        defaults.setValue( geoInfo["locality"] as! String, forKey: "City")
-                        defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "State")
-                        defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+                        if error == nil {
+                            var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
+                            println( geoInfo["locality"], geoInfo["postalCode"])
+                            defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
+                            defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
+                            defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+                        } else {
+                            println(error)
+                        }
                     })
                 })
             
             }
         }
-        */
+        
 
     }
     

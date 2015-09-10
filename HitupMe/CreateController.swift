@@ -62,7 +62,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             newHitup["description"] = details
             newHitup["header"] = headerTextView.text
             newHitup["location_name"] = locationText
-            newHitup["coordinates"] = PFGeoPoint(latitude: 0,longitude: 1)
+            newHitup["coordinates"] = PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude,longitude: LocationManager.sharedInstance.lastKnownLongitude)
             newHitup["user_host"] = userId
             newHitup["user_hostName"] = firstName + " " + lastName
             newHitup.addObject( userId , forKey: "users_joined")
