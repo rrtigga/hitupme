@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Parse
 
-class ExploreMap: UIViewController {
+class ExploreMap: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
 
@@ -35,6 +35,7 @@ class ExploreMap: UIViewController {
                         var annotation = MKPointAnnotation()
                         annotation.title = thisHitup.objectForKey("header") as? String
                         annotation.coordinate = CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
+                        
                         self.mapView.addAnnotation(annotation)
                     } // For object in objects
                     self.mapView.showAnnotations(self.mapView.annotations, animated: true)
@@ -43,9 +44,27 @@ class ExploreMap: UIViewController {
         } // updateNearbyHitups
     }
 
+    /*
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+            
+            let reuseId = "pin"
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+            if pinView == nil {
+                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView!.canShowCallout = true
+                pinView!.animatesDrop = true
+                pinView!.pinColor = .
+            }
+            else {
+                pinView!.annotation = annotation
+            }
+            
+            return pinView
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //refreshMap()
+        mapView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {

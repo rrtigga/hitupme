@@ -35,6 +35,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     var savedHitup:Hitup?
     
     var thisHitup = PFObject(className: "Hitups")
+    var joined_before = false
     
     func configureTableView() {
         tableView.rowHeight = 34
@@ -126,10 +127,26 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             PFUser.currentUser()?.incrementKey("num")
             PFUser.currentUser()?.saveInBackground()
             setType(1)
-            
             Functions.setRefreshTabTrue(3)
-        }
-        
+            
+            // send fresh push notification for user joining the Hitup
+            if(!joined_before) {
+                //push notification for user joining the Hitup
+                // Create our query to notify all users joined
+                let pushQuery = PFInstallation.query()
+                pushQuery!.whereKey("fb_id", containedIn: thisHitup.objectForKey("users_joined") as! [AnyObject] )
+                pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
+                // Send push notification to query
+                let push = PFPush()
+                push.setQuery(pushQuery) // Set our Installation query
+                //header text
+                var header_text = thisHitup.objectForKey("header") as! String
+                push.setMessage(fullName + " has joined" + header_text)
+                push.sendPushInBackground()
+                joined_before = true
+            }
+
+        } // else
         
     }
     
@@ -142,6 +159,22 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             
             self.thisHitup.deleteInBackground()
             Functions.setRefreshAllTabsTrue()
+            
+            var user = PFUser.currentUser()
+            var fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
+            
+            // Create our query to notify all users joined
+            let pushQuery = PFInstallation.query()
+            pushQuery!.whereKey("fb_id", containedIn: self.thisHitup.objectForKey("users_joined") as! [AnyObject] )
+            pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
+            // Send push notification to query
+            let push = PFPush()
+            push.setQuery(pushQuery) // Set our Installation query
+            //header text
+            var header_text = self.thisHitup.objectForKey("header") as! String
+            push.setMessage(fullName + " has deleted" + header_text)
+            push.sendPushInBackground()
+            self.joined_before = true
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in

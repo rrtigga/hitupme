@@ -25,7 +25,6 @@ class HitupFeed: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        Functions.updateLocation()
         
         // Refresh Controller
         tableView.addSubview(refreshController)
@@ -47,6 +46,7 @@ class HitupFeed: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        Functions.updateLocation()
         if Functions.refreshTab(0) == true {
             pullRefresh()
         } else {
