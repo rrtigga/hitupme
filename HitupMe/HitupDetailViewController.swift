@@ -192,7 +192,10 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 12
+        // Set Number Joined
+        var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
+        var num = joinedArray.count
+        return num
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -201,8 +204,21 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! DetailActionCell
         // Configure the cell...
+        
+        // set name
+        var joinedName = thisHitup.objectForKey("users_joinedNames") as! [AnyObject]
+        cell.actionLabel.text = joinedName[indexPath.row] as? String
+        
+        // set profile picture
+        var joinedIds = thisHitup.objectForKey("users_joined") as! [AnyObject]
+        var currentJoinedId = joinedIds[indexPath.row] as? String
+        
+        Functions.getPictureFromFBId(currentJoinedId!) { (image) -> Void in
+            cell.profilePicture.image = image
+        }
+        
         
         return cell
     }
