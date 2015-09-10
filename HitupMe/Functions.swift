@@ -93,9 +93,9 @@ class Functions: NSObject {
         locationManager.autoUpdate = true
         locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
             
-            if error == nil {
+            if error != nil {
                 println("Erorr updating Location, trying again", error)
-            } else if error != nil {
+            } else if error == nil {
                 println("lat:\(latitude) lon:\(longitude)")
                 //println(verboseMessage)
                 var defaults = NSUserDefaults.standardUserDefaults()

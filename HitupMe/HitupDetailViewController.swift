@@ -51,7 +51,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // Set Hitup Inforamtion
         
         headerLabel.text = thisHitup.objectForKey("header") as! String
-        descriptionLabel.text = thisHitup.objectForKey("location_name") as? String
+        descriptionLabel.text = thisHitup.objectForKey("description") as? String
         locationLabel.text = thisHitup.objectForKey("user_hostName") as? String
         joinedLabel.text = "2 Joined"
         distanceLabel.text = "<1 mile away"

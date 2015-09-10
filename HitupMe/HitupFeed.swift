@@ -98,7 +98,10 @@ class HitupFeed: UITableViewController {
         cell.nameLabel.text = hitup.objectForKey("user_hostName") as? String
         cell.joinedLabel.text = "2 Joined"
         
-        cell.distanceLabel.text = "<1 mile away"
+        var coords = hitup.objectForKey("coordinates") as! PFGeoPoint
+        var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
+        
+        cell.distanceLabel.text = String(format: "%.1f miles away", dist)
         cell.pastTimeLabel.text = "1hr"
         
         if let fb_id = hitup.objectForKey("user_host") as? String {
