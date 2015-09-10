@@ -30,7 +30,6 @@ class HitupFeed: UITableViewController {
         // Refresh Controller
         tableView.addSubview(refreshController)
         refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)
-        Hitup.resetCoreData()
     
     }
     
@@ -98,7 +97,7 @@ class HitupFeed: UITableViewController {
         
         // Set Number Joined
         var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
-        cell.joinedLabel.text = String(format: "%i Joined", joinedArray.count)
+        cell.joinedLabel.text = String(format: "%i Joined", joinedArray.count - 1)
         
         // Set Distance Label
         var coords = hitup.objectForKey("coordinates") as! PFGeoPoint

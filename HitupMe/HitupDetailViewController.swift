@@ -59,7 +59,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // Set Number Joined
         var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
         var num = joinedArray.count
-        joinedLabel.text = String(format: "%i Joined", num )
+        joinedLabel.text = String(format: "%i Joined", num - 1 )
         
         // Set Profile Picture
         Functions.getPictureFromFBId(thisHitup.objectForKey("user_host") as! String, completion: { (image) -> Void in

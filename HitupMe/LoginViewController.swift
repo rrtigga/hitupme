@@ -38,6 +38,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             
                             user.saveInBackground()
                             
+                            let installation = PFInstallation.currentInstallation()
+                            if let id = PFUser.currentUser()?.objectForKey("fb_id") as? String
+                            {
+                                installation["fb_id"] = id
+                            }
+                            installation.saveInBackground()
+                            
                             /*BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
                                 first_Name: userInfo_dict.objectForKey("first_name") as! String,
                                 last_Name: userInfo_dict.objectForKey("last_name") as! String,

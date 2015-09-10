@@ -495,6 +495,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="headerLabel" destination="vyg-CE-u7N" id="I4k-hl-CD9"/>
+                                    <outlet property="joinLabel" destination="VAN-hh-Nyp" id="B3H-kK-zLG"/>
+                                    <outlet property="profilePic" destination="fuY-sO-3Ig" id="4ds-Mh-oDk"/>
                                     <outlet property="timeLabel" destination="QPq-Ao-9xU" id="cu8-5g-CKO"/>
                                     <outlet property="typeLabel" destination="vcK-bP-nQb" id="6hD-EC-9ia"/>
                                 </connections>
@@ -1037,7 +1039,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HaB-IE-DVt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HaB-IE-DVt">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1615,6 +1617,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IUs-sf-CvK"/>
-        <segue reference="h2r-UG-oBM"/>
+        <segue reference="56n-zI-q1l"/>
     </inferredMetricsTieBreakers>
 </document>

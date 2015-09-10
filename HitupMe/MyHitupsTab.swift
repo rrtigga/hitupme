@@ -128,14 +128,17 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         var seconds =  NSDate().timeIntervalSinceDate(created!)
         cell.timeLabel.text = String(format: "%.1fhr", seconds/3600)
         
-        /*
-        if hitup.hosted == true {
-            cell.setCellType(myHitupCell.cellType.Hosted)
-        } else {
-            cell.setCellType(myHitupCell.cellType.Joined)
-        }*/
+        // Set Host Image
+        Functions.getPictureFromFBId(hitup.objectForKey("user_host") as! String) { (image) -> Void in
+            cell.profilePic.image = image
+        }
         
-        // Configure the cell...
+        // Set Number Joined
+        var number_joined = hitup.objectForKey("users_joined") as! [AnyObject]
+        var joined_size = number_joined.count
+        var num = joined_size - 1
+        cell.joinLabel.text = String(format: "+ %i", num )
+        
 
         return cell
     }

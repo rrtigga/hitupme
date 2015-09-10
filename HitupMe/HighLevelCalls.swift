@@ -15,9 +15,6 @@ class HighLevelCalls: NSObject {
     // ---------- 1. Main Tab ---------- //
     class func updateNearbyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
-        // 1 - Remove all local Hitups
-        Hitup.resetCoreData()
-        
         var query = PFQuery(className: "Hitups")
         query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude), withinMiles: 20.0)
         query.orderByDescending("createdAt")

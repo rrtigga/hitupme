@@ -13,6 +13,8 @@ class myHitupCell: UITableViewCell {
     @IBOutlet var typeLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var headerLabel: UILabel!
+    @IBOutlet var joinLabel: UILabel!
+    @IBOutlet var profilePic: UIImageView!
     
     var savedCellType = cellType.Joined
     enum cellType {
