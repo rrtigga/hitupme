@@ -132,7 +132,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
             println("Yes")
             self.navigationController?.popViewControllerAnimated(true)
-            var feed = self.navigationController?.topViewController as! HitupFeed
+            //var feed = self.navigationController?.topViewController as! HitupFeed
             
             self.thisHitup.deleteInBackground()
             

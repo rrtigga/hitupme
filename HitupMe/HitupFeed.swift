@@ -30,10 +30,7 @@ class HitupFeed: UITableViewController {
         // Refresh Controller
         tableView.addSubview(refreshController)
         refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)
-        
-        println( FBSDKAccessToken.currentAccessToken() )
-        
-        //Hitup.resetCoreData()
+        Hitup.resetCoreData()
     
     }
     

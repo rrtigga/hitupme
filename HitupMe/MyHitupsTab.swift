@@ -15,6 +15,8 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     var refreshController = UIRefreshControl()
     var refresh = true
     
+    var hitupToSend = PFObject(className: "Hitups")
+    
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var friendCountLabel: UILabel!
     @IBOutlet var hitupCountLabel: UILabel!
@@ -79,6 +81,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     }
 
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        PFUser.logOutInBackground()
         performSegueWithIdentifier("logout", sender: nil)
         println("User Logged Out of App")
     }
@@ -171,11 +174,30 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
 
     // MARK: - Navigation
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Create a variable that you want to send based on the destination view controller
+        // You can get a reference to the data by using indexPath shown below
+        println("select")
+        hitupToSend = hitups[indexPath.row] as! PFObject
+        performSegueWithIdentifier("detailOfMy", sender: self)
+    }
+    
+    
+    // MARK: - Navigation
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        println("Showing Detail")
+        if segue.identifier == "detailOfMy" {
+            var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
+            //detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
+            
+            detailController.thisHitup = hitupToSend
+        }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        
     }
-
 }
