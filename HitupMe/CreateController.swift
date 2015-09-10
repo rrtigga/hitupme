@@ -109,8 +109,12 @@ class CreateController: UIViewController, UITextViewDelegate {
         headerTextView.selectedRange = NSRange(location: 0,length: 0)
         
         Functions.updateLocation()
+        Functions.getPictureFromFBId( PFUser.currentUser()?.objectForKey("fb_id") as! String , completion: { (image) -> Void in
+            self.profilePic.image = image
+        })
+        
         var defaults = NSUserDefaults.standardUserDefaults()
-        //cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
+        cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
     }
 
     

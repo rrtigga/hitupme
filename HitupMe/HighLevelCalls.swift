@@ -19,13 +19,16 @@ class HighLevelCalls: NSObject {
         Hitup.resetCoreData()
         
         var query = PFQuery(className: "Hitups")
+        query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude), withinMiles: 20.0)
         query.orderByDescending("createdAt")
-        var hitups = query.findObjects()
-        
-        // 4 - Make sure to reload whichever view you're in
-        
-        // Signal that MyHitups needs to be updated next WillAppear
-        completion(success: true, objects: hitups)
+        query.limit = 20;
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                completion(success: true, objects: objects)
+            } else {
+                completion(success: false, objects: [AnyObject]())
+            }
+        }
     }
     
     class func getMyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
@@ -34,11 +37,16 @@ class HighLevelCalls: NSObject {
         let relation = PFUser.currentUser()!.relationForKey("my_hitups")
         
         //generate a query based on that relation
-        let query = relation.query()
+        var query = relation.query()
         query!.orderByDescending("createdAt")
-        var myHitups = query?.findObjects()
-        
-        completion(success: true, objects: myHitups)
+        query!.limit = 20;
+        query!.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                completion(success: true, objects: objects)
+            } else {
+                completion(success: false, objects: [AnyObject]())
+            }
+        }
     }
     
     class func getLocalNearbyHitups() -> NSArray {

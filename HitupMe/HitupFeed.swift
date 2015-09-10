@@ -96,44 +96,41 @@ class HitupFeed: UITableViewController {
         cell.HeaderLabel.text = hitup.objectForKey("header") as! String
         cell.locationLabel.text = hitup.objectForKey("location_name") as? String
         cell.nameLabel.text = hitup.objectForKey("user_hostName") as? String
-        cell.joinedLabel.text = "2 Joined"
         
+        // Set Number Joined
+        var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
+        cell.joinedLabel.text = String(format: "%i Joined", joinedArray.count)
+        
+        // Set Distance Label
         var coords = hitup.objectForKey("coordinates") as! PFGeoPoint
         var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
-        
         cell.distanceLabel.text = String(format: "%.1f miles away", dist)
-        cell.pastTimeLabel.text = "1hr"
         
+        // Set Time Label
+        var created = hitup.createdAt
+        var seconds =  NSDate().timeIntervalSinceDate(created!)
+        cell.pastTimeLabel.text = String(format: "%.1fhr", seconds/3600)
+        
+        // Set Image
         if let fb_id = hitup.objectForKey("user_host") as? String {
             Functions.getPictureFromFBId(fb_id, completion: { (image) -> Void in
                 cell.profilePic.image = image
             })
         }
         
-        /*
-        if (hitup.joined == true) {
-            cell.setCellType(HitupCell.cellType.Joined)
-        } else if (hitup.hosted == true) {
+        // Set Cell Type
+        var user_hosted = hitup["user_host"] as! String
+        var users_joined = hitup["users_joined"] as! [AnyObject]
+        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        if(currentUser_fbId == user_hosted){
             cell.setCellType(HitupCell.cellType.Hosted)
-        } else {
-            cell.setCellType(HitupCell.cellType.NotResponded)
-        }*/
-        
-        /*
-        var hitupDict : NSDictionary =  Model.getLocalNearbyHitupsAtIndex(indexPath.row )
-        cell.HeaderLabel.text = hitupDict["header"] as? String
-        cell.locationLabel.text = hitupDict["locationName"] as? String
-        cell.joinedLabel.text = hitupDict["numberJoined"] as? String
-        cell.distanceLabel.text = hitupDict["distance"] as? String
-        cell.pastTimeLabel.text = hitupDict["recency"] as? String
-        if (hitupDict["joined"] as? Bool == true) {
+        }
+        else if( (users_joined as NSArray).containsObject(currentUser_fbId) ){
             cell.setCellType(HitupCell.cellType.Joined)
-        } else if (hitupDict["hosted"] as? Bool == true) {
-            cell.setCellType(HitupCell.cellType.Hosted)
-        } else {
+        }
+        else {
             cell.setCellType(HitupCell.cellType.NotResponded)
         }
-        */
         
         return cell
     }

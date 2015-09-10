@@ -106,6 +106,21 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         
         cell.headerLabel.text = hitup.objectForKey("header") as? String
        
+        // Set Cell Type
+        var user_hosted = hitup["user_host"] as! String
+        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        if(currentUser_fbId == user_hosted){
+            cell.setCellType(myHitupCell.cellType.Hosted)
+        }
+        else{
+            cell.setCellType(myHitupCell.cellType.Joined)
+        }
+        
+        // Set Time Label
+        var created = hitup.createdAt
+        var seconds =  NSDate().timeIntervalSinceDate(created!)
+        cell.timeLabel.text = String(format: "%.1fhr", seconds/3600)
+        
         /*
         if hitup.hosted == true {
             cell.setCellType(myHitupCell.cellType.Hosted)

@@ -980,7 +980,6 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="1Wy-gu-15U" kind="relationship" relationship="viewControllers" id="J8Y-Bq-vtv"/>
-                        <segue destination="7O9-HN-asp" kind="relationship" relationship="viewControllers" id="G0i-sF-UXb"/>
                         <segue destination="0Eh-5g-lxd" kind="relationship" relationship="viewControllers" id="diV-1i-w15"/>
                         <segue destination="6Ot-Pt-4M0" kind="relationship" relationship="viewControllers" id="joC-9a-2ej"/>
                     </connections>

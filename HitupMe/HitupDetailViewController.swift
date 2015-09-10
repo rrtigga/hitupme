@@ -52,15 +52,43 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         headerLabel.text = thisHitup.objectForKey("header") as! String
         descriptionLabel.text = thisHitup.objectForKey("description") as? String
-        locationLabel.text = thisHitup.objectForKey("user_hostName") as? String
+        locationLabel.text = thisHitup.objectForKey("location_name") as? String
+        nameLabel.text = thisHitup.objectForKey("user_hostName") as? String
         joinedLabel.text = "2 Joined"
-        distanceLabel.text = "<1 mile away"
-        timeLabel.text = "1hr"
         
+        // Set Number Joined
+        var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
+        var num = joinedArray.count - 1
+        joinedLabel.text = String(format: "%i Joined", num )
         
-    
+        // Set Profile Picture
+        Functions.getPictureFromFBId(thisHitup.objectForKey("user_host") as! String, completion: { (image) -> Void in
+            self.profilePicture.image = image
+        })
         
-        setType()
+        // Set Distance Label
+        var coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
+        var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
+        distanceLabel.text = String(format: "%.1f miles away", dist)
+        
+        // Set Time Label
+        var created = thisHitup.createdAt
+        var seconds =  NSDate().timeIntervalSinceDate(created!)
+        timeLabel.text = String(format: "%.1fhr", seconds/3600)
+        
+        var user_hosted = thisHitup["user_host"] as! String
+        var users_joined = thisHitup["users_joined"] as! [AnyObject]
+        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        if(currentUser_fbId == user_hosted){
+            setType(0)
+        }
+        else if( (users_joined as NSArray).containsObject(currentUser_fbId) ){
+            setType(1)
+        }
+        else {
+            setType(2)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,11 +97,31 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func touchJoinButton() {
-        if (savedHitup?.hosted == true) {
+        var user_hosted = thisHitup["user_host"] as! String
+        var users_joined = thisHitup["users_joined"] as! [AnyObject]
+        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        var user = PFUser.currentUser()
+        var fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
+        if(currentUser_fbId == user_hosted){
+            // If Hosted
             promptDeleteAlert()
-        } else if (savedHitup?.joined != true) {
-            savedHitup?.toggleJoin()
-            setType()
+        } else if ( (users_joined as NSArray).containsObject(currentUser_fbId) ) {
+            // If Joined
+            thisHitup.removeObjectsInArray( [ currentUser_fbId ], forKey: "users_joined")
+            thisHitup.removeObjectsInArray( [ fullName ] , forKey: "users_joinedNames")
+            thisHitup.save()
+            let rel = PFUser.currentUser()?.relationForKey("my_hitups")
+            rel?.removeObject(thisHitup)
+            PFUser.currentUser()?.saveInBackground()
+            setType(2)
+        } else {
+            thisHitup.addUniqueObjectsFromArray( [ currentUser_fbId ], forKey: "users_joined")
+            thisHitup.addUniqueObjectsFromArray( [ fullName ] , forKey: "users_joinedNames")
+            thisHitup.save()
+            let rel = PFUser.currentUser()?.relationForKey("my_hitups")
+            rel?.addObject(thisHitup)
+            PFUser.currentUser()?.saveInBackground()
+            setType(1)
         }
         
         
@@ -86,14 +134,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             self.navigationController?.popViewControllerAnimated(true)
             var feed = self.navigationController?.topViewController as! HitupFeed
             
-            Hitup.remove(self.savedHitup!)
-            
-            HighLevelCalls.refreshAfterCreateHitup()
-            
-            //feed.removeHitupfrom(self.hitupIndex)
-            /*BackendAPI.removeHitup(savedHitup.objectForKey("hitupId") as! String, completion: { (success) -> Void in
-            println("Successful Remove")
-            })*/
+            self.thisHitup.deleteInBackground()
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
@@ -104,30 +145,36 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
-    func setType() {
-        if (savedHitup?.hosted == true) {
-            // Set Hosted
+    func setType(typeNum: NSNumber) {
+        
+        switch typeNum{
+        case 0: // Hosted
             typePicture.image = UIImage(named:"Cell_Hosted")
             joinButton.setTitle("Cancel Hitup?", forState: UIControlState.Normal)
             joinButton.backgroundColor = UIColor.whiteColor()
             joinButton.tintColor = Functions.defaultLocationColor()
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
             joinButton.layer.borderWidth = 1
-        } else if (savedHitup?.joined == true) {
-            // Set Joined
+            break;
+        
+        case 1: // Joined
             typePicture.image = UIImage(named:"Cell_Joined")
             joinButton.backgroundColor = UIColor.whiteColor()
             joinButton.tintColor = Functions.themeColor()
             joinButton.setTitle("joined", forState: UIControlState.Normal)
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
             joinButton.layer.borderWidth = 1
-        } else {
-            // Set NotResponded
+            break;
+            
+        case 2: // NotResponded
             typePicture.image = nil
             joinButton.backgroundColor = Functions.themeColor()
             joinButton.tintColor = UIColor.whiteColor()
             joinButton.setTitle("JOIN", forState: UIControlState.Normal)
             joinButton.layer.borderWidth = 0
+            break;
+        default:
+            println("Error: In Detail Controller, unrecognized type Number")
         }
     }
     

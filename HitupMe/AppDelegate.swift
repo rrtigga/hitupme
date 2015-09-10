@@ -51,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
+        Functions.updateLocation()
+        
         return didFinish
     }
     
