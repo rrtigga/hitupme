@@ -58,7 +58,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         // Set Number Joined
         var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
-        var num = joinedArray.count - 1
+        var num = joinedArray.count
         joinedLabel.text = String(format: "%i Joined", num )
         
         // Set Profile Picture
@@ -112,6 +112,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             thisHitup.save()
             let rel = PFUser.currentUser()?.relationForKey("my_hitups")
             rel?.removeObject(thisHitup)
+            PFUser.currentUser()?.incrementKey("num", byAmount: -1)
             PFUser.currentUser()?.saveInBackground()
             setType(2)
             
@@ -122,6 +123,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             thisHitup.save()
             let rel = PFUser.currentUser()?.relationForKey("my_hitups")
             rel?.addObject(thisHitup)
+            PFUser.currentUser()?.incrementKey("num")
             PFUser.currentUser()?.saveInBackground()
             setType(1)
             

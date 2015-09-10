@@ -59,6 +59,7 @@ class CreateController: UIViewController, UITextViewDelegate {
                     println("Hitup was stored")
                     let rel = PFUser.currentUser()?.relationForKey("my_hitups")
                     rel?.addObject(newHitup)
+                    PFUser.currentUser()?.incrementKey("num")
                     PFUser.currentUser()?.saveInBackground()
                 } else {
                     println("Error adding Hitup")

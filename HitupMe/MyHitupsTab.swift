@@ -32,14 +32,17 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.delegate = self
-        
+        var user = PFUser.currentUser()
+        var first = user?.objectForKey("first_name") as? String
+        var last = user?.objectForKey("last_name") as? String
         
         // Set Profile Information
         var defaults = NSUserDefaults.standardUserDefaults()
         var userInfo = defaults.objectForKey("userInfo_dict") as! NSDictionary
-        userNameLabel.text = String(format:"%@ %@", (userInfo.objectForKey("first_name") as? String)! , (userInfo.objectForKey("last_name") as? String)! )
+        userNameLabel.text = String(format:"%@ %@", first!, last! )
         var friendArray: NSArray = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
         friendCountLabel.text = String(friendArray.count)
+        hitupCountLabel.text = String(format:"%i", user?.objectForKey("num") as! Int )
         Functions.getPictureFromFBId(userInfo.objectForKey("id") as! String, completion: { (image) -> Void in
              self.profilePic.image = image
         })
@@ -52,7 +55,6 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
 
     func pullRefresh() {
         tableView.userInteractionEnabled = false
-        
         HighLevelCalls.getMyHitups { (success, objects) -> Void in
             self.hitups = objects!
             self.tableView.reloadData()
