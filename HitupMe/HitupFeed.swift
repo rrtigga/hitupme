@@ -35,8 +35,8 @@ class HitupFeed: UITableViewController {
     }
     
     func pullRefresh() {
+        println("refresh")
         tableView.userInteractionEnabled = false
-        
         HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
                 self.hitups = objects!
                 self.tableView.reloadData()

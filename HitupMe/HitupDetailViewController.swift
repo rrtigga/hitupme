@@ -169,6 +169,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             joinButton.setTitle("joined", forState: UIControlState.Normal)
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
             joinButton.layer.borderWidth = 1
+            tableView.reloadData()
             break;
             
         case 2: // NotResponded
@@ -177,6 +178,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             joinButton.tintColor = UIColor.whiteColor()
             joinButton.setTitle("JOIN", forState: UIControlState.Normal)
             joinButton.layer.borderWidth = 0
+            tableView.reloadData()
             break;
         default:
             println("Error: In Detail Controller, unrecognized type Number")

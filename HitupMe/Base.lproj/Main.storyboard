@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Hitups Nearby (20 miles)-->
         <scene sceneID="aS6-Ch-Zrc">
             <objects>
                 <tableViewController id="IKC-sy-o3g" customClass="HitupFeed" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -134,7 +134,7 @@
                             <outlet property="delegate" destination="IKC-sy-o3g" id="gkJ-1m-SOs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="PL8-ak-niu">
+                    <navigationItem key="navigationItem" title="Hitups Nearby (20 miles)" id="PL8-ak-niu">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="0lp-La-htI">
                             <connections>
                                 <segue destination="QOa-c0-6JS" kind="popoverPresentation" popoverAnchorBarButtonItem="0lp-La-htI" id="h2r-UG-oBM">
@@ -143,9 +143,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="navigationItem.title" value="Hitups Nearby"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="CCW-3i-e78" kind="show" identifier="detail" id="Tg9-Ea-eBS"/>
                     </connections>
@@ -1618,6 +1615,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IUs-sf-CvK"/>
-        <segue reference="4Ag-gP-mYd"/>
+        <segue reference="h2r-UG-oBM"/>
     </inferredMetricsTieBreakers>
 </document>
