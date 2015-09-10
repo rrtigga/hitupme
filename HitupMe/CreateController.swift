@@ -44,10 +44,10 @@ class CreateController: UIViewController, UITextViewDelegate {
             var locationText = " "
             if locationTextField.hasText() { locationText = locationTextField.text}
             
-            var defaults = NSUserDefaults.standardUserDefaults()
-            var userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
-            var userId = userDict.objectForKey("id") as! String
-            var firstName = userDict.objectForKey("first_name") as! String
+            var user = PFUser.currentUser()
+            var userId = user?.objectForKey("fb_id") as! String
+            var firstName = user?.objectForKey("first_name") as! String
+            var lastName = user?.objectForKey("last_name") as! String
             
             //Hitup.makeHitup(headerTextView.text, desc: details, latitude: 0, locationName: locationText, longtitude: 0)
             
@@ -57,15 +57,16 @@ class CreateController: UIViewController, UITextViewDelegate {
                 //}
             //})
             
+            
             var newHitup = PFObject(className:"Hitups")
             newHitup["description"] = details
             newHitup["header"] = headerTextView.text
             newHitup["location_name"] = locationText
             newHitup["coordinates"] = PFGeoPoint(latitude: 0,longitude: 1)
-            newHitup["user_host"] = "11111"
-            newHitup["user_hostName"] = "Arthur Shirrr"
-            newHitup.addObject( "11111" , forKey: "users_joined")
-            newHitup.addObject( "Arthur Shirrr" , forKey: "users_joinedNames")
+            newHitup["user_host"] = userId
+            newHitup["user_hostName"] = firstName + " " + lastName
+            newHitup.addObject( userId , forKey: "users_joined")
+            newHitup.addObject( firstName + " " + lastName , forKey: "users_joinedNames")
             
             newHitup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in

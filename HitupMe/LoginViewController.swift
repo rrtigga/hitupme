@@ -34,7 +34,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             
                             user["first_name"] = userInfo_dict.objectForKey("first_name") as! String
                             user["last_name"] = userInfo_dict.objectForKey("last_name") as! String
-                            
+                            user["fb_id"] = userInfo_dict.objectForKey("id") as! String
                             
                             user.saveInBackground()
                             

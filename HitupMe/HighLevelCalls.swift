@@ -19,6 +19,7 @@ class HighLevelCalls: NSObject {
         Hitup.resetCoreData()
         
         var query = PFQuery(className: "Hitups")
+        query.orderByDescending("createdAt")
         var hitups = query.findObjects()
         
         // 4 - Make sure to reload whichever view you're in
@@ -34,6 +35,7 @@ class HighLevelCalls: NSObject {
         
         //generate a query based on that relation
         let query = relation.query()
+        query!.orderByDescending("createdAt")
         var myHitups = query?.findObjects()
         
         completion(success: true, objects: myHitups)

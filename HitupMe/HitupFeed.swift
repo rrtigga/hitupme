@@ -93,10 +93,17 @@ class HitupFeed: UITableViewController {
         
         cell.HeaderLabel.text = hitup.objectForKey("header") as! String
         cell.locationLabel.text = hitup.objectForKey("location_name") as? String
+        cell.nameLabel.text = hitup.objectForKey("user_hostName") as? String
         cell.joinedLabel.text = "2 Joined"
         
         cell.distanceLabel.text = "<1 mile away"
         cell.pastTimeLabel.text = "1hr"
+        
+        if let fb_id = hitup.objectForKey("user_host") as? String {
+            Functions.getPictureFromFBId(fb_id, completion: { (image) -> Void in
+                cell.profilePic.image = image
+            })
+        }
         
         /*
         if (hitup.joined == true) {
