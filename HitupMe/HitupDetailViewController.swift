@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -33,6 +34,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     var savedPictureType = pictureType.NotResponded
     var savedHitup:Hitup?
     
+    var thisHitup = PFObject(className: "Hitups")
+    
     func configureTableView() {
         tableView.rowHeight = 34
         tableView.delegate = self
@@ -46,12 +49,16 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         joinButton.layer.borderWidth = 0
         
         // Set Hitup Inforamtion
-        headerLabel.text = savedHitup?.header
-        descriptionLabel.text = savedHitup?.desc
-        locationLabel.text = savedHitup?.locationName
+        
+        headerLabel.text = thisHitup.objectForKey("header") as! String
+        descriptionLabel.text = thisHitup.objectForKey("location_name") as? String
+        locationLabel.text = thisHitup.objectForKey("user_hostName") as? String
         joinedLabel.text = "2 Joined"
-        distanceLabel.text = "how far lolol"
-        timeLabel.text = "1 hr"
+        distanceLabel.text = "<1 mile away"
+        timeLabel.text = "1hr"
+        
+        
+    
         
         setType()
     }

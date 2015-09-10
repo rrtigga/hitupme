@@ -14,6 +14,8 @@ class HitupFeed: UITableViewController {
     var refreshController = UIRefreshControl()
     var hitups = [AnyObject]()
     
+    var hitupToSend = PFObject(className: "Hitups")
+    
     func configureTableView() {
         tableView.rowHeight = 108
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -138,6 +140,7 @@ class HitupFeed: UITableViewController {
         // Create a variable that you want to send based on the destination view controller
         // You can get a reference to the data by using indexPath shown below
         println("select")
+        hitupToSend = hitups[indexPath.row] as! PFObject
         performSegueWithIdentifier("detail", sender: self)
     }
     
@@ -150,9 +153,13 @@ class HitupFeed: UITableViewController {
         if segue.identifier == "detail" {
             var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
             //detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
+            
+            detailController.thisHitup = hitupToSend
         }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        
     }
     
 
