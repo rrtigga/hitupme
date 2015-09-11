@@ -27,6 +27,7 @@
 		185C1E411BA0CAF600D079DC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E401BA0CAF600D079DC /* libz.dylib */; };
 		185C1E431BA0CAFD00D079DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E421BA0CAFD00D079DC /* libsqlite3.dylib */; };
 		185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C1E451BA2092800D079DC /* ExploreMap.swift */; };
+		1889CE141BA26AAE00A38C6B /* HitupAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */; };
 		18B48F291B879B970032C193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F281B879B970032C193 /* AppDelegate.swift */; };
 		18B48F301B879B970032C193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F2E1B879B970032C193 /* Main.storyboard */; };
 		18B48F321B879B970032C193 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F311B879B970032C193 /* Images.xcassets */; };
@@ -88,6 +89,7 @@
 		185C1E401BA0CAF600D079DC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		185C1E421BA0CAFD00D079DC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		185C1E451BA2092800D079DC /* ExploreMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreMap.swift; sourceTree = "<group>"; };
+		1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupAnnotation.swift; sourceTree = "<group>"; };
 		18B48F231B879B970032C193 /* HitupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B48F271B879B970032C193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B48F281B879B970032C193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
 				18202A6A1B96D3A300D41249 /* myHitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
+				1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
 				18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */,
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
+				1889CE141BA26AAE00A38C6B /* HitupAnnotation.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
 				184A72311B96638E002194B0 /* Hitup.swift in Sources */,
 				185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */,

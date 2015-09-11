@@ -81,7 +81,24 @@ class Functions: NSObject {
             (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             completion( image: UIImage(data: data) )
         }
-        
+    }
+    
+    class func getSmallPictureFromFBId(fbId:String, completion: ((image: UIImage?) -> Void)) {
+        var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=small", fbId) )!
+        let request = NSURLRequest(URL: urL)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
+            (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            completion( image: UIImage(data: data) )
+        }
+    }
+    
+    class func getMediumPictureFromFBId(fbId:String, completion: ((image: UIImage?) -> Void)) {
+        var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture", fbId) )!
+        let request = NSURLRequest(URL: urL)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
+            (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            completion( image: UIImage(data: data) )
+        }
     }
     
     class func updateLocation() {
