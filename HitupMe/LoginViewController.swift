@@ -16,6 +16,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Functions.initializeUserDefaults()
+        Functions.setRefreshAllTabsTrue()
         loginButton.addTarget(nil , action: Selector("touchLogin"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
@@ -35,7 +37,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             user["first_name"] = userInfo_dict.objectForKey("first_name") as! String
                             user["last_name"] = userInfo_dict.objectForKey("last_name") as! String
                             user["fb_id"] = userInfo_dict.objectForKey("id") as! String
-                            
+                            if (user.isNew) {
+                                user["num"] = 0
+                            }
                             user.saveInBackground()
                             
                             let installation = PFInstallation.currentInstallation()
@@ -53,6 +57,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                     
                                     //self.performSegueWithIdentifier("afterLogin", sender: nil)
                             })*/
+                            
+                            
                             self.performSegueWithIdentifier("afterLogin", sender: nil)
                         } else {
                             println("error retrieving FB infromation")
