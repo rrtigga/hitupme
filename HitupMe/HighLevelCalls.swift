@@ -15,7 +15,10 @@ class HighLevelCalls: NSObject {
     // ---------- 1. Main Tab ---------- //
     class func updateNearbyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
+        var yesterday = NSDate().dateByAddingTimeInterval(-432000.0)
+        
         var query = PFQuery(className: "Hitups")
+        query.whereKey("createdAt", greaterThan: yesterday)
         query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude), withinMiles: 20.0)
         query.orderByDescending("createdAt")
         query.limit = 20;
@@ -30,11 +33,14 @@ class HighLevelCalls: NSObject {
     
     class func getMyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
+        var LIKEAWEEKAGO = NSDate().dateByAddingTimeInterval(-604800.0 )
+        
         // create a relation based on the myhitups key
         let relation = PFUser.currentUser()!.relationForKey("my_hitups")
         
         //generate a query based on that relation
         var query = relation.query()
+        query!.whereKey("createdAt", greaterThan: LIKEAWEEKAGO)
         query!.orderByDescending("createdAt")
         query!.limit = 20;
         query!.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
