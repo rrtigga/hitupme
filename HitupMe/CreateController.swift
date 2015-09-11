@@ -26,7 +26,10 @@ class CreateController: UIViewController, UITextViewDelegate {
     @IBOutlet var locationTextField: UITextField!
     @IBOutlet var cityLabel: UILabel!
     @IBAction func touchDone(sender: AnyObject) {
-        if headerTextView.textColor != UIColor.lightGrayColor() {
+        var defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey("locationEnabled") == false {
+            Functions.promptLocationTo(self, message: "💩 Please enable location to Post.")
+        } else if headerTextView.textColor != UIColor.lightGrayColor() {
             view.endEditing(true)
             
             var details = " "
@@ -70,6 +73,20 @@ class CreateController: UIViewController, UITextViewDelegate {
             
             popToMainFeed()
         }
+    }
+    
+    func promptLocation() {
+        var alert = UIAlertController(title: "Please enable location to post", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
+            println("Yes")
+            var appSettings = NSURL(string: UIApplicationOpenSettingsURLString)
+            UIApplication.sharedApplication().openURL(appSettings!)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
+            println("No")
+        }))
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     func popToMainFeed() {

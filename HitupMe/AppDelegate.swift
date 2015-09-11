@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         var didFinish = FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         Functions.setRefreshAllTabsTrue()
         
         // Override point for customization after application launch.

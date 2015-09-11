@@ -33,15 +33,22 @@ class HitupFeed: UITableViewController {
     }
     
     func pullRefresh() {
-        println("refresh")
-        tableView.userInteractionEnabled = false
-        HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
+        var defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey("locationEnabled") == false {
+            Functions.promptLocationTo(self, message: "Aw 💩! Please enable location to see Hitups.")
+            self.refreshController.endRefreshing()
+        } else {
+            println("refresh")
+            tableView.userInteractionEnabled = false
+            HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
                 self.hitups = objects!
-                self.tableView.reloadData()
                 self.refreshController.endRefreshing()
+                self.tableView.reloadData()
                 self.tableView.userInteractionEnabled = true
+            }
         }
         
+        Functions.updateLocation()
     }
     
     override func viewDidAppear(animated: Bool) {

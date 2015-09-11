@@ -101,8 +101,36 @@ class Functions: NSObject {
         }
     }
     
+    class func initializeUserDefaults() {
+        var defaults = NSUserDefaults.standardUserDefaults()
+        if nil == defaults.objectForKey("city") {
+            defaults.setObject("Location Not Enabled? 😢", forKey: "city")
+        }
+        if nil == defaults.objectForKey("state") {
+            defaults.setObject("", forKey: "state")
+        }
+        if nil == defaults.objectForKey("postalCode") {
+            defaults.setObject("", forKey: "postalCode")
+        }
+        if nil == defaults.objectForKey("state") {
+            defaults.setObject("", forKey: "state")
+        }
+        if nil == defaults.objectForKey("locationEnabled") {
+            defaults.setBool(false, forKey: "locationEnabled")
+        }
+        if nil == defaults.objectForKey("latitude") {
+            defaults.setObject(37.3175, forKey: "latitude")
+        }
+        if nil == defaults.objectForKey("longtitude") {
+            defaults.setObject( 122.0419, forKey: "longtitude")
+        }
+        LocationManager.sharedInstance.lastKnownLatitude = 37.3175
+        LocationManager.sharedInstance.lastKnownLongitude = 122.0419
+    }
+    
     class func updateLocation() {
         
+        var defaults = NSUserDefaults.standardUserDefaults()
         
         // Update one Guaranteed
         var locationManager = LocationManager.sharedInstance
@@ -112,6 +140,8 @@ class Functions: NSObject {
             
             if error != nil {
                 println("Erorr updating Location, trying again", error)
+                defaults.setBool(false, forKey: "locationEnabled")
+                
             } else if error == nil {
                 println("lat:\(latitude) lon:\(longitude)")
                 //println(verboseMessage)
@@ -119,6 +149,7 @@ class Functions: NSObject {
                 defaults.setDouble(latitude, forKey: "latitude")
                 defaults.setDouble(longitude, forKey: "longitude")
                 locationManager.stopUpdatingLocation()
+                defaults.setBool(true, forKey: "locationEnabled")
                 
                 locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
                     if error == nil {
@@ -127,7 +158,9 @@ class Functions: NSObject {
                         defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
                         defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
                         defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+                        defaults.setBool(true, forKey: "locationEnabled")
                     } else {
+                        defaults.setBool(false, forKey: "locationEnabled")
                         println(error)
                     }
                 })
@@ -148,8 +181,10 @@ class Functions: NSObject {
                             defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
                             defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
                             defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
+                            defaults.setBool(true, forKey: "locationEnabled")
                         } else {
                             println(error)
+                            defaults.setBool(false, forKey: "locationEnabled")
                         }
                     })
                 })
@@ -158,6 +193,20 @@ class Functions: NSObject {
         }
         
 
+    }
+    
+    class func promptLocationTo(vc: UIViewController, message:String) {
+        var alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
+            println("Yes")
+            var appSettings = NSURL(string: UIApplicationOpenSettingsURLString)
+            UIApplication.sharedApplication().openURL(appSettings!)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
+            println("No")
+        }))
+        
+        vc.presentViewController(alert, animated: true, completion: nil)
     }
     
     class func updateFacebook( completion: ((success: Bool?) -> Void)) {
