@@ -197,13 +197,11 @@ class Functions: NSObject {
     
     class func promptLocationTo(vc: UIViewController, message:String) {
         var alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
-            println("Yes")
+        alert.addAction(UIAlertAction(title: "Enable", style: UIAlertActionStyle.Default, handler: { action in
             var appSettings = NSURL(string: UIApplicationOpenSettingsURLString)
             UIApplication.sharedApplication().openURL(appSettings!)
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
-            println("No")
         }))
         
         vc.presentViewController(alert, animated: true, completion: nil)

@@ -19,36 +19,44 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     var hitupToSend = PFObject(className: "Hitups")
     
     func refreshMap() {
-        HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
-            if success == true {
-                
-                self.mapView.removeAnnotations(self.mapView.annotations)
-                
-                self.mapView.showsUserLocation = true
-                self.mapView.centerCoordinate =  CLLocationCoordinate2D( latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude)
-                
-                if let objects = objects as? [PFObject] {
-                    for object in objects {
-                        var thisHitup = object
-                        var coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
-                        
-                        var annotation = HitupAnnotation()
-                        var host = thisHitup.objectForKey("user_hostName") as? String
-                        var header = thisHitup.objectForKey("header") as? String
-                        var users_joined = thisHitup.objectForKey("users_joined") as! [AnyObject]
-                        
-                        annotation.title = header
-                        annotation.subtitle = String(format: "%i joined", (users_joined.count - 1) )
-                        annotation.coordinate = CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
-                        annotation.hitup = thisHitup
-                        
-                        self.mapView.addAnnotation(annotation)
-                        
-                    } // For object in objects
-                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-                } // if casted sucessfully
-            } // success == true
-        } // updateNearbyHitups
+        
+        var defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey("locationEnabled") == false {
+            Functions.promptLocationTo(self, message: "Aw 💩! Please enable location to see Hitups.")
+            Functions.updateLocation()
+        } else {
+            
+            HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
+                if success == true {
+                    
+                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    
+                    self.mapView.showsUserLocation = true
+                    self.mapView.centerCoordinate =  CLLocationCoordinate2D( latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude)
+                    
+                    if let objects = objects as? [PFObject] {
+                        for object in objects {
+                            var thisHitup = object
+                            var coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
+                            
+                            var annotation = HitupAnnotation()
+                            var host = thisHitup.objectForKey("user_hostName") as? String
+                            var header = thisHitup.objectForKey("header") as? String
+                            var users_joined = thisHitup.objectForKey("users_joined") as! [AnyObject]
+                            
+                            annotation.title = header
+                            annotation.subtitle = String(format: "%i joined", (users_joined.count - 1) )
+                            annotation.coordinate = CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
+                            annotation.hitup = thisHitup
+                            
+                            self.mapView.addAnnotation(annotation)
+                            
+                        } // For object in objects
+                        self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+                    } // if casted sucessfully
+                } // success == true
+            } // updateNearbyHitups
+        } // Location enabled
     }
 
     /*

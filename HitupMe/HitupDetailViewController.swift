@@ -102,7 +102,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         var users_joined = thisHitup["users_joined"] as! [AnyObject]
         var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
         var user = PFUser.currentUser()
-        var fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
+        var fullName = (user?.objectForKey("first_name") as! String) + " " + (user?.objectForKey("last_name") as! String)
         if(currentUser_fbId == user_hosted){
             // If Hosted
             promptDeleteAlert()
@@ -141,7 +141,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
                 push.setQuery(pushQuery) // Set our Installation query
                 //header text
                 var header_text = thisHitup.objectForKey("header") as! String
-                push.setMessage(fullName + " has joined" + header_text)
+                push.setMessage(fullName + " has joined " + header_text)
                 push.sendPushInBackground()
                 joined_before = true
             }
@@ -172,7 +172,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             push.setQuery(pushQuery) // Set our Installation query
             //header text
             var header_text = self.thisHitup.objectForKey("header") as! String
-            push.setMessage(fullName + " has deleted" + header_text)
+            push.setMessage(fullName + " has deleted " + header_text)
             push.sendPushInBackground()
             self.joined_before = true
             
