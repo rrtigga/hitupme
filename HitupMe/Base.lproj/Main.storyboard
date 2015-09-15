@@ -1032,7 +1032,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6SG-oy-5dB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1371" y="0.0"/>
+            <point key="canvasLocation" x="-2057" y="0.0"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="yuQ-YA-JgV">
@@ -1097,13 +1097,84 @@
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="zM5-mH-obi" id="NO6-Nc-A5F"/>
-                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="afterLogin" modalTransitionStyle="flipHorizontal" id="XDQ-sb-iFB"/>
-                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="afterLoginNoAnimate" modalTransitionStyle="crossDissolve" id="IUs-sf-CvK"/>
+                        <segue destination="9u0-Ab-mdQ" kind="presentation" identifier="afterLogin" modalTransitionStyle="flipHorizontal" id="G6i-fT-Tsi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6A-x0-bHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-661" y="0.0"/>
+            <point key="canvasLocation" x="-1347" y="0.0"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zmK-M3-qpH">
+            <objects>
+                <viewController id="9u0-Ab-mdQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gP2-sP-6Oe"/>
+                        <viewControllerLayoutGuide type="bottom" id="sRX-Hg-df1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ykQ-ek-Anm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgq-MI-7Jn">
+                                <rect key="frame" x="224" y="267" width="152" height="65"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="3F0-xr-TWt"/>
+                                    <constraint firstAttribute="width" constant="152" id="uqr-FH-pRu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Hitup">
+                                    <color key="titleColor" red="0.0078431372550000003" green="0.0078431372550000003" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="SKG-LU-53S">
+                                <rect key="frame" x="188" y="157" width="398" height="31"/>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visible for 24 hours" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp2-SU-upR">
+                                <rect key="frame" x="16" y="159" width="166" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="166" id="GQP-vh-Foe"/>
+                                    <constraint firstAttribute="height" constant="25" id="u51-Bl-BIb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="add Description?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAc-Sn-nIe">
+                                <rect key="frame" x="16" y="207" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SKG-LU-53S" firstAttribute="leading" secondItem="bp2-SU-upR" secondAttribute="trailing" constant="8" id="6cL-ct-6MG"/>
+                            <constraint firstItem="qAc-Sn-nIe" firstAttribute="top" secondItem="bp2-SU-upR" secondAttribute="bottom" constant="23" id="7kp-2k-cNN"/>
+                            <constraint firstItem="qAc-Sn-nIe" firstAttribute="trailing" secondItem="ykQ-ek-Anm" secondAttribute="trailingMargin" id="C3h-kj-fWG"/>
+                            <constraint firstAttribute="centerX" secondItem="Rgq-MI-7Jn" secondAttribute="centerX" id="TEM-RF-KqW"/>
+                            <constraint firstAttribute="centerY" secondItem="Rgq-MI-7Jn" secondAttribute="centerY" constant="0.5" id="UuI-tQ-wUL"/>
+                            <constraint firstItem="bp2-SU-upR" firstAttribute="leading" secondItem="ykQ-ek-Anm" secondAttribute="leadingMargin" id="Ylb-Z9-7co"/>
+                            <constraint firstItem="SKG-LU-53S" firstAttribute="trailing" secondItem="ykQ-ek-Anm" secondAttribute="trailingMargin" id="fio-9t-YuM"/>
+                            <constraint firstItem="Rgq-MI-7Jn" firstAttribute="top" secondItem="qAc-Sn-nIe" secondAttribute="bottom" constant="30" id="ku0-3L-7aJ"/>
+                            <constraint firstItem="qAc-Sn-nIe" firstAttribute="leading" secondItem="ykQ-ek-Anm" secondAttribute="leadingMargin" id="me5-8m-4fS"/>
+                            <constraint firstItem="qAc-Sn-nIe" firstAttribute="top" secondItem="SKG-LU-53S" secondAttribute="bottom" constant="20" id="xpS-Qb-1M2"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XoB-a3-78R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-677" y="0.0"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1903,7 +1974,6 @@
         <image name="fbLoginPicture" width="416" height="101"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IUs-sf-CvK"/>
         <segue reference="8fr-QB-gfV"/>
         <segue reference="4Ag-gP-mYd"/>
     </inferredMetricsTieBreakers>
