@@ -26,7 +26,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             Functions.updateLocation()
         } else {
             
-            HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
+            HighLevelCalls.updateExploreHitups { (success, objects) -> Void in
                 if success == true {
                     
                     self.mapView.removeAnnotations(self.mapView.annotations)

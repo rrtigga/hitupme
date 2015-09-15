@@ -12,6 +12,7 @@ import Parse
 import Bolts
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
+//import ParseCrashReporting
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
         //Parse.enableLocalDatastore()
+        
+        // Enable Crash Reporting
+        //ParseCrashReporting.enable();
         
         // Initialize Parse.
         Parse.setApplicationId("oGxgYJBtKcR5JNuST5uQw7mjHUApMHobZ0GUXHI7",

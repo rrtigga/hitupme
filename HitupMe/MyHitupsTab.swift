@@ -47,18 +47,21 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
              self.profilePic.image = image
         })
         
-        var query = PFUser.query()
-        query?.countObjectsInBackgroundWithBlock({ (num, error) -> Void in
-            if (error == nil) {
-                self.friendCountLabel.text = String(format:"%i", num)
-            }
-        })
 
         // Refresh Controller
         tableView.addSubview(refreshController)
         refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)
     }
 
+    func updateBetaUsers() {
+        var query = PFUser.query()
+        query?.countObjectsInBackgroundWithBlock({ (num, error) -> Void in
+            if (error == nil) {
+                self.friendCountLabel.text = String(format:"%i", num)
+            }
+        })
+    }
+    
     func pullRefresh() {
         tableView.userInteractionEnabled = false
         HighLevelCalls.getMyHitups { (success, objects) -> Void in
@@ -67,6 +70,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
             self.refreshController.endRefreshing()
             self.tableView.userInteractionEnabled = true
         }
+        updateBetaUsers()
         
     }
     

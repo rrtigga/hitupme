@@ -27,6 +27,10 @@ class HitupFeed: UITableViewController {
         configureTableView()
         
         // Refresh Controller
+        Functions.updateLocationinBack { (success) -> Void in
+            self.pullRefresh()
+        }
+        
         tableView.addSubview(refreshController)
         refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)
     

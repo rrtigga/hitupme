@@ -31,6 +31,8 @@ class HighLevelCalls: NSObject {
         }
     }
     
+    
+    
     class func getMyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
         var LIKEAWEEKAGO = NSDate().dateByAddingTimeInterval(-604800.0 )
@@ -64,6 +66,24 @@ class HighLevelCalls: NSObject {
             }
         })
         
+    }
+    
+    class func updateExploreHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+        
+        var yesterday = NSDate().dateByAddingTimeInterval(-432000.0)
+        
+        var query = PFQuery(className: "Hitups")
+        //query.whereKey("createdAt", greaterThan: yesterday)
+        //query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude), withinMiles: 20.0)
+        query.orderByDescending("createdAt")
+        query.limit = 30;
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                completion(success: true, objects: objects)
+            } else {
+                completion(success: false, objects: [AnyObject]())
+            }
+        }
     }
     
     

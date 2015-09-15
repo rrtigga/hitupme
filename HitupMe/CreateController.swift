@@ -17,7 +17,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         case details
         case location
     }
-    var defaultHeaderText = "What are you doing"
+    var defaultHeaderText = "What are you doing?"
     var defaultDetailsText = "Details (optional)"
     var defaultLocationText = "Location name (optional)"
     @IBOutlet var profilePic: UIImageView!
@@ -25,6 +25,12 @@ class CreateController: UIViewController, UITextViewDelegate {
     @IBOutlet var detailsTextView: UITextView!
     @IBOutlet var locationTextField: UITextField!
     @IBOutlet var cityLabel: UILabel!
+    
+    @IBOutlet var stepper: UIStepper!
+    
+    @IBOutlet var activeLabel: UILabel!
+    
+    
     @IBAction func touchDone(sender: AnyObject) {
         var defaults = NSUserDefaults.standardUserDefaults()
         if defaults.boolForKey("locationEnabled") == false {

@@ -128,6 +128,19 @@ class Functions: NSObject {
         LocationManager.sharedInstance.lastKnownLongitude = 122.0419
     }
     
+    class func updateLocationinBack(completion: ((success: Bool?) -> Void)) {
+        var locationManager = LocationManager.sharedInstance
+        locationManager.showVerboseMessage = false
+        locationManager.autoUpdate = true
+        locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
+            if error != nil {
+                completion(success: false)
+            } else {
+                completion(success: true)
+            }
+        }
+    }
+    
     class func updateLocation() {
         
         var defaults = NSUserDefaults.standardUserDefaults()
