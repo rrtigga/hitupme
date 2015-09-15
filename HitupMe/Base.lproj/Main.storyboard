@@ -535,6 +535,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activeIndicator" destination="ZTG-nF-7iA" id="649-Vc-s9e"/>
                                     <outlet property="headerLabel" destination="vyg-CE-u7N" id="I4k-hl-CD9"/>
                                     <outlet property="joinLabel" destination="VAN-hh-Nyp" id="B3H-kK-zLG"/>
                                     <outlet property="profilePic" destination="fuY-sO-3Ig" id="4ds-Mh-oDk"/>
@@ -1858,6 +1859,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="IUs-sf-CvK"/>
         <segue reference="ei7-LH-WZb"/>
-        <segue reference="BLh-tS-LFg"/>
+        <segue reference="56n-zI-q1l"/>
     </inferredMetricsTieBreakers>
 </document>

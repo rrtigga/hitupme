@@ -15,10 +15,19 @@ class myHitupCell: UITableViewCell {
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var joinLabel: UILabel!
     @IBOutlet var profilePic: UIImageView!
+    @IBOutlet var activeIndicator: UIView!
     
     var savedCellType = cellType.Joined
     enum cellType {
         case Joined, Hosted
+    }
+    
+    func setActive(isActive: Bool) {
+        if (isActive) {
+            activeIndicator.backgroundColor = UIColor.greenColor()
+        } else {
+            activeIndicator.backgroundColor = UIColor.redColor()
+        }
     }
     
     internal func setCellType(type: cellType) {

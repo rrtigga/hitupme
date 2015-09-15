@@ -138,6 +138,18 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         var seconds =  NSDate().timeIntervalSinceDate(created!)
         cell.timeLabel.text = String(format: "%.1fhr", seconds/3600)
         
+        // Set Active/nonActive
+        var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
+        if (expireDate == nil) {
+            cell.setActive(false)
+        } else {
+            if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                cell.setActive(true)
+            } else {
+                cell.setActive(false)
+            }
+        }
+        
         // Set Host Image
         Functions.getPictureFromFBId(hitup.objectForKey("user_host") as! String) { (image) -> Void in
             cell.profilePic.image = image
