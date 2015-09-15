@@ -477,29 +477,14 @@
                                             <color key="textColor" red="0.0078431372550000003" green="0.0078431372550000003" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studying ECS150 in the library right now!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyg-CE-u7N">
-                                            <rect key="frame" x="75" y="5" width="455" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="qXT-Od-bXt"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" red="0.0078431372550000003" green="0.0078431372550000003" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SHIBA" translatesAutoresizingMaskIntoConstraints="NO" id="fuY-sO-3Ig">
-                                            <rect key="frame" x="538" y="7" width="23" height="23"/>
+                                            <rect key="frame" x="75" y="6" width="23" height="23"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="23" id="BgN-5i-0yc"/>
-                                                <constraint firstAttribute="height" constant="23" id="O3C-Na-3lh"/>
+                                                <constraint firstAttribute="width" constant="23" id="M1x-si-ul3"/>
+                                                <constraint firstAttribute="height" constant="23" id="aJQ-ar-ajY"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <real key="value" value="11.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAN-hh-Nyp">
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAN-hh-Nyp">
                                             <rect key="frame" x="565" y="6" width="35" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="35" id="JLI-M6-dUC"/>
@@ -509,15 +494,40 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZTG-nF-7iA">
+                                            <rect key="frame" x="575" y="10" width="15" height="15"/>
+                                            <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="CMx-Ax-jRA"/>
+                                                <constraint firstAttribute="width" constant="15" id="S4f-ga-eVy"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <real key="value" value="7.5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studying ECS150 in the library right now!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyg-CE-u7N">
+                                            <rect key="frame" x="106" y="5" width="455" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="sj3-5h-vL4"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0078431372550000003" green="0.0078431372550000003" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="vyg-CE-u7N" firstAttribute="leading" secondItem="SHT-av-8Gw" secondAttribute="leadingMargin" constant="67" id="NyQ-T9-7Sa"/>
+                                        <constraint firstItem="vyg-CE-u7N" firstAttribute="leading" secondItem="fuY-sO-3Ig" secondAttribute="trailing" constant="8" id="7NF-Cd-qqm"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vyg-CE-u7N" secondAttribute="trailing" constant="31" id="J5o-qk-N6d"/>
+                                        <constraint firstAttribute="centerY" secondItem="fuY-sO-3Ig" secondAttribute="centerY" id="PLz-Hr-9jS"/>
+                                        <constraint firstItem="fuY-sO-3Ig" firstAttribute="leading" secondItem="SHT-av-8Gw" secondAttribute="leadingMargin" constant="67" id="QVH-g0-fhR"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ZTG-nF-7iA" secondAttribute="trailing" constant="2" id="RoN-Vg-Sq5"/>
                                         <constraint firstItem="VAN-hh-Nyp" firstAttribute="top" secondItem="SHT-av-8Gw" secondAttribute="topMargin" constant="-2" id="TPw-UR-wDg"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="fuY-sO-3Ig" secondAttribute="trailing" constant="31" id="WZw-TU-Lej"/>
-                                        <constraint firstAttribute="centerY" secondItem="vyg-CE-u7N" secondAttribute="centerY" id="grM-uN-GEh"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="vyg-CE-u7N" secondAttribute="trailing" constant="62" id="n25-4E-4nB"/>
-                                        <constraint firstAttribute="centerY" secondItem="fuY-sO-3Ig" secondAttribute="centerY" constant="-1" id="tgr-S6-VpD"/>
+                                        <constraint firstAttribute="centerY" secondItem="ZTG-nF-7iA" secondAttribute="centerY" id="els-Nw-U1E"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="VAN-hh-Nyp" secondAttribute="trailing" constant="-8" id="vZk-d5-78t"/>
+                                        <constraint firstAttribute="centerY" secondItem="vyg-CE-u7N" secondAttribute="centerY" id="yFO-ij-R0l"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1819,6 +1829,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="IUs-sf-CvK"/>
         <segue reference="ei7-LH-WZb"/>
-        <segue reference="h2r-UG-oBM"/>
+        <segue reference="56n-zI-q1l"/>
     </inferredMetricsTieBreakers>
 </document>
