@@ -105,12 +105,12 @@ class HitupFeed: UITableViewController {
         
         // Set Number Joined
         var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
-        cell.joinedLabel.text = String(format: "%i Joined", joinedArray.count - 1)
+        cell.joinedLabel.text = String(format: "%i", joinedArray.count - 1)
         
         // Set Distance Label
         var coords = hitup.objectForKey("coordinates") as! PFGeoPoint
         var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
-        cell.distanceLabel.text = String(format: "%.1f miles away", dist)
+        cell.distanceLabel.text = String(format: "%.1f miles", dist)
         
         // Set Time Label
         var created = hitup.createdAt

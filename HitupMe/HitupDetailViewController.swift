@@ -201,7 +201,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             typePicture.image = UIImage(named:"Cell_Joined")
             joinButton.backgroundColor = UIColor.whiteColor()
             joinButton.tintColor = Functions.themeColor()
-            joinButton.setTitle("joined", forState: UIControlState.Normal)
+            joinButton.setTitle("Joined", forState: UIControlState.Normal)
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
             joinButton.layer.borderWidth = 1
             tableView.reloadData()
@@ -211,7 +211,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             typePicture.image = nil
             joinButton.backgroundColor = Functions.themeColor()
             joinButton.tintColor = UIColor.whiteColor()
-            joinButton.setTitle("JOIN", forState: UIControlState.Normal)
+            joinButton.setTitle("I'm Coming", forState: UIControlState.Normal)
             joinButton.layer.borderWidth = 0
             tableView.reloadData()
             break;
