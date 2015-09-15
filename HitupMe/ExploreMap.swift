@@ -59,7 +59,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         } // Location enabled
     }
 
-    /*
+    
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
         if (annotation is MKUserLocation) {
@@ -82,19 +82,13 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 
                 if(currentUser_fbId == user_hosted) {
                     // User is host
-                    pinView!.pinColor = MKPinAnnotationColor.Red
+                    pinView!.pinColor = MKPinAnnotationColor.Green
                 } else if ( (users_joined as NSArray).containsObject(currentUser_fbId) ) {
                     // Joined
-                    pinView!.pinColor = MKPinAnnotationColor.Red
+                    pinView!.pinColor = MKPinAnnotationColor.Green
                 } else {
                     // Not Responded
-                    pinView!.pinColor = MKPinAnnotationColor.Green
-                }
-                
-                if let fb_id = hitup!.objectForKey("user_host") as? String {
-                    Functions.getSmallPictureFromFBId(fb_id, completion: { (image) -> Void in
-                        pinView?.leftCalloutAccessoryView = UIImageView(image: image)
-                    })
+                    pinView!.pinColor = MKPinAnnotationColor.Red
                 }
                 
                 
@@ -105,14 +99,8 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             return pinView
         }
         
-    }*/
-
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        println("sleect")
-        var hitupAnn = view.annotation as! HitupAnnotation
-        hitupToSend = hitupAnn.hitup!
-        //performSegueWithIdentifier("showMapDetail", sender: self)
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

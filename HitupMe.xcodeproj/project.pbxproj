@@ -55,6 +55,9 @@
 		18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FE1B911CDD009783D7 /* Model.swift */; };
 		18E2D7031B925555009783D7 /* NotificationFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D7021B925555009783D7 /* NotificationFeed.swift */; };
 		18E2D7051B926B3D009783D7 /* HighLevelCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */; };
+		18F8C05B1BA500AC0035724A /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8C05A1BA500AC0035724A /* IntroViewController.swift */; };
+		18F8C05D1BA504BC0035724A /* UserTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8C05C1BA504BC0035724A /* UserTable.swift */; };
+		18F8C05F1BA54D8D0035724A /* userTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8C05E1BA54D8D0035724A /* userTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +125,9 @@
 		18E2D6FE1B911CDD009783D7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		18E2D7021B925555009783D7 /* NotificationFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationFeed.swift; sourceTree = "<group>"; };
 		18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighLevelCalls.swift; sourceTree = "<group>"; };
+		18F8C05A1BA500AC0035724A /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		18F8C05C1BA504BC0035724A /* UserTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTable.swift; sourceTree = "<group>"; };
+		18F8C05E1BA54D8D0035724A /* userTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +253,7 @@
 				18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */,
 				18B48F551B87E02A0032C193 /* Functions.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
+				18F8C05E1BA54D8D0035724A /* userTableCell.swift */,
 				18202A6A1B96D3A300D41249 /* myHitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
 				1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */,
@@ -257,6 +264,7 @@
 		18B48F571B87E8F40032C193 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18F8C05A1BA500AC0035724A /* IntroViewController.swift */,
 				18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */,
 				18B48F531B87D8080032C193 /* DefaultNavController.swift */,
 				18B48F4A1B879F260032C193 /* HitupFeed.swift */,
@@ -266,6 +274,7 @@
 				18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */,
 				18E2D7021B925555009783D7 /* NotificationFeed.swift */,
 				185C1E451BA2092800D079DC /* ExploreMap.swift */,
+				18F8C05C1BA504BC0035724A /* UserTable.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -427,6 +436,7 @@
 				18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */,
 				18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */,
 				18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */,
+				18F8C05D1BA504BC0035724A /* UserTable.swift in Sources */,
 				18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */,
 				18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */,
 				18E2D7051B926B3D009783D7 /* HighLevelCalls.swift in Sources */,
@@ -435,6 +445,7 @@
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				1889CE141BA26AAE00A38C6B /* HitupAnnotation.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
+				18F8C05F1BA54D8D0035724A /* userTableCell.swift in Sources */,
 				184A72311B96638E002194B0 /* Hitup.swift in Sources */,
 				185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */,
 				18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */,
@@ -442,6 +453,7 @@
 				184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */,
 				18B48F291B879B970032C193 /* AppDelegate.swift in Sources */,
 				18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */,
+				18F8C05B1BA500AC0035724A /* IntroViewController.swift in Sources */,
 				18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */,
 				18E2D7031B925555009783D7 /* NotificationFeed.swift in Sources */,
 			);

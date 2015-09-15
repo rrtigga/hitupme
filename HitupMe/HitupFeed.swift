@@ -53,6 +53,7 @@ class HitupFeed: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         Functions.updateLocation()
         if Functions.refreshTab(0) == true {
             pullRefresh()

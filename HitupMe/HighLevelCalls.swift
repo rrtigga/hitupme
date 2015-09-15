@@ -52,6 +52,21 @@ class HighLevelCalls: NSObject {
         }
     }
     
+    class func getTesters( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+        var query = PFUser.query()
+        query?.orderByDescending("createdAt")
+        query!.selectKeys(["fb_id", "first_name", "last_name"])
+        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+            if error == nil {
+                completion(success: true, objects: objects)
+            } else {
+                completion(success: false, objects: [AnyObject]())
+            }
+        })
+        
+    }
+    
+    
     class func getLocalNearbyHitups() -> NSArray {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!

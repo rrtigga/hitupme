@@ -47,6 +47,12 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
              self.profilePic.image = image
         })
         
+        var query = PFUser.query()
+        query?.countObjectsInBackgroundWithBlock({ (num, error) -> Void in
+            if (error == nil) {
+                self.friendCountLabel.text = String(format:"%i", num)
+            }
+        })
 
         // Refresh Controller
         tableView.addSubview(refreshController)

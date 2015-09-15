@@ -36,7 +36,10 @@ class CreateController: UIViewController, UITextViewDelegate {
             if (detailsTextView.textColor != UIColor.lightGrayColor()) {details = detailsTextView.text}
             
             var locationText = " "
-            if locationTextField.hasText() { locationText = locationTextField.text}
+            if locationTextField.hasText() { locationText = locationTextField.text
+            } else {
+                locationText = cityLabel.text!
+            }
             
             // Load Information
             
