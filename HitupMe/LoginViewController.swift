@@ -58,8 +58,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                     //self.performSegueWithIdentifier("afterLogin", sender: nil)
                             })*/
                             
+                            Functions.updateLocationinBack({ (success) -> Void in
+                                self.performSegueWithIdentifier("afterLogin", sender: nil)
+                            })
                             
-                            self.performSegueWithIdentifier("afterLogin", sender: nil)
+                            
                         } else {
                             println("error retrieving FB infromation")
                         }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18202A6A1B96D3A300D41249 /* myHitupCell.swift */; };
 		182789CD1B9A9C87003EF969 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */; };
+		1836611E1BA8C62800C608D6 /* PermissionRelatedCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */; };
 		184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */; };
 		184A72311B96638E002194B0 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A72301B96638E002194B0 /* Hitup.swift */; };
 		185C1E2A1BA0CA6600D079DC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E241BA0CA6600D079DC /* Parse.framework */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		18202A6A1B96D3A300D41249 /* myHitupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myHitupCell.swift; sourceTree = "<group>"; };
 		182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionRelatedCalls.swift; sourceTree = "<group>"; };
 		184A71FA1B965254002194B0 /* HitupModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HitupModel.xcdatamodel; sourceTree = "<group>"; };
 		184A72301B96638E002194B0 /* Hitup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hitup.swift; path = ../Hitup.swift; sourceTree = "<group>"; };
 		185C1E241BA0CA6600D079DC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		18B48F521B87B3EB0032C193 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */,
 				18E2D7041B926B3D009783D7 /* HighLevelCalls.swift */,
 				18B48F551B87E02A0032C193 /* Functions.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
@@ -379,6 +382,11 @@
 					18B48F221B879B970032C193 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 424998QXAH;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					18B48F391B879B970032C193 = {
 						CreatedOnToolsVersion = 6.4;
@@ -445,6 +453,7 @@
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				1889CE141BA26AAE00A38C6B /* HitupAnnotation.swift in Sources */,
 				18B48F541B87D8090032C193 /* DefaultNavController.swift in Sources */,
+				1836611E1BA8C62800C608D6 /* PermissionRelatedCalls.swift in Sources */,
 				18F8C05F1BA54D8D0035724A /* userTableCell.swift in Sources */,
 				184A72311B96638E002194B0 /* Hitup.swift in Sources */,
 				185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */,

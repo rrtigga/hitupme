@@ -116,17 +116,33 @@ class HitupFeed: UITableViewController {
         var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
         cell.distanceLabel.text = String(format: "%.1f miles", dist)
         
-        // Set Time Label
-        var created = hitup.createdAt
-        var seconds =  NSDate().timeIntervalSinceDate(created!)
-        cell.pastTimeLabel.text = String(format: "%.1fhr", seconds/3600)
-        
         // Set Image
         if let fb_id = hitup.objectForKey("user_host") as? String {
             Functions.getPictureFromFBId(fb_id, completion: { (image) -> Void in
                 cell.profilePic.image = image
             })
         }
+        
+        // Set Active/nonActive
+        var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
+        if (expireDate == nil) {
+            cell.setActive(false)
+            cell.pastTimeLabel.text = "Ended"
+        } else {
+            if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                cell.setActive(true)
+                
+                var seconds = expireDate!.timeIntervalSinceNow
+                cell.pastTimeLabel.text = String(format: "%0.1fhr left", seconds/3600)
+            } else {
+                cell.setActive(false)
+                cell.pastTimeLabel.text = "Ended"
+            }
+        }
+        
+        //newHitup["expire_time"] = NSDate(timeIntervalSinceNow: 60 * 60 * stepper.value)
+        //newHitup["duration"] = stepper.value
+        
         
         // Set Cell Type
         var user_hosted = hitup["user_host"] as! String

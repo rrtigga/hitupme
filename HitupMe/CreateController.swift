@@ -30,6 +30,9 @@ class CreateController: UIViewController, UITextViewDelegate {
     
     @IBOutlet var activeLabel: UILabel!
     
+    @IBAction func stepperChange(sender: AnyObject) {
+        activeLabel.text = String(format:"Active for %0.1f hours", stepper.value)
+    }
     
     @IBAction func touchDone(sender: AnyObject) {
         var defaults = NSUserDefaults.standardUserDefaults()
@@ -48,7 +51,6 @@ class CreateController: UIViewController, UITextViewDelegate {
             }
             
             // Load Information
-            
             var user = PFUser.currentUser()
             var userId = user?.objectForKey("fb_id") as! String
             var firstName = user?.objectForKey("first_name") as! String
@@ -64,6 +66,11 @@ class CreateController: UIViewController, UITextViewDelegate {
             newHitup["user_hostName"] = firstName + " " + lastName
             newHitup.addObject( userId , forKey: "users_joined")
             newHitup.addObject( firstName + " " + lastName , forKey: "users_joinedNames")
+            
+            // Add Expire time
+            newHitup["expire_time"] = NSDate(timeIntervalSinceNow: 60 * 60 * stepper.value)
+            newHitup["duration"] = stepper.value
+            
             
             newHitup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
@@ -115,6 +122,14 @@ class CreateController: UIViewController, UITextViewDelegate {
     }
 
     
+    func setupStepper() {
+        stepper.minimumValue = 0.5
+        stepper.maximumValue = 168
+        stepper.stepValue = 0.5
+        stepper.value = 2
+        
+    }
+    
     // ---------- This runs right after Create Hitup Button is touched ---------- //
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +150,9 @@ class CreateController: UIViewController, UITextViewDelegate {
         Functions.getPictureFromFBId( PFUser.currentUser()?.objectForKey("fb_id") as! String , completion: { (image) -> Void in
             self.profilePic.image = image
         })
+        
+        setupStepper()
+        activeLabel.text = String(format:"Active for %0.1f hours", stepper.value)
         
         var defaults = NSUserDefaults.standardUserDefaults()
         cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )

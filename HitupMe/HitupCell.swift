@@ -20,9 +20,18 @@ class HitupCell: UITableViewCell {
     @IBOutlet var joinedLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var pastTimeLabel: UILabel!
+    @IBOutlet var activeIndicator: UIView!
     
     enum cellType {
         case Joined, Hosted, NotResponded
+    }
+    
+    func setActive(isActive: Bool) {
+        if (isActive) {
+            activeIndicator.backgroundColor = UIColor.greenColor()
+        } else {
+            activeIndicator.backgroundColor = UIColor.redColor()
+        }
     }
     
     var savedCellType = cellType.Joined

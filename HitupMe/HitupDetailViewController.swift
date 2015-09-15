@@ -27,6 +27,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var typePicture: UIImageView!
     
+    @IBOutlet var activeIndicator: UIView!
+    @IBOutlet var activeLabel: UILabel!
+    
     enum pictureType{
         case Hosted, NotResponded ,Joined
     }
@@ -36,6 +39,17 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     var thisHitup = PFObject(className: "Hitups")
     var joined_before = false
+    
+    func setActive(isActive: Bool) {
+        if (isActive) {
+            activeIndicator.backgroundColor = UIColor.greenColor()
+            activeLabel.text = "Going on now"
+        } else {
+            activeIndicator.backgroundColor = UIColor.redColor()
+            activeLabel.text = "Ended"
+        }
+    }
+    
     
     func configureTableView() {
         tableView.rowHeight = 34
@@ -72,11 +86,23 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
         distanceLabel.text = String(format: "%.1f miles away", dist)
         
-        // Set Time Label
-        var created = thisHitup.createdAt
-        var seconds =  NSDate().timeIntervalSinceDate(created!)
-        timeLabel.text = String(format: "%.1fhr", seconds/3600)
+        // Set Active/nonActive
+        var formatter = NSDateFormatter()
+        formatter.dateFormat = "h:mm a"
+        var expireDate : NSDate? = thisHitup.objectForKey("expire_time") as? NSDate
+        if (expireDate == nil) {
+            setActive(false)
+            timeLabel.text = String(format:"posted %@", formatter.stringFromDate(thisHitup.createdAt!))
+        } else {
+            if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                setActive(true)
+            } else {
+                setActive(false)
+            }
+            timeLabel.text = String(format:"%@ to %@", formatter.stringFromDate(thisHitup.createdAt!), formatter.stringFromDate(expireDate!))
+        }
         
+        // Set Joined / Hosted Status
         var user_hosted = thisHitup["user_host"] as! String
         var users_joined = thisHitup["users_joined"] as! [AnyObject]
         var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
