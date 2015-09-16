@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.viewDidLoad()
         Functions.initializeUserDefaults()
         Functions.setRefreshAllTabsTrue()
+        PermissionRelatedCalls.requestNotifications()
         loginButton.addTarget(nil , action: Selector("touchLogin"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
@@ -57,11 +58,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                     
                                     //self.performSegueWithIdentifier("afterLogin", sender: nil)
                             })*/
-                            
-                            Functions.updateLocationinBack({ (success) -> Void in
-                                self.performSegueWithIdentifier("afterLogin", sender: nil)
-                            })
-                            
+                            self.performSegueWithIdentifier("afterLogin", sender: nil)
                             
                         } else {
                             println("error retrieving FB infromation")

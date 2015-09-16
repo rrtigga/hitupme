@@ -21,7 +21,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     func refreshMap() {
         
         var defaults = NSUserDefaults.standardUserDefaults()
-        if defaults.boolForKey("locationEnabled") == false {
+        if PermissionRelatedCalls.locationEnabled() == false {
             Functions.promptLocationTo(self, message: "Aw 💩! Please enable location to see Hitups.")
             Functions.updateLocation()
         } else {
@@ -76,24 +76,41 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 
                 var hAnnotation = annotation as! HitupAnnotation
                 var hitup = hAnnotation.hitup
-                var user_hosted = hitup?.objectForKey("user_host") as! String
-                var users_joined = hitup?.objectForKey("users_joined") as! [AnyObject]
-                var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
                 
-                if(currentUser_fbId == user_hosted) {
-                    // User is host
-                    pinView!.pinColor = MKPinAnnotationColor.Green
-                } else if ( (users_joined as NSArray).containsObject(currentUser_fbId) ) {
-                    // Joined
-                    pinView!.pinColor = MKPinAnnotationColor.Green
-                } else {
-                    // Not Responded
+                // Set Active/nonActive
+                var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
+                if (expireDate == nil) {
                     pinView!.pinColor = MKPinAnnotationColor.Red
+                } else {
+                    if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                        pinView!.pinColor = MKPinAnnotationColor.Green
+                    } else {
+                        pinView!.pinColor = MKPinAnnotationColor.Red
+                    }
                 }
                 
+                pinView?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as! UIView
+                
+                //var gest = UIGestureRecognizer(target: self, action: Selector(""))
+                //pinView?.addGestureRecognizer(gest)
                 
             } else {
                 pinView!.annotation = annotation
+                
+                var hAnnotation = annotation as! HitupAnnotation
+                var hitup = hAnnotation.hitup
+                
+                // Set Active/nonActive
+                var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
+                if (expireDate == nil) {
+                    pinView!.pinColor = MKPinAnnotationColor.Red
+                } else {
+                    if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                        pinView!.pinColor = MKPinAnnotationColor.Green
+                    } else {
+                        pinView!.pinColor = MKPinAnnotationColor.Red
+                    }
+                }
             }
             
             return pinView
@@ -101,6 +118,18 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         
     }
 
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        println("dd:")
+        
+        var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
+        if (annotation != nil) {
+            hitupToSend = annotation!.hitup!
+            performSegueWithIdentifier("showMapDetail", sender: nil)
+        }
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

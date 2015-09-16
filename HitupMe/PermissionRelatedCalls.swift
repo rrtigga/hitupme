@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import CoreLocation
 
 class PermissionRelatedCalls: NSObject {
 
     class func requestNotifications() {
         let application = UIApplication.sharedApplication()
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
-        //application.registerForRemoteNotifications()
+        application.registerForRemoteNotifications()
+    }
+    
+    class func locationEnabled() -> Bool {
+        return CLLocationManager.authorizationStatus() != CLAuthorizationStatus.Denied
     }
     
 }

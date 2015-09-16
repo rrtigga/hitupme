@@ -28,6 +28,7 @@ class HitupFeed: UITableViewController {
         
         // Refresh Controller
         Functions.updateLocationinBack { (success) -> Void in
+            
             self.pullRefresh()
         }
         
@@ -38,7 +39,7 @@ class HitupFeed: UITableViewController {
     
     func pullRefresh() {
         var defaults = NSUserDefaults.standardUserDefaults()
-        if defaults.boolForKey("locationEnabled") == false {
+        if !PermissionRelatedCalls.locationEnabled() {
             Functions.promptLocationTo(self, message: "Aw 💩! Please enable location to see Hitups.")
             self.refreshController.endRefreshing()
         } else {
@@ -131,9 +132,9 @@ class HitupFeed: UITableViewController {
         } else {
             if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
                 cell.setActive(true)
-                
-                var seconds = expireDate!.timeIntervalSinceNow
-                cell.pastTimeLabel.text = String(format: "%0.1fhr left", seconds/3600)
+                var formatter = NSDateFormatter()
+                formatter.dateFormat = "h:mm a"
+                cell.pastTimeLabel.text = String(format: "until %@", formatter.stringFromDate(expireDate!))
             } else {
                 cell.setActive(false)
                 cell.pastTimeLabel.text = "Ended"

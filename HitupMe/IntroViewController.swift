@@ -12,7 +12,7 @@ class IntroViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        //Functions.updateLocation()
+        Functions.updateLocation()
         // NotificationStuff
         //PermissionRelatedCalls.requestNotifications()
     }

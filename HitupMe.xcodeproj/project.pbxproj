@@ -10,6 +10,7 @@
 		18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18202A6A1B96D3A300D41249 /* myHitupCell.swift */; };
 		182789CD1B9A9C87003EF969 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */; };
 		1836611E1BA8C62800C608D6 /* PermissionRelatedCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */; };
+		183661241BA92E4300C608D6 /* BoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183661231BA92E4300C608D6 /* BoardingPageViewController.swift */; };
 		184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */; };
 		184A72311B96638E002194B0 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A72301B96638E002194B0 /* Hitup.swift */; };
 		185C1E2A1BA0CA6600D079DC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E241BA0CA6600D079DC /* Parse.framework */; };
@@ -75,6 +76,7 @@
 		18202A6A1B96D3A300D41249 /* myHitupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myHitupCell.swift; sourceTree = "<group>"; };
 		182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionRelatedCalls.swift; sourceTree = "<group>"; };
+		183661231BA92E4300C608D6 /* BoardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoardingPageViewController.swift; path = ../BoardingPageViewController.swift; sourceTree = "<group>"; };
 		184A71FA1B965254002194B0 /* HitupModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HitupModel.xcdatamodel; sourceTree = "<group>"; };
 		184A72301B96638E002194B0 /* Hitup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hitup.swift; path = ../Hitup.swift; sourceTree = "<group>"; };
 		185C1E241BA0CA6600D079DC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 		18B48F571B87E8F40032C193 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				183661231BA92E4300C608D6 /* BoardingPageViewController.swift */,
 				18F8C05A1BA500AC0035724A /* IntroViewController.swift */,
 				18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */,
 				18B48F531B87D8080032C193 /* DefaultNavController.swift */,
@@ -440,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183661241BA92E4300C608D6 /* BoardingPageViewController.swift in Sources */,
 				18D24D9D1B8B9A950098F4D9 /* DetailActionCell.swift in Sources */,
 				18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */,
 				18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */,

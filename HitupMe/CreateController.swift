@@ -36,7 +36,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     
     @IBAction func touchDone(sender: AnyObject) {
         var defaults = NSUserDefaults.standardUserDefaults()
-        if defaults.boolForKey("locationEnabled") == false {
+        if PermissionRelatedCalls.locationEnabled() == false {
             Functions.promptLocationTo(self, message: "💩 Please enable location to Post.")
         } else if headerTextView.textColor != UIColor.lightGrayColor() {
             view.endEditing(true)
@@ -124,9 +124,9 @@ class CreateController: UIViewController, UITextViewDelegate {
     
     func setupStepper() {
         stepper.minimumValue = 0.5
-        stepper.maximumValue = 168
+        stepper.maximumValue = 4
         stepper.stepValue = 0.5
-        stepper.value = 2
+        stepper.value = 1
         
     }
     

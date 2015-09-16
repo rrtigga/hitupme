@@ -99,7 +99,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             } else {
                 setActive(false)
             }
-            timeLabel.text = String(format:"%@ to %@", formatter.stringFromDate(thisHitup.createdAt!), formatter.stringFromDate(expireDate!))
+            timeLabel.text = String(format:"%@  to  %@", formatter.stringFromDate(thisHitup.createdAt!), formatter.stringFromDate(expireDate!))
         }
         
         // Set Joined / Hosted Status
