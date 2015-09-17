@@ -39,15 +39,16 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         // Set Profile Information
         var defaults = NSUserDefaults.standardUserDefaults()
         var userInfo = defaults.objectForKey("userInfo_dict") as! NSDictionary
+        
+        
         userNameLabel.text = String(format:"%@ %@", first!, last! )
-        var friendArray: NSArray = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
-        friendCountLabel.text = String(friendArray.count)
+        /*var friendArray: NSArray = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
+        friendCountLabel.text = String(friendArray.count)*/
         hitupCountLabel.text = String(format:"%i", user?.objectForKey("num") as! Int )
-        Functions.getPictureFromFBId(userInfo.objectForKey("id") as! String, completion: { (image) -> Void in
+        Functions.getPictureFromFBId(user?.objectForKey("fb_id") as! String, completion: { (image) -> Void in
              self.profilePic.image = image
         })
         
-
         // Refresh Controller
         tableView.addSubview(refreshController)
         refreshController.addTarget(self, action: "pullRefresh", forControlEvents: UIControlEvents.ValueChanged)

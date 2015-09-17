@@ -31,7 +31,8 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        Functions.updateLocation()
+        var locationManager = CLLocationManager()
+        locationManager.requestWhenInUseAuthorization()
     }
     
     func touchLogin() {
