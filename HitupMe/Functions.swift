@@ -134,8 +134,12 @@ class Functions: NSObject {
         locationManager.autoUpdate = true
         locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
             if error != nil {
+                var defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setDouble(latitude, forKey: "latitude")
+                defaults.setDouble(longitude, forKey: "longitude")
                 completion(success: false)
             } else {
+                 println("lat:\(latitude) lon:\(longitude)")
                 completion(success: true)
             }
         }

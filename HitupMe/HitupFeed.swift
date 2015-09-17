@@ -11,6 +11,7 @@ import Parse
 
 class HitupFeed: UITableViewController {
     
+    var loadedOnce = false
     var refreshController = UIRefreshControl()
     var hitups = [AnyObject]()
     
@@ -37,6 +38,23 @@ class HitupFeed: UITableViewController {
     
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if loadedOnce == false {
+            // First Load, don't do anything
+            loadedOnce = true
+        } else {
+            Functions.updateLocation()
+            if Functions.refreshTab(0) == true {
+                pullRefresh()
+            } else {
+                tableView.reloadData()
+            }
+        }
+        
+    }
+    
     func pullRefresh() {
         var defaults = NSUserDefaults.standardUserDefaults()
         if !PermissionRelatedCalls.locationEnabled() {
@@ -50,22 +68,11 @@ class HitupFeed: UITableViewController {
                 self.refreshController.endRefreshing()
                 self.tableView.reloadData()
                 self.tableView.userInteractionEnabled = true
+                println("Number of objects", objects!.count)
             }
         }
         
         Functions.updateLocation()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Functions.updateLocation()
-        if Functions.refreshTab(0) == true {
-            pullRefresh()
-        } else {
-            tableView.reloadData()
-        }
-        
     }
     
     override func didReceiveMemoryWarning() {

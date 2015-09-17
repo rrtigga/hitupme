@@ -1,15 +1,17 @@
 //
-//  BoardingPageViewController.swift
+//  OnboardScreen.swift
 //  HitupMe
 //
-//  Created by Arthur Shir on 9/15/15.
+//  Created by Arthur Shir on 9/16/15.
 //  Copyright (c) 2015 HitupDev. All rights reserved.
 //
 
 import UIKit
 
-class BoardingPageViewController: UIPageViewController {
+class OnboardScreen: UIViewController {
 
+    var itemIndex = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

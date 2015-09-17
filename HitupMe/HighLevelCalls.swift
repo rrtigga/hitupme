@@ -16,10 +16,16 @@ class HighLevelCalls: NSObject {
     class func updateNearbyHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
         var yesterday = NSDate().dateByAddingTimeInterval(-432000.0)
+
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var latitude = defaults.doubleForKey("latitude")
+        var longitude = defaults.doubleForKey("longitude")
+        //println("Getting from lat:\(latitude) lon:\(longitude)")
+        
         
         var query = PFQuery(className: "Hitups")
         query.whereKey("createdAt", greaterThan: yesterday)
-        query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude), withinMiles: 20.0)
+        query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 20.0)
         query.orderByDescending("createdAt")
         query.limit = 20;
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in

@@ -30,7 +30,7 @@ class HitupCell: UITableViewCell {
         if (isActive) {
             activeIndicator.backgroundColor = UIColor.greenColor()
         } else {
-            activeIndicator.backgroundColor = UIColor.redColor()
+            activeIndicator.backgroundColor = UIColor.clearColor()
         }
     }
     
