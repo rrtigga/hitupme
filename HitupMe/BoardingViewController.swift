@@ -14,7 +14,7 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
     @IBOutlet var loginButton: UIButton!
     
     // Initialize it right away here
-    let controllerNames = ["Onboarding_0", "Onboarding_1", "Onboarding_2", "Onboarding_3"]
+    let controllerNames = ["Onboarding_0", "Onboarding_3", "Onboarding_2", "Onboarding_1"]
 
     // MARK: - View Lifecycle
     let askedPermissions = ["public_profile", "user_friends"]

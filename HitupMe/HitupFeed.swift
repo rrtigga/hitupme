@@ -135,16 +135,20 @@ class HitupFeed: UITableViewController {
         var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
         if (expireDate == nil) {
             cell.setActive(false)
-            cell.pastTimeLabel.text = "Ended"
+            var formatter = NSDateFormatter()
+            formatter.dateFormat = "M/d"
+            cell.pastTimeLabel.text = String(format:"Ended  %@", formatter.stringFromDate(hitup.createdAt!))
         } else {
             if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
                 cell.setActive(true)
                 var formatter = NSDateFormatter()
                 formatter.dateFormat = "h:mm a"
-                cell.pastTimeLabel.text = String(format: "until %@", formatter.stringFromDate(expireDate!))
+                cell.pastTimeLabel.text = String(format: "until  %@", formatter.stringFromDate(expireDate!))
             } else {
+                var formatter = NSDateFormatter()
                 cell.setActive(false)
-                cell.pastTimeLabel.text = "Ended"
+                formatter.dateFormat = "M/d"
+                cell.pastTimeLabel.text = String(format:"Ended  %@", formatter.stringFromDate(expireDate!))
             }
         }
         

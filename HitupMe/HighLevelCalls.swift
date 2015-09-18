@@ -87,6 +87,7 @@ class HighLevelCalls: NSObject {
             if error == nil {
                 completion(success: true, objects: objects)
             } else {
+                println(error?.description)
                 completion(success: false, objects: [AnyObject]())
             }
         }

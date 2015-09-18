@@ -112,7 +112,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         var num = 0
         var firstNav = tabBarController.viewControllers![0] as! UINavigationController
         firstNav.popToRootViewControllerAnimated(true)
-        var hitupFeed = firstNav.viewControllers![0] as! HitupFeed
+        //var hitupFeed = firstNav.viewControllers![0] as! HitupFeed
         dismissViewControllerAnimated(true, completion: {})
     }
 

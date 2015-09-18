@@ -14,6 +14,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     // Concrete UI Elements
     @IBOutlet var tableView: UITableView!
     @IBOutlet var joinButton: UIButton!
+    @IBOutlet var accessoryButton: UIButton!
     
     // Base Information
     @IBOutlet var nameLabel: UILabel!
@@ -40,6 +41,22 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     var thisHitup = PFObject(className: "Hitups")
     var joined_before = false
     
+    func setAltSelected(select: Bool) {
+        if select == true {
+            accessoryButton.backgroundColor = UIColor.whiteColor()
+            accessoryButton.tintColor = Functions.themeColor()
+            accessoryButton.setTitle("wshs", forState: UIControlState.Normal)
+            accessoryButton.layer.borderColor = UIColor.blackColor().CGColor
+            accessoryButton.layer.borderWidth = 1
+        } else {
+            accessoryButton.backgroundColor = Functions.themeColor()
+            accessoryButton.tintColor = UIColor.whiteColor()
+            accessoryButton.setTitle("wshs", forState: UIControlState.Normal)
+            accessoryButton.layer.borderWidth = 0
+        }
+    }
+    
+    
     func setActive(isActive: Bool) {
         if (isActive) {
             activeIndicator.backgroundColor = UIColor.greenColor()
@@ -57,11 +74,16 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
     }
     
+    func touchAccessoryButton() {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         joinButton.addTarget(self, action: "touchJoinButton", forControlEvents: UIControlEvents.TouchUpInside)
         joinButton.layer.borderWidth = 0
+        accessoryButton.addTarget(self, action: "touchAccessoryButton", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Set Hitup Inforamtion
         
@@ -115,6 +137,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         else {
             setType(2)
         }
+        
+        // Set Alternative Button Status
+        setAltSelected(false)
         
     }
 

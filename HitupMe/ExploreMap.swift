@@ -134,12 +134,19 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        Functions.updateLocationinBack { (success) -> Void in
+            if Functions.refreshTab(1) == true {
+                self.refreshMap()
+            } else {
+                
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if Functions.refreshTab(1) == true {
-            refreshMap()
+            self.refreshMap()
         } else {
             
         }
