@@ -53,6 +53,8 @@
 		18D24DAA1B8BE58E0098F4D9 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D24DA41B8BE58E0098F4D9 /* FBSDKShareKit.framework */; };
 		18D24DAC1B8BE5950098F4D9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D24DAB1B8BE5950098F4D9 /* Bolts.framework */; };
 		18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */; };
+		18E2BEB71BABE1C90066A38C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2BEB61BABE1C90066A38C /* TabBarController.swift */; };
+		18E2BEBF1BABE8F80066A38C /* userTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E2BEBE1BABE8F80066A38C /* userTableCell.xib */; };
 		18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6F91B8FE461009783D7 /* BackendAPI.swift */; };
 		18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FB1B901A87009783D7 /* LocationManager.swift */; };
 		18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E2D6FE1B911CDD009783D7 /* Model.swift */; };
@@ -126,6 +128,8 @@
 		18D24DAB1B8BE5950098F4D9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		18D24DAD1B8BE6770098F4D9 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		18E2BEB61BABE1C90066A38C /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		18E2BEBE1BABE8F80066A38C /* userTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = userTableCell.xib; sourceTree = "<group>"; };
 		18E2D6F91B8FE461009783D7 /* BackendAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendAPI.swift; sourceTree = "<group>"; };
 		18E2D6FB1B901A87009783D7 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		18E2D6FE1B911CDD009783D7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				18B48F551B87E02A0032C193 /* Functions.swift */,
 				18B48F501B87B3E50032C193 /* HitupCell.swift */,
 				18F8C05E1BA54D8D0035724A /* userTableCell.swift */,
+				18E2BEBE1BABE8F80066A38C /* userTableCell.xib */,
 				18202A6A1B96D3A300D41249 /* myHitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
 				1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */,
@@ -271,6 +276,7 @@
 		18B48F571B87E8F40032C193 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18E2BEB61BABE1C90066A38C /* TabBarController.swift */,
 				18BFF53C1BAA8C450037CF9D /* BoardingViewController.swift */,
 				18F8C05A1BA500AC0035724A /* IntroViewController.swift */,
 				18D24DB11B8BE9A60098F4D9 /* LoginViewController.swift */,
@@ -429,6 +435,7 @@
 				182789CD1B9A9C87003EF969 /* GoogleService-Info.plist in Resources */,
 				18B48F321B879B970032C193 /* Images.xcassets in Resources */,
 				18D24DA51B8BE58E0098F4D9 /* FacebookSDKStrings.bundle in Resources */,
+				18E2BEBF1BABE8F80066A38C /* userTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +478,7 @@
 				18B48F291B879B970032C193 /* AppDelegate.swift in Sources */,
 				18D24DB21B8BE9A60098F4D9 /* LoginViewController.swift in Sources */,
 				18F8C05B1BA500AC0035724A /* IntroViewController.swift in Sources */,
+				18E2BEB71BABE1C90066A38C /* TabBarController.swift in Sources */,
 				18E2D6FC1B901A87009783D7 /* LocationManager.swift in Sources */,
 				18E2D7031B925555009783D7 /* NotificationFeed.swift in Sources */,
 			);
