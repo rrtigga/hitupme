@@ -45,13 +45,13 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         if select == true {
             accessoryButton.backgroundColor = UIColor.whiteColor()
             accessoryButton.tintColor = Functions.themeColor()
-            accessoryButton.setTitle("wshs", forState: UIControlState.Normal)
+            accessoryButton.setTitle("next🕑", forState: UIControlState.Normal)
             accessoryButton.layer.borderColor = UIColor.blackColor().CGColor
             accessoryButton.layer.borderWidth = 1
         } else {
             accessoryButton.backgroundColor = Functions.themeColor()
             accessoryButton.tintColor = UIColor.whiteColor()
-            accessoryButton.setTitle("wshs", forState: UIControlState.Normal)
+            accessoryButton.setTitle("next🕑", forState: UIControlState.Normal)
             accessoryButton.layer.borderWidth = 0
         }
     }

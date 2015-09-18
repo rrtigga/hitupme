@@ -2224,8 +2224,8 @@
                                     <constraint firstAttribute="height" constant="55" id="gro-hL-baa"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Hitup and let nearby friends join you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UB2-hd-sKL">
-                                <rect key="frame" x="151" y="118" width="300" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Broadcast" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UB2-hd-sKL">
+                                <rect key="frame" x="150" y="118" width="300" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="S0L-yi-nhV"/>
                                     <constraint firstAttribute="width" constant="300" id="gKv-UQ-rVZ"/>
@@ -2247,7 +2247,7 @@
                             <constraint firstItem="cUs-In-zcF" firstAttribute="top" secondItem="UB2-hd-sKL" secondAttribute="bottom" constant="20" id="1dd-42-22E"/>
                             <constraint firstAttribute="centerX" secondItem="cUs-In-zcF" secondAttribute="centerX" id="3jE-We-r7t"/>
                             <constraint firstItem="OZR-hc-3wR" firstAttribute="leading" secondItem="5di-GF-Qdf" secondAttribute="trailing" constant="-323" id="7rd-M4-9N5"/>
-                            <constraint firstAttribute="centerX" secondItem="UB2-hd-sKL" secondAttribute="centerX" constant="-0.5" id="8Ca-d3-PYU"/>
+                            <constraint firstAttribute="centerX" secondItem="UB2-hd-sKL" secondAttribute="centerX" id="8Ca-d3-PYU"/>
                             <constraint firstItem="OZR-hc-3wR" firstAttribute="top" secondItem="qWF-Vl-NsS" secondAttribute="top" constant="40" id="Mp3-yf-1Me"/>
                             <constraint firstItem="UB2-hd-sKL" firstAttribute="top" secondItem="OZR-hc-3wR" secondAttribute="bottom" constant="23" id="gjV-8q-A4a"/>
                             <constraint firstAttribute="centerX" secondItem="OZR-hc-3wR" secondAttribute="centerX" constant="-4" id="xea-1f-Hzj"/>
@@ -2277,7 +2277,7 @@
                                     <constraint firstAttribute="width" constant="55" id="OrC-hs-fgu"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join Hitups from friends who are doing stuff near you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJd-ma-z8I">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are they doing?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJd-ma-z8I">
                                 <rect key="frame" x="150" y="125" width="300" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="BFd-fH-BJg"/>
@@ -2336,7 +2336,7 @@
                                     <constraint firstAttribute="height" constant="208" id="lvc-m1-pef"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore what your friends around you are doing " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irw-fR-uHD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are my friends?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irw-fR-uHD">
                                 <rect key="frame" x="147" y="125" width="306" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8cg-Dw-5Mp"/>
@@ -2390,28 +2390,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qf-FP-fmj">
-                                <rect key="frame" x="217" y="139" width="167" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="167" id="qD6-Pc-2B3"/>
-                                    <constraint firstAttribute="height" constant="49" id="rNf-1I-8LO"/>
-                                </constraints>
-                                <string key="text">All your Social Options
-in one place</string>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for beta testing ❤️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-VV-xul">
-                                <rect key="frame" x="144" y="212" width="312" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="312" id="2gW-zA-u0O"/>
-                                    <constraint firstAttribute="height" constant="49" id="ZG6-cn-MHw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rohit" translatesAutoresizingMaskIntoConstraints="NO" id="0ED-5U-23U">
                                 <rect key="frame" x="211" y="269" width="64" height="88"/>
                                 <constraints>
@@ -2426,19 +2404,27 @@ in one place</string>
                                     <constraint firstAttribute="height" constant="88" id="al3-zX-wJ3"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for beta testing ❤️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-VV-xul">
+                                <rect key="frame" x="144" y="181" width="312" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="312" id="2gW-zA-u0O"/>
+                                    <constraint firstAttribute="height" constant="49" id="ZG6-cn-MHw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0ED-5U-23U" firstAttribute="top" secondItem="kf1-VV-xul" secondAttribute="bottom" constant="8" id="2kg-Ld-jSl"/>
                             <constraint firstAttribute="centerX" secondItem="xnP-Jg-sT6" secondAttribute="centerX" id="7Fx-dT-e1v"/>
                             <constraint firstAttribute="centerX" secondItem="kf1-VV-xul" secondAttribute="centerX" id="F6u-xn-jcv"/>
-                            <constraint firstItem="cfQ-tM-efS" firstAttribute="top" secondItem="kf1-VV-xul" secondAttribute="bottom" constant="8" id="J8P-L3-7ao"/>
                             <constraint firstItem="kf1-VV-xul" firstAttribute="leading" secondItem="0ED-5U-23U" secondAttribute="trailing" constant="-131" id="LuO-6M-KOb"/>
-                            <constraint firstItem="5Qf-FP-fmj" firstAttribute="top" secondItem="xnP-Jg-sT6" secondAttribute="bottom" constant="8" id="NHX-VT-cgN"/>
-                            <constraint firstAttribute="centerX" secondItem="5Qf-FP-fmj" secondAttribute="centerX" constant="-0.5" id="goM-M9-8J9"/>
+                            <constraint firstItem="kf1-VV-xul" firstAttribute="top" secondItem="xnP-Jg-sT6" secondAttribute="bottom" constant="50" id="Rg4-mL-QgY"/>
+                            <constraint firstItem="cfQ-tM-efS" firstAttribute="top" secondItem="xnP-Jg-sT6" secondAttribute="bottom" constant="138" id="WvW-YT-rJZ"/>
+                            <constraint firstItem="0ED-5U-23U" firstAttribute="top" secondItem="xnP-Jg-sT6" secondAttribute="bottom" constant="138" id="b8o-01-NVs"/>
                             <constraint firstItem="xnP-Jg-sT6" firstAttribute="top" secondItem="BnU-jn-gav" secondAttribute="top" constant="28" id="hAr-om-xaX"/>
                             <constraint firstItem="cfQ-tM-efS" firstAttribute="leading" secondItem="kf1-VV-xul" secondAttribute="trailing" constant="-131" id="lfd-HM-CCk"/>
-                            <constraint firstItem="kf1-VV-xul" firstAttribute="top" secondItem="5Qf-FP-fmj" secondAttribute="bottom" constant="24" id="nKQ-jq-EpJ"/>
                             <constraint firstItem="xnP-Jg-sT6" firstAttribute="top" secondItem="LgO-LX-puz" secondAttribute="bottom" constant="8" id="xT2-Xx-lU9"/>
                         </constraints>
                         <variation key="default">

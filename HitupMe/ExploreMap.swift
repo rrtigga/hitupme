@@ -46,6 +46,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                             
                             annotation.title = header
                             annotation.subtitle = String(format: "%i joined", (users_joined.count - 1) )
+                            //annotation.subtitle = host
                             annotation.coordinate = CLLocationCoordinate2D(latitude: coords.latitude, longitude: coords.longitude)
                             annotation.hitup = thisHitup
                             
@@ -89,7 +90,25 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                     }
                 }
                 
-                pinView?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as! UIView
+                
+                var leftView = UIView(frame: CGRectMake(0, 0, 52, 52))
+                var profilePicView = UIImageView(frame: CGRectMake(0, 9, 30, 30))
+                profilePicView.center = CGPointMake(leftView.frame.size.width/2, profilePicView.center.y)
+                var nameLabel = UILabel(frame: CGRectMake(0, 34, 52, 20))
+                nameLabel.textAlignment = NSTextAlignment.Center
+                nameLabel.font = nameLabel.font.fontWithSize(8)
+                nameLabel.text = hitup?.objectForKey("user_hostName") as? String
+                leftView.addSubview(nameLabel)
+                leftView.addSubview(profilePicView)
+                
+                pinView?.leftCalloutAccessoryView = leftView
+                pinView?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIView
+                // Set Profile Picture
+                var id = hitup?.objectForKey("user_host") as? String
+                Functions.getSmallPictureFromFBId(id!, completion: { (image) -> Void in
+                    profilePicView.image = image
+                })
+                
                 
                 //var gest = UIGestureRecognizer(target: self, action: Selector(""))
                 //pinView?.addGestureRecognizer(gest)
@@ -111,6 +130,24 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                         pinView!.pinColor = MKPinAnnotationColor.Red
                     }
                 }
+                
+                var leftView = UIView(frame: CGRectMake(0, 0, 52, 52))
+                var profilePicView = UIImageView(frame: CGRectMake(0, 9, 30, 30))
+                profilePicView.center = CGPointMake(leftView.frame.size.width/2, profilePicView.center.y)
+                var nameLabel = UILabel(frame: CGRectMake(0, 34, 52, 20))
+                nameLabel.textAlignment = NSTextAlignment.Center
+                nameLabel.font = nameLabel.font.fontWithSize(8)
+                nameLabel.text = hitup?.objectForKey("user_hostName") as? String
+                leftView.addSubview(nameLabel)
+                leftView.addSubview(profilePicView)
+                
+                pinView?.leftCalloutAccessoryView = leftView
+                pinView?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIView
+                // Set Profile Picture
+                var id = hitup?.objectForKey("user_host") as? String
+                Functions.getSmallPictureFromFBId(id!, completion: { (image) -> Void in
+                    profilePicView.image = image
+                })
             }
             
             return pinView
