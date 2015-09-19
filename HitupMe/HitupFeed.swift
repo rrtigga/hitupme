@@ -145,12 +145,12 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
         
         // Set Number Joined
         var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
-        cell.joinedLabel.text = String(format: "%i", joinedArray.count - 1)
+        cell.joinedLabel.text = String(format: "%i joined", joinedArray.count - 1)
         
         // Set Distance Label
         var coords = hitup.objectForKey("coordinates") as! PFGeoPoint
         var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
-        cell.distanceLabel.text = String(format: "%.1f miles", dist)
+        cell.distanceLabel.text = String(format: "%.1f miles away", dist)
         
         // Set Image
         if let fb_id = hitup.objectForKey("user_host") as? String {
@@ -169,9 +169,9 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
         } else {
             if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
                 cell.setActive(true)
-                var formatter = NSDateFormatter()
-                formatter.dateFormat = "h:mm a"
-                cell.pastTimeLabel.text = String(format: "until  %@", formatter.stringFromDate(expireDate!))
+                var seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
+                
+                cell.pastTimeLabel.text = String(format: "%.0f min left", seconds / 60)
             } else {
                 var formatter = NSDateFormatter()
                 cell.setActive(false)
