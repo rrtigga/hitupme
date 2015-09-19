@@ -9,13 +9,34 @@
 import UIKit
 import Parse
 
-class HitupFeed: UITableViewController {
+class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
     
     var loadedOnce = false
     var refreshController = UIRefreshControl()
     var hitups = [AnyObject]()
-    
+    let loginView : FBSDKLoginButton = FBSDKLoginButton()// Note for some reason this button must be allocated here.
     var hitupToSend = PFObject(className: "Hitups")
+
+    
+    // ----- Login Button Methods ----- //
+    @IBAction func touchLogout(sender: AnyObject) {
+        loginView.delegate = self
+        loginView.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+    }
+    @IBAction func touchRefreshButton(sender: AnyObject) {
+        pullRefresh()
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    }
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        PFUser.logOutInBackground()
+        performSegueWithIdentifier("logout", sender: nil)
+        println("User Logged Out of App")
+    }
+    // ----- End ----- //
+    
+    
     
     func configureTableView() {
         tableView.rowHeight = 108
@@ -69,6 +90,13 @@ class HitupFeed: UITableViewController {
                 self.tableView.reloadData()
                 self.tableView.userInteractionEnabled = true
                 println("Number of objects", objects!.count)
+                
+                if objects!.count == 0 {
+                    var label = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 100))
+                    label.textAlignment = NSTextAlignment.Center
+                    label.text = "No Active Hitups Nearby!"
+                    self.tableView.insertSubview(label, atIndex: 0)
+                }
             }
         }
         

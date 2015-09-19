@@ -24,7 +24,8 @@ class HighLevelCalls: NSObject {
         
         
         var query = PFQuery(className: "Hitups")
-        query.whereKey("createdAt", greaterThan: yesterday)
+        //query.whereKey("createdAt", greaterThan: yesterday)
+        query.whereKey("expire_time", greaterThan: NSDate())
         query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 20.0)
         query.orderByDescending("createdAt")
         query.limit = 20;
@@ -80,7 +81,10 @@ class HighLevelCalls: NSObject {
         
         var query = PFQuery(className: "Hitups")
         //query.whereKey("createdAt", greaterThan: lastWeek)
-        query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude), withinMiles: 200.0)
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var latitude = defaults.doubleForKey("latitude")
+        var longitude = defaults.doubleForKey("longitude")
+        query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 200.0)
         query.orderByDescending("createdAt")
         query.limit = 30;
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in

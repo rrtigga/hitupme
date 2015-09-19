@@ -46,6 +46,7 @@ class UserTable: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! userTableCell
         var user = users[indexPath.row] as! PFObject
+        //cell.numberLabel.text = String(format:"%i.", users.count - indexPath.row)
         cell.numberLabel.text = String(format:"%i.", indexPath.row + 1)
         cell.nameLabel.text = (user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String)
         Functions.getPictureFromFBId(user.objectForKey("fb_id") as! String, completion: { (image) -> Void in

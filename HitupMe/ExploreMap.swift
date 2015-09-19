@@ -28,12 +28,12 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             
             HighLevelCalls.updateExploreHitups { (success, objects) -> Void in
                 if success == true {
-                    
+                    println( objects!.count, "Objects")
                     self.mapView.removeAnnotations(self.mapView.annotations)
                     
                     self.mapView.showsUserLocation = true
                     self.mapView.centerCoordinate =  CLLocationCoordinate2D( latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude)
-                    
+
                     if let objects = objects as? [PFObject] {
                         for object in objects {
                             var thisHitup = object

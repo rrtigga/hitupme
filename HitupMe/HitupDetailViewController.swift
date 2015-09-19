@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import MapKit
 import Parse
+import AddressBook
 
 class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Concrete UI Elements
     @IBOutlet var tableView: UITableView!
     @IBOutlet var joinButton: UIButton!
-    @IBOutlet var accessoryButton: UIButton!
     
     // Base Information
     @IBOutlet var nameLabel: UILabel!
@@ -40,21 +41,6 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     var thisHitup = PFObject(className: "Hitups")
     var joined_before = false
-    
-    func setAltSelected(select: Bool) {
-        if select == true {
-            accessoryButton.backgroundColor = UIColor.whiteColor()
-            accessoryButton.tintColor = Functions.themeColor()
-            accessoryButton.setTitle("next🕑", forState: UIControlState.Normal)
-            accessoryButton.layer.borderColor = UIColor.blackColor().CGColor
-            accessoryButton.layer.borderWidth = 1
-        } else {
-            accessoryButton.backgroundColor = Functions.themeColor()
-            accessoryButton.tintColor = UIColor.whiteColor()
-            accessoryButton.setTitle("next🕑", forState: UIControlState.Normal)
-            accessoryButton.layer.borderWidth = 0
-        }
-    }
     
     
     func setActive(isActive: Bool) {
@@ -83,10 +69,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         configureTableView()
         joinButton.addTarget(self, action: "touchJoinButton", forControlEvents: UIControlEvents.TouchUpInside)
         joinButton.layer.borderWidth = 0
-        accessoryButton.addTarget(self, action: "touchAccessoryButton", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Set Hitup Inforamtion
-        
         headerLabel.text = thisHitup.objectForKey("header") as! String
         descriptionLabel.text = thisHitup.objectForKey("description") as? String
         locationLabel.text = thisHitup.objectForKey("location_name") as? String
@@ -129,17 +113,12 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         var users_joined = thisHitup["users_joined"] as! [AnyObject]
         var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
         if(currentUser_fbId == user_hosted){
+            // Set Self Hosted
             setType(0)
-        }
-        else if( (users_joined as NSArray).containsObject(currentUser_fbId) ){
+        } else {
+            // Set 
             setType(1)
         }
-        else {
-            setType(2)
-        }
-        
-        // Set Alternative Button Status
-        setAltSelected(false)
         
     }
 
@@ -157,48 +136,22 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         if(currentUser_fbId == user_hosted){
             // If Hosted
             promptDeleteAlert()
-        } else if ( (users_joined as NSArray).containsObject(currentUser_fbId) ) {
-            // If Joined
-            thisHitup.removeObjectsInArray( [ currentUser_fbId ], forKey: "users_joined")
-            thisHitup.removeObjectsInArray( [ fullName ] , forKey: "users_joinedNames")
-            thisHitup.save()
-            let rel = PFUser.currentUser()?.relationForKey("my_hitups")
-            rel?.removeObject(thisHitup)
-            PFUser.currentUser()?.incrementKey("num", byAmount: -1)
-            PFUser.currentUser()?.saveInBackground()
-            setType(2)
-            
-            Functions.setRefreshTabTrue(3)
         } else {
-            thisHitup.addUniqueObjectsFromArray( [ currentUser_fbId ], forKey: "users_joined")
-            thisHitup.addUniqueObjectsFromArray( [ fullName ] , forKey: "users_joinedNames")
-            thisHitup.save()
-            let rel = PFUser.currentUser()?.relationForKey("my_hitups")
-            rel?.addObject(thisHitup)
-            PFUser.currentUser()?.incrementKey("num")
-            PFUser.currentUser()?.saveInBackground()
-            setType(1)
-            Functions.setRefreshTabTrue(3)
+            // If not Hosted, open MAP
             
-            // send fresh push notification for user joining the Hitup
-            if(!joined_before) {
-                //push notification for user joining the Hitup
-                // Create our query to notify all users joined
-                let pushQuery = PFInstallation.query()
-                pushQuery!.whereKey("fb_id", containedIn: thisHitup.objectForKey("users_joined") as! [AnyObject] )
-                pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
-                // Send push notification to query
-                let push = PFPush()
-                push.setQuery(pushQuery) // Set our Installation query
-                //header text
-                var header_text = thisHitup.objectForKey("header") as! String
-                push.setMessage(fullName + " has joined " + header_text)
-                push.sendPushInBackground()
-                joined_before = true
-            }
+            let destinationGeo = thisHitup["coordinates"] as! PFGeoPoint
+            let destination = CLLocationCoordinate2D(latitude: destinationGeo.latitude, longitude: destinationGeo.longitude)
+            var header = thisHitup["user_hostName"] as! String
+            
+            let addressDict =
+            [ kABPersonAddressStreetKey as NSString: header ]
 
-        } // else
-        
+            var place = MKPlacemark(coordinate: destination, addressDictionary: addressDict)
+            var options =  [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            
+            MKMapItem.openMapsWithItems([ MKMapItem.mapItemForCurrentLocation() ,MKMapItem(placemark: place)], launchOptions: options)
+            
+        }
     }
     
     func promptDeleteAlert() {
@@ -250,9 +203,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         case 1: // Joined
             typePicture.image = UIImage(named:"Cell_Joined")
-            joinButton.backgroundColor = UIColor.whiteColor()
-            joinButton.tintColor = Functions.themeColor()
-            joinButton.setTitle("Joined", forState: UIControlState.Normal)
+            joinButton.backgroundColor = Functions.themeColor()
+            joinButton.tintColor = UIColor.whiteColor()
+            joinButton.setTitle("Take me there 📍", forState: UIControlState.Normal)
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
             joinButton.layer.borderWidth = 1
             tableView.reloadData()
@@ -283,7 +236,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // Set Number Joined
         var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
         var num = joinedArray.count
-        return num
+        //return num
+        return 0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

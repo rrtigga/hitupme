@@ -17,9 +17,9 @@ class CreateController: UIViewController, UITextViewDelegate {
         case details
         case location
     }
-    var defaultHeaderText = "What are you doing?"
+    var defaultHeaderText = "What are your friends joining?"
     var defaultDetailsText = "Details (optional)"
-    var defaultLocationText = "Location name (optional)"
+    var defaultLocationText = "Don't worry, we'll take care of location for you! :)"
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var headerTextView: UITextView!
     @IBOutlet var detailsTextView: UITextView!
@@ -154,8 +154,8 @@ class CreateController: UIViewController, UITextViewDelegate {
         setupStepper()
         activeLabel.text = String(format:"Active for %0.1f hours", stepper.value)
         
-        var defaults = NSUserDefaults.standardUserDefaults()
-        cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
+        //var defaults = NSUserDefaults.standardUserDefaults()
+        //cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
     }
 
     
