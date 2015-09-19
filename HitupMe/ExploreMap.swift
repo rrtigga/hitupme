@@ -72,11 +72,13 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
             if pinView == nil {
                 pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-                pinView!.canShowCallout = true
+                pinView!.canShowCallout = false
                 pinView!.animatesDrop = true
                 
+                /*
                 var hAnnotation = annotation as! HitupAnnotation
                 var hitup = hAnnotation.hitup
+                
                 
                 // Set Active/nonActive
                 var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
@@ -108,7 +110,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 Functions.getSmallPictureFromFBId(id!, completion: { (image) -> Void in
                     profilePicView.image = image
                 })
-                
+                */
                 
                 //var gest = UIGestureRecognizer(target: self, action: Selector(""))
                 //pinView?.addGestureRecognizer(gest)
@@ -116,6 +118,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             } else {
                 pinView!.annotation = annotation
                 
+                /*
                 var hAnnotation = annotation as! HitupAnnotation
                 var hitup = hAnnotation.hitup
                 
@@ -148,6 +151,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 Functions.getSmallPictureFromFBId(id!, completion: { (image) -> Void in
                     profilePicView.image = image
                 })
+                */
             }
             
             return pinView
@@ -155,6 +159,62 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         
     }
 
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        
+        // Save Hitup to be used in Segue
+        var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
+        if (annotation != nil) {
+            
+            var calloutView = HitupCalloutView.initView()
+            
+            hitupToSend = annotation!.hitup!
+            var hitup = hitupToSend
+            var header = hitup.objectForKey("header") as! String
+            var name = hitup.objectForKey("user_hostName") as? String
+            calloutView.headerLabel.text = header
+            calloutView.nameLabel.text = name
+            
+            // Set Image
+            if let fb_id = hitup.objectForKey("user_host") as? String {
+                Functions.getPictureFromFBId(fb_id, completion: { (image) -> Void in
+                    calloutView.profilePic.image = image
+                })
+            }
+            
+            var formatter = NSDateFormatter()
+            formatter.dateFormat = "M/d"
+            var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
+            if (expireDate == nil) {
+                calloutView.timeLabel.text = "Ended"
+            } else {
+                if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                    var seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
+                    calloutView.timeLabel.text = String(format: "%.0f min left", seconds / 60)
+                } else {
+                    calloutView.timeLabel.text = String(format:"Ended %@", formatter.stringFromDate(expireDate!))
+                }
+            }
+            
+            
+            var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
+            calloutView.joinLabel.text = String(format: "%i joined", joinedArray.count - 1)
+            
+            calloutView.addTarget(self, action: Selector("touchCallout"), forControlEvents: UIControlEvents.TouchUpInside)
+            view.addSubview(calloutView)
+        }
+    }
+    
+    /// If user unselects callout annotation view, then remove it.
+    
+    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+        for subView in view.subviews {
+            subView.removeFromSuperview()
+        }
+    }
+    
+    func touchCallout() {
+        performSegueWithIdentifier("showMapDetail", sender: nil)
+    }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         println("dd:")
