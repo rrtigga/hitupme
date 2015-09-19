@@ -92,21 +92,28 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
         distanceLabel.text = String(format: "%.1f miles away", dist)
         
+        
         // Set Active/nonActive
         var formatter = NSDateFormatter()
-        formatter.dateFormat = "h:mm a"
+        formatter.dateFormat = "h:mm a, M/d"
         var expireDate : NSDate? = thisHitup.objectForKey("expire_time") as? NSDate
         if (expireDate == nil) {
             setActive(false)
             timeLabel.text = String(format:"posted %@", formatter.stringFromDate(thisHitup.createdAt!))
         } else {
             if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                // Still Going on
                 setActive(true)
+                var seconds = NSDate().timeIntervalSinceDate(expireDate!) * -1
+                timeLabel.text = String(format: "%.0f min left", seconds / 60)
             } else {
+                // Not going on
+                timeLabel.text = String(format: "Ended on %@", formatter.stringFromDate(expireDate!))
                 setActive(false)
             }
-            timeLabel.text = String(format:"%@  to  %@", formatter.stringFromDate(thisHitup.createdAt!), formatter.stringFromDate(expireDate!))
         }
+        // Set Joined / Hosted Status
+
         
         // Set Joined / Hosted Status
         var user_hosted = thisHitup["user_host"] as! String
@@ -155,7 +162,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func promptDeleteAlert() {
-        var alert = UIAlertController(title: "Cancel Hitup?", message: "😦", preferredStyle: UIAlertControllerStyle.Alert)
+        var alert = UIAlertController(title: "Cancel Hitup?", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
             println("Yes")
             self.navigationController?.popViewControllerAnimated(true)
@@ -205,9 +212,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             typePicture.image = UIImage(named:"Cell_Joined")
             joinButton.backgroundColor = Functions.themeColor()
             joinButton.tintColor = UIColor.whiteColor()
-            joinButton.setTitle("Take me there 📍", forState: UIControlState.Normal)
+            joinButton.setTitle("Take me there 🚙", forState: UIControlState.Normal)
             joinButton.layer.borderColor = UIColor.blackColor().CGColor
-            joinButton.layer.borderWidth = 1
+            joinButton.layer.borderWidth = 0
             tableView.reloadData()
             break;
             
