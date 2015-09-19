@@ -30,6 +30,7 @@
 		185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C1E451BA2092800D079DC /* ExploreMap.swift */; };
 		1870DABD1BACFD35008D04E7 /* HitupCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870DABC1BACFD35008D04E7 /* HitupCalloutView.swift */; };
 		1870DAC71BAD075B008D04E7 /* HitupCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1870DAC61BAD075B008D04E7 /* HitupCalloutView.xib */; };
+		1870DAC91BAD2D89008D04E7 /* HitupAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870DAC81BAD2D89008D04E7 /* HitupAnnotationView.swift */; };
 		1889CE141BA26AAE00A38C6B /* HitupAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */; };
 		18B48F291B879B970032C193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48F281B879B970032C193 /* AppDelegate.swift */; };
 		18B48F301B879B970032C193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B48F2E1B879B970032C193 /* Main.storyboard */; };
@@ -101,6 +102,7 @@
 		185C1E451BA2092800D079DC /* ExploreMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreMap.swift; sourceTree = "<group>"; };
 		1870DABC1BACFD35008D04E7 /* HitupCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupCalloutView.swift; sourceTree = "<group>"; };
 		1870DAC61BAD075B008D04E7 /* HitupCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HitupCalloutView.xib; sourceTree = "<group>"; };
+		1870DAC81BAD2D89008D04E7 /* HitupAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupAnnotationView.swift; sourceTree = "<group>"; };
 		1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupAnnotation.swift; sourceTree = "<group>"; };
 		18B48F231B879B970032C193 /* HitupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B48F271B879B970032C193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				18F8C05E1BA54D8D0035724A /* userTableCell.swift */,
 				18202A6A1B96D3A300D41249 /* myHitupCell.swift */,
 				18D24D9C1B8B9A950098F4D9 /* DetailActionCell.swift */,
+				1870DAC81BAD2D89008D04E7 /* HitupAnnotationView.swift */,
 				1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */,
 				1870DABC1BACFD35008D04E7 /* HitupCalloutView.swift */,
 				1870DAC61BAD075B008D04E7 /* HitupCalloutView.xib */,
@@ -460,6 +463,7 @@
 				18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */,
 				1870DABD1BACFD35008D04E7 /* HitupCalloutView.swift in Sources */,
 				18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */,
+				1870DAC91BAD2D89008D04E7 /* HitupAnnotationView.swift in Sources */,
 				18B48F5A1B87E9370032C193 /* CreateController.swift in Sources */,
 				18F8C05D1BA504BC0035724A /* UserTable.swift in Sources */,
 				18B48F4D1B87B0280032C193 /* ExploreTable.swift in Sources */,

@@ -59,7 +59,6 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             } // updateNearbyHitups
         } // Location enabled
     }
-
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
@@ -69,13 +68,13 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         } else {
         
             let reuseId = "pin"
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? HitupAnnotationView
             if pinView == nil {
-                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView = HitupAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                 pinView!.canShowCallout = false
                 pinView!.animatesDrop = true
                 
-                /*
+                
                 var hAnnotation = annotation as! HitupAnnotation
                 var hitup = hAnnotation.hitup
                 
@@ -92,7 +91,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                     }
                 }
                 
-                
+                /*
                 var leftView = UIView(frame: CGRectMake(0, 0, 52, 52))
                 var profilePicView = UIImageView(frame: CGRectMake(0, 9, 30, 30))
                 profilePicView.center = CGPointMake(leftView.frame.size.width/2, profilePicView.center.y)
@@ -118,7 +117,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             } else {
                 pinView!.annotation = annotation
                 
-                /*
+                
                 var hAnnotation = annotation as! HitupAnnotation
                 var hitup = hAnnotation.hitup
                 
@@ -133,7 +132,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                         pinView!.pinColor = MKPinAnnotationColor.Red
                     }
                 }
-                
+                /*
                 var leftView = UIView(frame: CGRectMake(0, 0, 52, 52))
                 var profilePicView = UIImageView(frame: CGRectMake(0, 9, 30, 30))
                 profilePicView.center = CGPointMake(leftView.frame.size.width/2, profilePicView.center.y)
@@ -160,6 +159,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        println("Select")
         
         // Save Hitup to be used in Segue
         var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
@@ -207,6 +207,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     /// If user unselects callout annotation view, then remove it.
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+        println("Deselect")
         for subView in view.subviews {
             subView.removeFromSuperview()
         }

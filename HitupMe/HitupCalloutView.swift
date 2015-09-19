@@ -21,6 +21,7 @@ class HitupCalloutView: UIButton {
     var width = CGFloat(245.0)
     
     class func initView() -> HitupCalloutView {
+        
         var hcv = HitupCalloutView()
         hcv.layoutUI()
         hcv.profilePic.image = UIImage(named: "SHIBA")

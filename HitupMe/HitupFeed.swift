@@ -216,6 +216,7 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("Showing Detail")
+        
         if segue.identifier == "detail" {
             var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
             //detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
