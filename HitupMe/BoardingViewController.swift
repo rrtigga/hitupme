@@ -25,20 +25,19 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
         setupPageControl()
         Functions.initializeUserDefaults()
         Functions.setRefreshAllTabsTrue()
-        PermissionRelatedCalls.requestNotifications()
         loginButton.addTarget(nil , action: Selector("touchLogin"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        var locationManager = CLLocationManager()
-        locationManager.requestWhenInUseAuthorization()
+        PermissionRelatedCalls.askLocation()
     }
     
     func touchLogin() {
         PFFacebookUtils.logInInBackgroundWithReadPermissions(askedPermissions) {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
+                Functions.updateLocation()
                 //if user.isNew {
                 //    println("User signed up and logged in through Facebook!")
                 //} else {
@@ -71,6 +70,7 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
                         
                         //self.performSegueWithIdentifier("afterLogin", sender: nil)
                         })*/
+                        
                         self.performSegueWithIdentifier("afterLogin", sender: nil)
                         
                     } else {

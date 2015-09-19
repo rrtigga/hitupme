@@ -14,6 +14,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
     @IBAction func touchRefresh(sender: AnyObject) {
+        Functions.updateLocation()
         refreshMap()
     }
     var hitupToSend = PFObject(className: "Hitups")
@@ -231,6 +232,9 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        PermissionRelatedCalls.requestNotifications()
+        
         mapView.delegate = self
         Functions.updateLocationinBack { (success) -> Void in
             if Functions.refreshTab(1) == true {

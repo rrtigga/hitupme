@@ -911,21 +911,9 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" We won't post anything to Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKp-BI-1Kd">
-                                <rect key="frame" x="215" y="568" width="171" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="LpI-c5-7hz"/>
-                                    <constraint firstAttribute="width" constant="171" id="oLv-41-Klq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="9"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VKp-BI-1Kd" firstAttribute="top" secondItem="lAu-Xj-juc" secondAttribute="bottom" constant="-2" id="Rzh-q6-eMJ"/>
-                            <constraint firstAttribute="centerX" secondItem="VKp-BI-1Kd" secondAttribute="centerX" constant="-0.5" id="YSH-y7-gPQ"/>
                             <constraint firstAttribute="centerX" secondItem="lAu-Xj-juc" secondAttribute="centerX" id="d9H-8W-DCY"/>
                             <constraint firstAttribute="centerX" secondItem="lAu-Xj-juc" secondAttribute="centerX" id="eWA-4I-kfn"/>
                             <constraint firstItem="6Hn-Rd-ABF" firstAttribute="top" secondItem="lAu-Xj-juc" secondAttribute="bottom" constant="30" id="hag-bd-yVA"/>
@@ -1959,7 +1947,7 @@
         <image name="fbLoginPicture" width="416" height="101"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XDQ-sb-iFB"/>
+        <segue reference="Mqc-mG-LKD"/>
         <segue reference="7sm-vb-f3e"/>
     </inferredMetricsTieBreakers>
 </document>

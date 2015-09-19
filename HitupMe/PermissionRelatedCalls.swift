@@ -18,7 +18,17 @@ class PermissionRelatedCalls: NSObject {
     }
     
     class func locationEnabled() -> Bool {
-        return CLLocationManager.authorizationStatus() != CLAuthorizationStatus.Denied
+        
+        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Denied) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    class func askLocation() {
+        var man = CLLocationManager()
+        man.requestWhenInUseAuthorization()
     }
     
 }
