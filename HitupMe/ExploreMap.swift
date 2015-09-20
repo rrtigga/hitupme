@@ -71,9 +71,13 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                     println( objects!.count, "Objects")
                     self.mapView.removeAnnotations(self.mapView.annotations)
                     
+                    var defaults = NSUserDefaults.standardUserDefaults()
+                    var latitude = defaults.doubleForKey("latitude")
+                    var longitude = defaults.doubleForKey("longitude")
+                    
                     self.mapView.showsUserLocation = true
-                    self.mapView.centerCoordinate =  CLLocationCoordinate2D( latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude)
-
+                    self.mapView.centerCoordinate =  CLLocationCoordinate2D( latitude: latitude, longitude: longitude)
+                    
                     if let objects = objects as? [PFObject] {
                         for object in objects {
                             var thisHitup = object
@@ -93,11 +97,22 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                             self.mapView.addAnnotation(annotation)
                             
                         } // For object in objects
-                        self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+                        if (self.activeOnly == false) {
+                            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+                        } else {
+                            self.centerMapOnLocation(self.mapView.centerCoordinate)
+                        }
                     } // if casted sucessfully
                 } // success == true
             }) // updateNearbyHitups
         } // Location enabled
+    }
+    
+    // Set Radius of Map View
+    var regionRadius: CLLocationDistance = 5000
+    func centerMapOnLocation( coords :CLLocationCoordinate2D) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(coords, regionRadius * 2.0, regionRadius * 2.0)
+        self.mapView.setRegion(coordinateRegion, animated: true)
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {

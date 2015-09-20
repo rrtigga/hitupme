@@ -173,10 +173,11 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         thisHitup.addUniqueObjectsFromArray( [ currentUser_fbId ], forKey: "users_joined")
         thisHitup.addUniqueObjectsFromArray( [ fullName ] , forKey: "users_joinedNames")
         thisHitup.saveEventually()
+        /*
         let rel = PFUser.currentUser()?.relationForKey("my_hitups")
         rel?.addObject(thisHitup)
         PFUser.currentUser()?.incrementKey("num")
-        PFUser.currentUser()?.saveInBackground()
+        PFUser.currentUser()?.saveInBackground()*/
         
         // send fresh push notification for user joining the Hitup
         if(!joined_before) {
