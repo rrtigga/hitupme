@@ -61,7 +61,12 @@ class CreateController: UIViewController, UITextViewDelegate {
             newHitup["description"] = details
             newHitup["header"] = headerTextView.text
             newHitup["location_name"] = locationText
-            newHitup["coordinates"] = PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude,longitude: LocationManager.sharedInstance.lastKnownLongitude)
+            
+            // Set Cooridinates
+            var defaults = NSUserDefaults.standardUserDefaults()
+            var latitude = defaults.doubleForKey("latitude")
+            var longitude = defaults.doubleForKey("longitude")
+            newHitup["coordinates"] = PFGeoPoint(latitude: latitude,longitude: longitude)
             newHitup["user_host"] = userId
             newHitup["user_hostName"] = firstName + " " + lastName
             newHitup.addObject( userId , forKey: "users_joined")
@@ -84,6 +89,7 @@ class CreateController: UIViewController, UITextViewDelegate {
                     println("Error adding Hitup")
                 }
             }
+                
             
             Functions.setRefreshAllTabsTrue()
             

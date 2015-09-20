@@ -156,8 +156,43 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             var place = MKPlacemark(coordinate: destination, addressDictionary: addressDict)
             var options =  [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
             
+            joinAndNotify()
+            
             MKMapItem.openMapsWithItems([ MKMapItem.mapItemForCurrentLocation() ,MKMapItem(placemark: place)], launchOptions: options)
             
+        }
+    }
+    
+    func joinAndNotify() {
+        var user_hosted = thisHitup["user_host"] as! String
+        var users_joined = thisHitup["users_joined"] as! [AnyObject]
+        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        var user = PFUser.currentUser()
+        var fullName = (user?.objectForKey("first_name") as! String) + " " + (user?.objectForKey("last_name") as! String)
+        
+        thisHitup.addUniqueObjectsFromArray( [ currentUser_fbId ], forKey: "users_joined")
+        thisHitup.addUniqueObjectsFromArray( [ fullName ] , forKey: "users_joinedNames")
+        thisHitup.saveEventually()
+        let rel = PFUser.currentUser()?.relationForKey("my_hitups")
+        rel?.addObject(thisHitup)
+        PFUser.currentUser()?.incrementKey("num")
+        PFUser.currentUser()?.saveInBackground()
+        
+        // send fresh push notification for user joining the Hitup
+        if(!joined_before) {
+            //push notification for user joining the Hitup
+            // Create our query to notify all users joined
+            let pushQuery = PFInstallation.query()
+            pushQuery!.whereKey("fb_id", containedIn: thisHitup.objectForKey("users_joined") as! [AnyObject] )
+            pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
+            // Send push notification to query
+            let push = PFPush()
+            push.setQuery(pushQuery) // Set our Installation query
+            //header text
+            var header_text = thisHitup.objectForKey("header") as! String
+            push.setMessage(fullName + " is coming to " + header_text)
+            push.sendPushInBackground()
+            joined_before = true
         }
     }
     
@@ -243,8 +278,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // Set Number Joined
         var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
         var num = joinedArray.count
-        //return num
-        return 0
+        return num
+        //return 0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

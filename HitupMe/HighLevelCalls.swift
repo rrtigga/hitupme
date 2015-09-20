@@ -75,7 +75,7 @@ class HighLevelCalls: NSObject {
         
     }
     
-    class func updateExploreHitups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+    class func updateExploreHitups( isActiveOnly: Bool, completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
         var lastWeek = NSDate().dateByAddingTimeInterval(-432000.0)
         
@@ -84,6 +84,9 @@ class HighLevelCalls: NSObject {
         var defaults = NSUserDefaults.standardUserDefaults()
         var latitude = defaults.doubleForKey("latitude")
         var longitude = defaults.doubleForKey("longitude")
+        if isActiveOnly == true {
+            query.whereKey("expire_time", greaterThan: NSDate())
+        }
         query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 200.0)
         query.orderByDescending("createdAt")
         query.limit = 30;

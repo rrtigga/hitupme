@@ -12,12 +12,51 @@ import Parse
 
 class ExploreMap: UIViewController, MKMapViewDelegate {
     
+    func initialSetup() {
+        var nc : DefaultNavController? = navigationController as? DefaultNavController
+        if nc != nil {
+            nc?.setIsMapTab(true)
+            savedSegmentControl = nc?.passSwitch()
+            savedSegmentControl?.addTarget(self, action: Selector("switchChange:"), forControlEvents: UIControlEvents.ValueChanged)
+        }
+    }
+    
+    func showSwitch(show: Bool) {
+        if show == true {
+            var nc : DefaultNavController? = navigationController as? DefaultNavController
+            if nc != nil {
+                nc?.showSwitch(show)
+            }
+        } else {
+            var nc : DefaultNavController? = navigationController as? DefaultNavController
+            if nc != nil {
+                nc?.showSwitch(show)
+            }
+        }
+    }
+    
     @IBOutlet var mapView: MKMapView!
     @IBAction func touchRefresh(sender: AnyObject) {
         Functions.updateLocation()
         refreshMap()
     }
+    
+    
     var hitupToSend = PFObject(className: "Hitups")
+    var savedSegmentControl : UISegmentedControl?
+    var activeOnly = false
+    
+    func switchChange(sender: UISegmentedControl) {
+        if (sender.selectedSegmentIndex == 0) {
+            // All
+            activeOnly = false
+            refreshMap()
+        } else {
+            // Active Only
+            activeOnly = true
+            refreshMap()
+        }
+    }
     
     func refreshMap() {
         
@@ -27,7 +66,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             Functions.updateLocation()
         } else {
             
-            HighLevelCalls.updateExploreHitups { (success, objects) -> Void in
+            HighLevelCalls.updateExploreHitups(activeOnly, completion: { (success, objects) -> Void in
                 if success == true {
                     println( objects!.count, "Objects")
                     self.mapView.removeAnnotations(self.mapView.annotations)
@@ -57,7 +96,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                         self.mapView.showAnnotations(self.mapView.annotations, animated: true)
                     } // if casted sucessfully
                 } // success == true
-            } // updateNearbyHitups
+            }) // updateNearbyHitups
         } // Location enabled
     }
     
@@ -160,7 +199,6 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        println("Select")
         
         // Save Hitup to be used in Segue
         var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
@@ -208,7 +246,6 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     /// If user unselects callout annotation view, then remove it.
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
-        println("Deselect")
         for subView in view.subviews {
             subView.removeFromSuperview()
         }
@@ -232,7 +269,8 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        initialSetup()
+        
         PermissionRelatedCalls.requestNotifications()
         
         mapView.delegate = self
@@ -247,6 +285,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        showSwitch(true)
         if Functions.refreshTab(1) == true {
             self.refreshMap()
         } else {
@@ -257,7 +296,9 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("Showing Detail")
+        showSwitch(false)
         if segue.identifier == "showMapDetail" {
+            //showSwitch(false)
             var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
             detailController.thisHitup = hitupToSend
         }

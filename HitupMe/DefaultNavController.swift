@@ -10,27 +10,43 @@ import UIKit
 
 class DefaultNavController: UINavigationController {
 
+    var isMap = false
+    var switchView = UISegmentedControl(items: ["All", "Active Only"] )
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.tintColor = Functions.colorWithHexString("DC808A")
-
         // Do any additional setup after loading the view.
     }
 
+    func showSwitch(show: Bool) {
+        if show == true {
+            switchView.hidden = false
+        } else {
+            switchView.hidden = true
+        }
+    }
+    
+    func passSwitch() -> UISegmentedControl {
+        return switchView
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setIsMapTab(isMapTab: Bool) {
+        isMap = isMapTab
+        addSwitch()
     }
-    */
+    
+    func addSwitch() {
+        switchView.selectedSegmentIndex = 0
+        switchView.center = CGPointMake(navigationBar.frame.width/2, navigationBar.frame.height/2)
+        self.navigationBar.addSubview( switchView )
+    }
+
+
 
 }
