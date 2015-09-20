@@ -13,13 +13,24 @@ import AddressBook
 
 class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    func initialSetup() {
+        profilePictureButton.addTarget(self, action: Selector("touchProfilePic"), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    func touchProfilePic() {
+        var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! UIViewController
+        navigationController!.showViewController(pmv, sender: self)
+    }
+    
     // Concrete UI Elements
     @IBOutlet var tableView: UITableView!
     @IBOutlet var joinButton: UIButton!
     
     // Base Information
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var profilePicture: UIImageView!
+    
+    @IBOutlet var profilePictureButton: UIButton!
+    
     @IBOutlet var headerLabel: UITextView!
     // Logistical Labels
     @IBOutlet var descriptionLabel: UITextView!
@@ -66,6 +77,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialSetup()
         configureTableView()
         joinButton.addTarget(self, action: "touchJoinButton", forControlEvents: UIControlEvents.TouchUpInside)
         joinButton.layer.borderWidth = 0
@@ -84,7 +96,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         // Set Profile Picture
         Functions.getPictureFromFBId(thisHitup.objectForKey("user_host") as! String, completion: { (image) -> Void in
-            self.profilePicture.image = image
+            self.profilePictureButton.setImage(image, forState: UIControlState.Normal)
         })
         
         // Set Distance Label
