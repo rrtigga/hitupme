@@ -76,7 +76,6 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                     var longitude = defaults.doubleForKey("longitude")
                     
                     self.mapView.showsUserLocation = true
-                    self.mapView.centerCoordinate =  CLLocationCoordinate2D( latitude: latitude, longitude: longitude)
                     
                     if let objects = objects as? [PFObject] {
                         for object in objects {
@@ -100,7 +99,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                         if (self.activeOnly == false) {
                             self.mapView.showAnnotations(self.mapView.annotations, animated: true)
                         } else {
-                            self.centerMapOnLocation(self.mapView.centerCoordinate)
+                            self.centerMapOnLocation(self.mapView.userLocation.coordinate)
                         }
                     } // if casted sucessfully
                 } // success == true

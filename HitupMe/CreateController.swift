@@ -17,7 +17,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         case details
         case location
     }
-    var defaultHeaderText = "What are your friends joining?"
+    var defaultHeaderText = "What are your friends joining you for?"
     var defaultDetailsText = "Details (optional)"
     var defaultLocationText = "Don't worry, we'll take care of location for you! :)"
     @IBOutlet var profilePic: UIImageView!
@@ -130,7 +130,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     
     func setupStepper() {
         stepper.minimumValue = 0.5
-        stepper.maximumValue = 4
+        stepper.maximumValue = 8
         stepper.stepValue = 0.5
         stepper.value = 1
         
