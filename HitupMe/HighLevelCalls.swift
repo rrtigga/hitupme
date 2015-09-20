@@ -100,6 +100,24 @@ class HighLevelCalls: NSObject {
         }
     }
     
+    class func updateProfileMapHitups( userId: NSString, completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+        
+        var lastWeek = NSDate().dateByAddingTimeInterval(-432000.0)
+        
+        var query = PFQuery(className: "Hitups")
+        query.orderByDescending("createdAt")
+        query.whereKey("user_host", equalTo: userId)
+        query.limit = 30;
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                completion(success: true, objects: objects)
+            } else {
+                println(error?.description)
+                completion(success: false, objects: [AnyObject]())
+            }
+        }
+    }
+    
     
     class func getLocalNearbyHitups() -> NSArray {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
