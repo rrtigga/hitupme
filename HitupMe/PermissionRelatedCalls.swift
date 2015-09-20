@@ -26,9 +26,5 @@ class PermissionRelatedCalls: NSObject {
         }
     }
     
-    class func askLocation() {
-        var man = CLLocationManager()
-        man.requestWhenInUseAuthorization()
-    }
     
 }

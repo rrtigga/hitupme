@@ -12,9 +12,10 @@ import ParseFacebookUtilsV4
 class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
     
     @IBOutlet var loginButton: UIButton!
+    var locMan = CLLocationManager()
     
     // Initialize it right away here
-    let controllerNames = ["Onboarding_0", "Onboarding_3", "Onboarding_2", "Onboarding_1"]
+    let controllerNames = ["Onboarding_0", "Onboarding_3", "Onboarding_1", "Onboarding_2"]
 
     // MARK: - View Lifecycle
     let askedPermissions = ["public_profile", "user_friends"]
@@ -30,7 +31,8 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        PermissionRelatedCalls.askLocation()
+        locMan.requestWhenInUseAuthorization()
+        locMan.startUpdatingLocation()
     }
     
     func touchLogin() {

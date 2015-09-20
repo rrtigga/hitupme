@@ -892,7 +892,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAu-Xj-juc">
-                                <rect key="frame" x="188" y="519" width="224" height="51"/>
+                                <rect key="frame" x="188" y="529" width="224" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="224" id="9WR-gw-KXF"/>
                                     <constraint firstAttribute="height" constant="51" id="gkM-gS-TdB"/>
@@ -913,7 +913,7 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="lAu-Xj-juc" secondAttribute="centerX" id="d9H-8W-DCY"/>
                             <constraint firstAttribute="centerX" secondItem="lAu-Xj-juc" secondAttribute="centerX" id="eWA-4I-kfn"/>
-                            <constraint firstItem="6Hn-Rd-ABF" firstAttribute="top" secondItem="lAu-Xj-juc" secondAttribute="bottom" constant="30" id="hag-bd-yVA"/>
+                            <constraint firstItem="6Hn-Rd-ABF" firstAttribute="top" secondItem="lAu-Xj-juc" secondAttribute="bottom" constant="20" id="hag-bd-yVA"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1447,7 +1447,7 @@
                                     <constraint firstAttribute="height" constant="55" id="gro-hL-baa"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Broadcast" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UB2-hd-sKL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a Hitup and let nearby friends join you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UB2-hd-sKL">
                                 <rect key="frame" x="150" y="118" width="300" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="S0L-yi-nhV"/>
@@ -1458,10 +1458,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Snapshot_Create" translatesAutoresizingMaskIntoConstraints="NO" id="cUs-In-zcF">
-                                <rect key="frame" x="190" y="198" width="220" height="185"/>
+                                <rect key="frame" x="175" y="198" width="250" height="185"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="185" id="PB3-MT-xhJ"/>
-                                    <constraint firstAttribute="width" constant="220" id="wbn-4h-FSx"/>
+                                    <constraint firstAttribute="width" constant="250" id="wbn-4h-FSx"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -1500,8 +1500,8 @@
                                     <constraint firstAttribute="width" constant="55" id="OrC-hs-fgu"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are they doing?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJd-ma-z8I">
-                                <rect key="frame" x="150" y="125" width="300" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to where your friends are and have a blast " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJd-ma-z8I">
+                                <rect key="frame" x="150" y="110" width="300" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="BFd-fH-BJg"/>
                                     <constraint firstAttribute="width" constant="300" id="Xnh-e7-zkb"/>
@@ -1510,20 +1510,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Snapshot_Nearby" translatesAutoresizingMaskIntoConstraints="NO" id="Uqh-qs-JWR">
-                                <rect key="frame" x="190" y="206" width="220" height="228"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Snapshot_Nav" translatesAutoresizingMaskIntoConstraints="NO" id="Uqh-qs-JWR">
+                                <rect key="frame" x="193" y="175" width="215" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="228" id="3Sj-Ay-Ics"/>
-                                    <constraint firstAttribute="width" constant="220" id="C9C-E8-xmO"/>
+                                    <constraint firstAttribute="height" constant="220" id="3Sj-Ay-Ics"/>
+                                    <constraint firstAttribute="width" constant="215" id="C9C-E8-xmO"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Uqh-qs-JWR" firstAttribute="top" secondItem="kJd-ma-z8I" secondAttribute="bottom" constant="21" id="16o-9Q-swR"/>
+                            <constraint firstItem="Uqh-qs-JWR" firstAttribute="top" secondItem="kJd-ma-z8I" secondAttribute="bottom" constant="5" id="16o-9Q-swR"/>
                             <constraint firstAttribute="centerX" secondItem="kJd-ma-z8I" secondAttribute="centerX" id="6nV-ZF-Twn"/>
                             <constraint firstAttribute="centerX" secondItem="Uqh-qs-JWR" secondAttribute="centerX" id="9hJ-EV-Q0r"/>
-                            <constraint firstItem="kJd-ma-z8I" firstAttribute="top" secondItem="8jn-uZ-Qwr" secondAttribute="bottom" constant="30" id="EEV-aA-lz6"/>
+                            <constraint firstItem="kJd-ma-z8I" firstAttribute="top" secondItem="8jn-uZ-Qwr" secondAttribute="bottom" constant="15" id="EEV-aA-lz6"/>
                             <constraint firstAttribute="centerX" secondItem="8jn-uZ-Qwr" secondAttribute="centerX" constant="-0.5" id="vKk-5a-wqR"/>
                             <constraint firstItem="8jn-uZ-Qwr" firstAttribute="top" secondItem="GmH-fZ-3WM" secondAttribute="top" constant="40" id="zAX-Jw-Ydl"/>
                         </constraints>
@@ -1553,13 +1553,13 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Snapshot_Map" translatesAutoresizingMaskIntoConstraints="NO" id="cKH-3A-Esg">
-                                <rect key="frame" x="190" y="206" width="220" height="208"/>
+                                <rect key="frame" x="160" y="206" width="280" height="144"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="EPd-i9-lk4"/>
-                                    <constraint firstAttribute="height" constant="208" id="lvc-m1-pef"/>
+                                    <constraint firstAttribute="width" constant="280" id="EPd-i9-lk4"/>
+                                    <constraint firstAttribute="height" constant="144" id="lvc-m1-pef"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are my friends?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irw-fR-uHD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore real time social options from friends near you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irw-fR-uHD">
                                 <rect key="frame" x="147" y="125" width="306" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8cg-Dw-5Mp"/>
@@ -1931,15 +1931,15 @@
         <image name="Clock" width="100" height="100"/>
         <image name="Onboard_Create" width="100" height="100"/>
         <image name="Onboard_Person" width="80" height="86"/>
-        <image name="Onboard_Search" width="86" height="88"/>
+        <image name="Onboard_Search" width="49" height="50"/>
         <image name="Profile_Arthur" width="160" height="160"/>
         <image name="Profile_Rohit" width="160" height="160"/>
         <image name="Refresh" width="27" height="27"/>
         <image name="Rohit" width="226" height="338"/>
         <image name="SHIBA" width="135" height="135"/>
-        <image name="Snapshot_Create" width="770" height="638"/>
-        <image name="Snapshot_Map" width="700" height="648"/>
-        <image name="Snapshot_Nearby" width="700" height="728"/>
+        <image name="Snapshot_Create" width="746" height="550"/>
+        <image name="Snapshot_Map" width="375" height="191"/>
+        <image name="Snapshot_Nav" width="368" height="386"/>
         <image name="TB_Profile" width="25" height="25"/>
         <image name="fbLoginPicture" width="416" height="101"/>
     </resources>
