@@ -11,11 +11,23 @@ import MapKit
 
 class ProfileMapView: UIViewController {
 
+    func initialSetup() {
+        navigationItem.title = userName
+    }
+    
+    var userID : String?
+    var userName : String?
+    
     @IBOutlet var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        initialSetup()
     }
 
     override func didReceiveMemoryWarning() {

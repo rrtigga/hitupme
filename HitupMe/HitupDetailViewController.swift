@@ -18,7 +18,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func touchProfilePic() {
-        var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! UIViewController
+        var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
+        pmv.userName = thisHitup.objectForKey("user_hostName") as? String
+        pmv.userID = thisHitup.objectForKey("user_host") as? String
         navigationController!.showViewController(pmv, sender: self)
     }
     

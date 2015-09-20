@@ -296,8 +296,8 @@
 				18B48F5D1B88FEA90032C193 /* HitupDetailViewController.swift */,
 				18E2D7021B925555009783D7 /* NotificationFeed.swift */,
 				185C1E451BA2092800D079DC /* ExploreMap.swift */,
-				18F8C05C1BA504BC0035724A /* UserTable.swift */,
 				1884E5931BAE92230092C1D6 /* ProfileMapView.swift */,
+				18F8C05C1BA504BC0035724A /* UserTable.swift */,
 				18BFF53E1BAA8F550037CF9D /* OnboardScreen.swift */,
 			);
 			name = Controllers;
