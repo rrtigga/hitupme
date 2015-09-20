@@ -21,6 +21,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
         pmv.userName = thisHitup.objectForKey("user_hostName") as? String
         pmv.userID = thisHitup.objectForKey("user_host") as? String
+        pmv.hitupToSend = thisHitup
         navigationController!.showViewController(pmv, sender: self)
     }
     

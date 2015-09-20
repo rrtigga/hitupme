@@ -1754,7 +1754,7 @@
         <!--Hitup Detail View Controller-->
         <scene sceneID="Ax4-Nw-5zG">
             <objects>
-                <viewController id="0v4-UI-HaX" customClass="HitupDetailViewController" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0v4-UI-HaX" customClass="HitupDetailViewController" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2vq-0y-Uz9"/>
                         <viewControllerLayoutGuide type="bottom" id="pjI-U0-MD3"/>

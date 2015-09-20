@@ -15,13 +15,9 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
     var userID : String?
     var userName : String?
     
+    
+    
     func initialSetup() {
-        var nc : DefaultNavController? = navigationController as? DefaultNavController
-        if nc != nil {
-            nc?.setIsMapTab(true)
-            savedSegmentControl = nc?.passSwitch()
-            savedSegmentControl?.addTarget(self, action: Selector("switchChange:"), forControlEvents: UIControlEvents.ValueChanged)
-        }
     }
     
    
@@ -257,7 +253,9 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
     }
     
     func touchCallout() {
-        //performSegueWithIdentifier("showMapDetail", sender: nil)
+        var pmv = storyboard!.instantiateViewControllerWithIdentifier("MapDetail") as! HitupDetailViewController
+        pmv.thisHitup = hitupToSend
+        navigationController!.showViewController(pmv, sender: self)
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
@@ -286,17 +284,6 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
         self.refreshMap()
         navigationItem.title = userName! + "'s " + "Hitups"
 
-    }
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("Showing Detail")
-        if segue.identifier == "showMapDetail" {
-            //showSwitch(false)
-            var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
-            detailController.thisHitup = hitupToSend
-        }
-        
     }
     
 }
