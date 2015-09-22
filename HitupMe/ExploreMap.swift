@@ -326,6 +326,11 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        //facebook
+        Functions.updateFacebook { (success) -> Void in
+            
+        }
+        
         showSwitch(true)
         if Functions.refreshTab(1) == true {
             self.refreshMap({ (success) -> Void in
