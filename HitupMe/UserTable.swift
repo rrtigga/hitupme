@@ -12,7 +12,13 @@ import Parse
 class UserTable: UITableViewController {
 
     var refreshController = UIRefreshControl()
-    var users = [AnyObject]()
+    var users = NSArray()
+    
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +29,11 @@ class UserTable: UITableViewController {
     }
     
     func pullRefresh() {
-        HighLevelCalls.getTesters { (success, objects) -> Void in
-            self.users = objects!
-            self.refreshController.endRefreshing()
-            self.tableView.reloadData()
-        }
+        var defaults = NSUserDefaults.standardUserDefaults()
+        defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
+        self.users = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
+        self.refreshController.endRefreshing()
+        self.tableView.reloadData()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -45,11 +51,11 @@ class UserTable: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! userTableCell
-        var user = users[indexPath.row] as! PFObject
+        var user = users[indexPath.row] as! NSDictionary
         //cell.numberLabel.text = String(format:"%i.", users.count - indexPath.row)
         cell.numberLabel.text = String(format:"%i.", indexPath.row + 1)
         cell.nameLabel.text = (user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String)
-        Functions.getPictureFromFBId(user.objectForKey("fb_id") as! String, completion: { (image) -> Void in
+        Functions.getPictureFromFBId(user.objectForKey("id") as! String, completion: { (image) -> Void in
             cell.pictureView.image = image
         })
         
