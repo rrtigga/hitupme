@@ -38,35 +38,49 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     @IBOutlet var mapView: MKMapView!
     @IBAction func touchRefresh(sender: AnyObject) {
         Functions.updateLocation()
-        refreshMap()
+        refreshMap { (success) -> Void in
+        }
     }
-    
     
     var hitupToSend = PFObject(className: "Hitups")
     var savedSegmentControl : UISegmentedControl?
     var activeOnly = false
+    var todayOnly = false
     
     func switchChange(sender: UISegmentedControl) {
-        if (sender.selectedSegmentIndex == 0) {
+        if (sender.selectedSegmentIndex == 1) {
+            // Today
+            activeOnly = false
+            todayOnly = true
+            refreshMap({ (success) -> Void in
+                
+            })
+            /*
+        } else if ( sender.selectedSegmentIndex == 1) {
+            // Active
+            activeOnly = true
+            todayOnly = false
+            refreshMap()*/
+        } else {
             // All
             activeOnly = false
-            refreshMap()
-        } else {
-            // Active Only
-            activeOnly = true
-            refreshMap()
+            todayOnly = false
+            refreshMap({ (success) -> Void in
+            
+            })
         }
     }
     
-    func refreshMap() {
+    func refreshMap( completion: (( success: Bool? ) -> Void)) {
         
         var defaults = NSUserDefaults.standardUserDefaults()
         if PermissionRelatedCalls.locationEnabled() == false {
+            completion(success: false)
             Functions.promptLocationTo(self, message: "Aw 💩! Please enable location to see Hitups.")
             Functions.updateLocation()
         } else {
             
-            HighLevelCalls.updateExploreHitups(activeOnly, completion: { (success, objects) -> Void in
+            HighLevelCalls.updateExploreHitups(activeOnly, isTodayOnly: todayOnly, completion: { (success, objects) -> Void in
                 if success == true {
                     println( objects!.count, "Objects")
                     self.mapView.removeAnnotations(self.mapView.annotations)
@@ -96,19 +110,30 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                             self.mapView.addAnnotation(annotation)
                             
                         } // For object in objects
-                        if (self.activeOnly == false) {
-                            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+                        completion(success: true )
+                        /*if (self.activeOnly == true || self.todayOnly == true) {
+                            self.centerMapOnLocation(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
                         } else {
-                            self.centerMapOnLocation(self.mapView.userLocation.coordinate)
+                            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+                        }*/
+                        if self.mapView.annotations.count <= 1 {
+                            self.centerMapOnLocation(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                        } else {
+                            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
                         }
+                        
+                        
                     } // if casted sucessfully
-                } // success == true
+                } else { // success == true
+                    completion(success: false )
+                }
+                
             }) // updateNearbyHitups
         } // Location enabled
     }
     
     // Set Radius of Map View
-    var regionRadius: CLLocationDistance = 5000
+    var regionRadius: CLLocationDistance = 6000
     func centerMapOnLocation( coords :CLLocationCoordinate2D) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(coords, regionRadius * 2.0, regionRadius * 2.0)
         self.mapView.setRegion(coordinateRegion, animated: true)
@@ -290,7 +315,9 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         Functions.updateLocationinBack { (success) -> Void in
             if Functions.refreshTab(1) == true {
-                self.refreshMap()
+                self.refreshMap({ (success) -> Void in
+                    
+                })
             } else {
                 
             }
@@ -301,7 +328,9 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         showSwitch(true)
         if Functions.refreshTab(1) == true {
-            self.refreshMap()
+            self.refreshMap({ (success) -> Void in
+                
+            })
         } else {
             
         }

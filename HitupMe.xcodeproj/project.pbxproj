@@ -29,7 +29,6 @@
 		185C1E431BA0CAFD00D079DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E421BA0CAFD00D079DC /* libsqlite3.dylib */; };
 		185C1E461BA2092800D079DC /* ExploreMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C1E451BA2092800D079DC /* ExploreMap.swift */; };
 		1870DABD1BACFD35008D04E7 /* HitupCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870DABC1BACFD35008D04E7 /* HitupCalloutView.swift */; };
-		1870DAC71BAD075B008D04E7 /* HitupCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1870DAC61BAD075B008D04E7 /* HitupCalloutView.xib */; };
 		1870DAC91BAD2D89008D04E7 /* HitupAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1870DAC81BAD2D89008D04E7 /* HitupAnnotationView.swift */; };
 		1884E5941BAE92230092C1D6 /* ProfileMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1884E5931BAE92230092C1D6 /* ProfileMapView.swift */; };
 		1889CE141BA26AAE00A38C6B /* HitupAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */; };
@@ -102,7 +101,6 @@
 		185C1E421BA0CAFD00D079DC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		185C1E451BA2092800D079DC /* ExploreMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreMap.swift; sourceTree = "<group>"; };
 		1870DABC1BACFD35008D04E7 /* HitupCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupCalloutView.swift; sourceTree = "<group>"; };
-		1870DAC61BAD075B008D04E7 /* HitupCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HitupCalloutView.xib; sourceTree = "<group>"; };
 		1870DAC81BAD2D89008D04E7 /* HitupAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupAnnotationView.swift; sourceTree = "<group>"; };
 		1884E5931BAE92230092C1D6 /* ProfileMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMapView.swift; sourceTree = "<group>"; };
 		1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitupAnnotation.swift; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 				1870DAC81BAD2D89008D04E7 /* HitupAnnotationView.swift */,
 				1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */,
 				1870DABC1BACFD35008D04E7 /* HitupCalloutView.swift */,
-				1870DAC61BAD075B008D04E7 /* HitupCalloutView.xib */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -443,7 +440,6 @@
 				18B48F351B879B970032C193 /* LaunchScreen.xib in Resources */,
 				182789CD1B9A9C87003EF969 /* GoogleService-Info.plist in Resources */,
 				18B48F321B879B970032C193 /* Images.xcassets in Resources */,
-				1870DAC71BAD075B008D04E7 /* HitupCalloutView.xib in Resources */,
 				18D24DA51B8BE58E0098F4D9 /* FacebookSDKStrings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

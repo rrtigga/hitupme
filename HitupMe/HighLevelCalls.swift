@@ -75,7 +75,7 @@ class HighLevelCalls: NSObject {
         
     }
     
-    class func updateExploreHitups( isActiveOnly: Bool, completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+    class func updateExploreHitups( isActiveOnly: Bool, isTodayOnly: Bool, completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
         
         var lastWeek = NSDate().dateByAddingTimeInterval(-432000.0)
         
@@ -87,6 +87,11 @@ class HighLevelCalls: NSObject {
         if isActiveOnly == true {
             query.whereKey("expire_time", greaterThan: NSDate())
         }
+        if isTodayOnly == true {
+            var yesterday = NSDate().dateByAddingTimeInterval(-86400)
+            query.whereKey("createdAt", greaterThan: yesterday)
+        }
+        
         query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 200.0)
         query.orderByDescending("createdAt")
         query.limit = 30;

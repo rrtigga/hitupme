@@ -92,9 +92,10 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
                 println("Number of objects", objects!.count)
                 
                 if objects!.count == 0 {
-                    var label = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 100))
+                    var label = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 80))
                     label.textAlignment = NSTextAlignment.Center
                     label.text = "No Active Hitups Nearby!"
+                    label.font = UIFont(name: "Avenir-Medium", size: 15)
                     self.tableView.insertSubview(label, atIndex: 0)
                 }
             }

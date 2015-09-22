@@ -17,6 +17,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         profilePictureButton.addTarget(self, action: Selector("touchProfilePic"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
+    
     func touchProfilePic() {
         var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
         pmv.userName = thisHitup.objectForKey("user_hostName") as? String
@@ -298,12 +299,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         //return 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
     
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! DetailActionCell
         // Configure the cell...
         
