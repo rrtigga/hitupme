@@ -92,7 +92,14 @@ class HighLevelCalls: NSObject {
             query.whereKey("createdAt", greaterThan: yesterday)
         }
         
-        query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 200.0)
+        var friendIds : [AnyObject]? = defaults.arrayForKey("friend_ids")
+        if friendIds != nil {
+            query.whereKey("user_host", containedIn: friendIds!)
+        } else {
+            println("HLC: friendIds was nil?")
+        }
+        
+        query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 20.0)
         query.orderByDescending("createdAt")
         query.limit = 30;
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in

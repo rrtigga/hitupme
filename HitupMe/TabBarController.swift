@@ -10,7 +10,33 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
+    
     // ----- Setup Functions ----- //
+    
+    func initialSetup() {
+        addIntro()
+        setupCreateButton()
+    }
+    
+    func addIntro() {
+        var evc = ExplainationViewController(nibName: "ExplainationViewController", bundle: nil)
+        //var evc = ExplainationViewController()
+        evc.view.frame = view.frame
+        introView = evc.view
+        evc.doneButton.addTarget(self, action: Selector("removeIntro"), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(evc.view)
+    }
+    
+    var introView: UIView?
+    
+    func removeIntro() {
+        introView!.removeFromSuperview()
+        introView = nil
+    }
+    
+    
+    
+
     
     func setupTabBar() {
         self.tabBar.tintColor = Functions.themeColor()
@@ -45,7 +71,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCreateButton()
+        initialSetup()
         
     }
 

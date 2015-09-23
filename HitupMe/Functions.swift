@@ -239,11 +239,32 @@ class Functions: NSObject {
         connection.addRequest(requestFriends, completionHandler: { (connection, result, error: NSError!) -> Void in
         
             if error == nil {
-            var friends = result["friends"] as! NSDictionary
-            var friendData = friends["data"] as! NSArray
-            var defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(friendData, forKey: "arrayOfFriend_dicts")
-            completion(success: true)
+                // Save Raw Friend Information
+                var friends = result["friends"] as! NSDictionary
+                var friendData = friends["data"] as! NSArray
+                var defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(friendData, forKey: "arrayOfFriend_dicts")
+                
+                // Save Array of friend IDs
+                var idArray = [AnyObject]()
+                for friend in friendData {
+                    var dict : NSDictionary? = friend as? NSDictionary
+                    
+                    if dict != nil {
+                        if var id = dict!.objectForKey("id") as? String {
+                            idArray.insert(dict!.objectForKey("id")!, atIndex:0)
+                        } else {
+                            println("Functions: id missing?")
+                        }
+
+                    } else {
+                        println("Functions: dict missing?")
+                    }
+                    
+                }
+                defaults.setObject(idArray, forKey: "friend_ids")
+                
+                completion(success: true)
             } else {
                 completion(success: false)
             }
