@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Parse
 
-class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     var users = NSArray()
 
@@ -19,10 +20,61 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.allowsMultipleSelection = true
         tableView.delegate = self
         tableView.dataSource = self
+        nameTextField.delegate = self
     }
 
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var tableView: UITableView!
+    @IBAction func TouchDone(sender: AnyObject) {
+        
+        var users_joined = NSMutableArray()
+        var users_joinedNames = NSMutableArray()
+        var user_host = PFUser.currentUser()?.objectForKey("fb_id") as! String
+        var user_hostName = (PFUser.currentUser()?.objectForKey("first_name") as! String) + (PFUser.currentUser()!.objectForKey("last_name") as! String)
+        var group_name = nameTextField.text
+        
+        
+        // Get Array of selected rows
+        var selectedRows = tableView.indexPathsForSelectedRows()
+        if(selectedRows == nil || nameTextField.hasText() == false  || nameTextField.text == " "){
+            println("selectedRows or nameTextField was null")
+        }
+        else {
+            for (var i = 0; i < selectedRows!.count; i++) {
+                var rowPath = selectedRows![i] as! NSIndexPath
+                // Get dictionary of the ith selected User
+                var user = users.objectAtIndex(rowPath.row) as! NSDictionary
+                users_joined.addObject(user.objectForKey("id") as! String)
+                users_joinedNames.addObject((user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String))
+            }
+            users_joined.addObject(user_host)
+            users_joinedNames.addObject(user_hostName)
+            
+            // Make PFObject
+            var newGroup = PFObject(className:"Groups")
+            newGroup["users_joined"] = users_joined
+            newGroup["users_joinedNames"] = users_joinedNames
+            newGroup["user_host"] = user_host
+            newGroup["user_hostName"] = user_hostName
+            newGroup["group_name"] = group_name
+
+            newGroup.saveInBackgroundWithBlock {
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    println("Group was stored")
+                } else {
+                    println("Error adding Group")
+                }
+            }
+            navigationController?.popToRootViewControllerAnimated(true)
+        }
+
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        return false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
