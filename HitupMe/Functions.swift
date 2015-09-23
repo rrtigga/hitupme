@@ -247,6 +247,8 @@ class Functions: NSObject {
                 
                 // Save Array of friend IDs
                 var idArray = [AnyObject]()
+                var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+                idArray.insert(userInfo_dict.objectForKey("id") as! String, atIndex:0)
                 for friend in friendData {
                     var dict : NSDictionary? = friend as? NSDictionary
                     

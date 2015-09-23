@@ -65,6 +65,15 @@ class UserTable: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+            
+        var user = users[indexPath.row] as! NSDictionary
+        
+        var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
+        pmv.userName = (user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String)
+        pmv.userID = user.objectForKey("id") as? String
+        navigationController!.showViewController(pmv, sender: self)
+        
+        /* Open Faceook Profile
         println("open")
         var user = users[indexPath.row] as! PFObject
         var url = NSURL(string: String(format:"https://www.facebook.com/%@?ref=0", user.objectForKey("fb_id") as! String))
@@ -72,10 +81,10 @@ class UserTable: UITableViewController {
             var desc = url?.debugDescription
             println(desc)
         }
+        */
         
         
         
     }
-
 
 }

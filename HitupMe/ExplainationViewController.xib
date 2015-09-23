@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wei-ue-Bzg">
-                    <rect key="frame" x="160" y="165" width="280" height="270"/>
+                    <rect key="frame" x="160" y="120" width="280" height="360"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Updates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twD-bJ-Ey6">
                             <rect key="frame" x="85" y="32" width="111" height="21"/>
@@ -25,17 +25,18 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l0J-wZ-IWc">
-                            <rect key="frame" x="16" y="68" width="249" height="144"/>
+                            <rect key="frame" x="16" y="68" width="249" height="221"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <string key="text">1. Now only Facebook friends can see what you post
+                            <string key="text">1. Now only Facebook friends can see what you post (All within 20 miles)
 2. Group Feature! Make a group on the new tab 😁
+3. See all of a person's hitups by using FB Friends list on top-left (For you Shashank!)
 
 - Arthur and Rohit 9/22/15</string>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N03-Oh-lbN">
-                            <rect key="frame" x="109" y="220" width="62" height="30"/>
+                            <rect key="frame" x="109" y="297" width="62" height="30"/>
                             <color key="backgroundColor" red="0.97647058819999999" green="0.40784313729999999" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                             <state key="normal" title="Done">
@@ -46,7 +47,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="270" id="9vi-he-hcy"/>
+                        <constraint firstAttribute="height" constant="360" id="9vi-he-hcy"/>
                         <constraint firstAttribute="width" constant="280" id="efb-nw-mU7"/>
                     </constraints>
                 </view>

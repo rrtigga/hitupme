@@ -744,7 +744,7 @@
             </objects>
             <point key="canvasLocation" x="2928" y="-726"/>
         </scene>
-        <!--Profile Map View-->
+        <!--Title-->
         <scene sceneID="vEt-Wc-0O1">
             <objects>
                 <viewController storyboardIdentifier="ProfileMapView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="857-eN-Oh1" customClass="ProfileMapView" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -768,6 +768,13 @@
                             <constraint firstItem="r94-eA-BG6" firstAttribute="top" secondItem="xwQ-3m-CTb" secondAttribute="bottom" id="xv4-AD-ZuS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="bHN-LP-jSj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="ROX-4g-XYj">
+                            <connections>
+                                <action selector="touchRefresh:" destination="857-eN-Oh1" id="otJ-7P-OC1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="xwQ-3m-CTb" id="b2X-uC-yH4"/>
                     </connections>
