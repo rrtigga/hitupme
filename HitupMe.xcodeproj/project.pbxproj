@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1807210E1BB271E300F53032 /* GroupsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807210D1BB271E300F53032 /* GroupsTVC.swift */; };
+		180721101BB278D900F53032 /* CreateGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1807210F1BB278D900F53032 /* CreateGroupsVC.swift */; };
+		180721121BB27B4800F53032 /* UserCellGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180721111BB27B4800F53032 /* UserCellGroup.swift */; };
 		18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18202A6A1B96D3A300D41249 /* myHitupCell.swift */; };
 		182789CD1B9A9C87003EF969 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */; };
 		1836611E1BA8C62800C608D6 /* PermissionRelatedCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */; };
@@ -80,6 +83,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1807210D1BB271E300F53032 /* GroupsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsTVC.swift; sourceTree = "<group>"; };
+		1807210F1BB278D900F53032 /* CreateGroupsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupsVC.swift; sourceTree = "<group>"; };
+		180721111BB27B4800F53032 /* UserCellGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCellGroup.swift; sourceTree = "<group>"; };
 		18202A6A1B96D3A300D41249 /* myHitupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myHitupCell.swift; sourceTree = "<group>"; };
 		182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionRelatedCalls.swift; sourceTree = "<group>"; };
@@ -278,6 +284,9 @@
 				1870DAC81BAD2D89008D04E7 /* HitupAnnotationView.swift */,
 				1889CE131BA26AAE00A38C6B /* HitupAnnotation.swift */,
 				1870DABC1BACFD35008D04E7 /* HitupCalloutView.swift */,
+				1884E5CF1BB22E820092C1D6 /* ExplainationViewController.swift */,
+				1884E5D01BB22E820092C1D6 /* ExplainationViewController.xib */,
+				180721111BB27B4800F53032 /* UserCellGroup.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -300,8 +309,8 @@
 				1884E5931BAE92230092C1D6 /* ProfileMapView.swift */,
 				18F8C05C1BA504BC0035724A /* UserTable.swift */,
 				18BFF53E1BAA8F550037CF9D /* OnboardScreen.swift */,
-				1884E5CF1BB22E820092C1D6 /* ExplainationViewController.swift */,
-				1884E5D01BB22E820092C1D6 /* ExplainationViewController.xib */,
+				1807210D1BB271E300F53032 /* GroupsTVC.swift */,
+				1807210F1BB278D900F53032 /* CreateGroupsVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -465,8 +474,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1807210E1BB271E300F53032 /* GroupsTVC.swift in Sources */,
 				18D24D9D1B8B9A950098F4D9 /* DetailActionCell.swift in Sources */,
 				18B48F4B1B879F260032C193 /* HitupFeed.swift in Sources */,
+				180721121BB27B4800F53032 /* UserCellGroup.swift in Sources */,
 				1870DABD1BACFD35008D04E7 /* HitupCalloutView.swift in Sources */,
 				18B48F5E1B88FEA90032C193 /* HitupDetailViewController.swift in Sources */,
 				1870DAC91BAD2D89008D04E7 /* HitupAnnotationView.swift in Sources */,
@@ -480,6 +491,7 @@
 				1884E5D11BB22E820092C1D6 /* ExplainationViewController.swift in Sources */,
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
 				18BFF53F1BAA8F550037CF9D /* OnboardScreen.swift in Sources */,
+				180721101BB278D900F53032 /* CreateGroupsVC.swift in Sources */,
 				18E2D6FF1B911CDD009783D7 /* Model.swift in Sources */,
 				18B48F511B87B3E50032C193 /* HitupCell.swift in Sources */,
 				1889CE141BA26AAE00A38C6B /* HitupAnnotation.swift in Sources */,

@@ -62,7 +62,8 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
                     var latitude = defaults.doubleForKey("latitude")
                     var longitude = defaults.doubleForKey("longitude")
                     
-                    self.mapView.showsUserLocation = true
+                    //self.mapView.showsUserLocation = true
+                    self.mapView.showsUserLocation = false
                     
                     if let objects = objects as? [PFObject] {
                         for object in objects {
