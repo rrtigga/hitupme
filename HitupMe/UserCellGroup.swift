@@ -14,15 +14,6 @@ class UserCellGroup: UITableViewCell {
     @IBOutlet var userName: UILabel!
     @IBOutlet var selectView: UIView!
     
-    override func setHighlighted(highlighted: Bool, animated: Bool) {
-        if (highlighted == true) {
-            selectView.backgroundColor = Functions.themeColor()
-            selectView.layer.borderWidth = 0
-        } else {
-            selectView.backgroundColor = UIColor.whiteColor()
-            selectView.layer.borderWidth = 1
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +24,13 @@ class UserCellGroup: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        if (selected == true) {
+            selectView.backgroundColor = Functions.themeColor()
+            selectView.layer.borderWidth = 0
+        } else {
+            selectView.backgroundColor = UIColor.whiteColor()
+            selectView.layer.borderWidth = 1
+        }
     }
 
 }

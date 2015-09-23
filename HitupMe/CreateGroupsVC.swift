@@ -10,7 +10,13 @@ import UIKit
 
 class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var users = NSArray()
+
     func initialSetup() {
+        var defaults = NSUserDefaults.standardUserDefaults()
+        users = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
+        nameTextField.returnKeyType = UIReturnKeyType.Done
+        tableView.allowsMultipleSelection = true
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -35,16 +41,22 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return users.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UserCellGroup
-        // Configure the cell...
-
+        var user = users[indexPath.row] as! NSDictionary
+        //cell.numberLabel.text = String(format:"%i.", users.count - indexPath.row)
+        cell.userName.text = (user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String)
+        Functions.getPictureFromFBId(user.objectForKey("id") as! String, completion: { (image) -> Void in
+            cell.profilePic.image = image
+        })
+        
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
     
