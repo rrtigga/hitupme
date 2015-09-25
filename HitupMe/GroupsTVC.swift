@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import Parse
 
 class GroupsTVC: UITableViewController {
 
     func initialSetup() {
         configureTableView()
+        refreshTable()
+        tableView.addSubview(refreshController)
+        refreshController.addTarget(self, action: "refreshTable", forControlEvents: UIControlEvents.ValueChanged)
     }
+    
+    var groups = [AnyObject]()
+    var refreshController = UIRefreshControl()
     
     func configureTableView() {
         tableView.rowHeight = 130
@@ -20,6 +27,17 @@ class GroupsTVC: UITableViewController {
         tableView.backgroundColor = Functions.defaultFadedColor()
     }
     
+    func refreshTable() {
+        HighLevelCalls.getGroups { (success, objects) -> Void in
+            if success == true {
+                self.groups = objects!
+                self.tableView.reloadData()
+            } else {
+                println("GTVC: Error refreshTable")
+            }
+            self.refreshController.endRefreshing()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +66,14 @@ class GroupsTVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 4
+        return groups.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! GroupCell
+        var group = groups[indexPath.row] as! PFObject
+        cell.groupName.text = group.objectForKey("group_name") as? String
 
         cell.backgroundColor = Functions.defaultFadedColor()
         return cell

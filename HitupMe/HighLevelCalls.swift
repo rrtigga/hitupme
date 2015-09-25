@@ -130,6 +130,21 @@ class HighLevelCalls: NSObject {
         }
     }
     
+    class func getGroups( completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+        var query = PFQuery(className: "Groups")
+        var id =   PFUser.currentUser()!.objectForKey("fb_id") as? String
+        query.whereKey("users_joined", containsAllObjectsInArray: [id!])
+        query.orderByDescending("createdAt")
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                completion(success: true, objects: objects)
+            } else {
+                println("HLC error getGroups", error!.description)
+                completion(success: false, objects: [AnyObject]())
+            }
+        }
+    }
+    
     
     class func getLocalNearbyHitups() -> NSArray {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

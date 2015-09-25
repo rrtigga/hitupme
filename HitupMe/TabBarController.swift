@@ -19,12 +19,21 @@ class TabBarController: UITabBarController {
     }
     
     func addIntro() {
-        var evc = ExplainationViewController(nibName: "ExplainationViewController", bundle: nil)
-        //var evc = ExplainationViewController()
-        evc.view.frame = view.frame
-        introView = evc.view
-        evc.doneButton.addTarget(self, action: Selector("removeIntro"), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(evc.view)
+        
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var installed: Bool? = defaults.boolForKey("installed_once")
+        if (installed == nil || installed == false) {
+            var evc = ExplainationViewController(nibName: "ExplainationViewController", bundle: nil)
+            //var evc = ExplainationViewController()
+            evc.view.frame = view.frame
+            introView = evc.view
+            evc.doneButton.addTarget(self, action: Selector("removeIntro"), forControlEvents: UIControlEvents.TouchUpInside)
+            view.addSubview(evc.view)
+            
+            defaults.setBool(true, forKey: "installed_once")
+        }
+        
+        
     }
     
     var introView: UIView?

@@ -44,13 +44,13 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     var hitupToSend = PFObject(className: "Hitups")
     var savedSegmentControl : UISegmentedControl?
-    var activeOnly = false
+    var activeOnly = true
     var todayOnly = true
     
     func switchChange(sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0) {
             // Today
-            activeOnly = false
+            activeOnly = true
             todayOnly = true
             refreshMap({ (success) -> Void in
                 

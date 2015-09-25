@@ -792,7 +792,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="130" id="Y85-xb-w7V">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="130" id="Y85-xb-w7V" customClass="GroupCell" customModule="HitupMe" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y85-xb-w7V" id="APw-0p-p79">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -910,6 +910,15 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="groupName" destination="LTQ-rU-RvI" id="2Xv-th-fNW"/>
+                                    <outlet property="headerLabel" destination="cnK-ah-TtS" id="6l8-rg-Skr"/>
+                                    <outlet property="joinedLabel" destination="vIe-qe-61w" id="Ywa-4b-Q2I"/>
+                                    <outlet property="mileLabel" destination="RVO-Qv-DjS" id="Pgs-iO-VEU"/>
+                                    <outlet property="nameLabel" destination="yRU-hj-UeB" id="yO3-G0-TC9"/>
+                                    <outlet property="profilePic" destination="idf-Cf-9c4" id="nbO-Cc-Hdw"/>
+                                    <outlet property="timeLabel" destination="uZG-Hf-tMH" id="E8E-7a-m4S"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -959,7 +968,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="eDf-OU-bQ6" kind="relationship" relationship="rootViewController" id="FRv-8z-Ubm"/>
+                        <segue destination="IKC-sy-o3g" kind="relationship" relationship="rootViewController" id="ko5-Si-Ul1"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceR-Du-ryO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1225,7 +1234,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HoZ-CN-WBA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HoZ-CN-WBA">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1372,7 +1381,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lJ-pY-Jrd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lJ-pY-Jrd">
                                 <rect key="frame" x="215" y="466" width="170" height="35"/>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.40784313729999999" blue="0.4941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1436,7 +1445,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of Squad" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="suZ-CC-hyU">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of Squad" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="suZ-CC-hyU">
                                 <rect key="frame" x="16" y="79" width="568" height="30"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1446,7 +1455,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hp4-94-Sbb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hp4-94-Sbb">
                                 <rect key="frame" x="0.0" y="117" width="600" height="483"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1501,7 +1510,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="PFn-jz-nfE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="cOa-L2-1X3"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="cOa-L2-1X3">
+                            <connections>
+                                <action selector="TouchDone:" destination="5bH-Wl-HMP" id="WYl-ui-0lB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="suZ-CC-hyU" id="gBa-5n-THT"/>

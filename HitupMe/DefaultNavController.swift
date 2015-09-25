@@ -11,7 +11,7 @@ import UIKit
 class DefaultNavController: UINavigationController {
 
     var isMap = false
-    var switchView = UISegmentedControl(items: ["Posted Today", "All"] )
+    var switchView = UISegmentedControl(items: ["Ongoing", "All"] )
     
     override func viewDidLoad() {
         super.viewDidLoad()
