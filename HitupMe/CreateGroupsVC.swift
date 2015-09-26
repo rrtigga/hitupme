@@ -33,6 +33,7 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         var user_hostName = (PFUser.currentUser()?.objectForKey("first_name") as! String) + (PFUser.currentUser()!.objectForKey("last_name") as! String)
         var group_name = nameTextField.text
         
+        Functions.setRefreshTabTrue(2)
         
         // Get Array of selected rows
         var selectedRows = tableView.indexPathsForSelectedRows()
@@ -50,6 +51,7 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             users_joined.addObject(user_host)
             users_joinedNames.addObject(user_hostName)
             
+            
             // Make PFObject
             var newGroup = PFObject(className:"Groups")
             newGroup["users_joined"] = users_joined
@@ -57,6 +59,7 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             newGroup["user_host"] = user_host
             newGroup["user_hostName"] = user_hostName
             newGroup["group_name"] = group_name
+            newGroup["group_id"] = String(format: "%d-%@-%@", NSDate().timeIntervalSince1970, group_name, user_host)
 
             newGroup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in

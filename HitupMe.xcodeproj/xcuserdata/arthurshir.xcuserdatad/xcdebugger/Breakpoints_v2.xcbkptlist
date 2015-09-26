@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HitupMe/CreateController.swift"
-            timestampString = "464395811.640274"
+            timestampString = "464926305.123107"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -423,11 +423,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HitupMe/CreateGroupsVC.swift"
-            timestampString = "464681913.129324"
+            timestampString = "464921391.373039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "TouchDone(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -439,11 +439,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HitupMe/CreateGroupsVC.swift"
-            timestampString = "464681913.129324"
+            timestampString = "464921391.373039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "TouchDone(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -462,83 +462,6 @@
             endingLineNumber = "23"
             landmarkName = "initialSetup()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HitupMe.CreateGroupsVC.nameTextField.getter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITextField&gt;"
-                  moduleName = "HitupMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/CreateGroupsVC.swift"
-                  timestampString = "464691038.821945"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HitupMe.CreateGroupsVC.nameTextField.setter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITextField&gt;"
-                  moduleName = "HitupMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/CreateGroupsVC.swift"
-                  timestampString = "464691038.822099"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HitupMe.CreateGroupsVC.nameTextField.materializeForSet : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UITextField&gt;"
-                  moduleName = "HitupMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/CreateGroupsVC.swift"
-                  timestampString = "464691038.822256"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HitupMe.CreateGroupsVC.init (HitupMe.CreateGroupsVC.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;ObjectiveC.NSBundle&gt;) -&gt; HitupMe.CreateGroupsVC"
-                  moduleName = "HitupMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/CreateGroupsVC.swift"
-                  timestampString = "464691038.822413"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "120">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HitupMe.CreateGroupsVC.init (HitupMe.CreateGroupsVC.Type)(coder : ObjectiveC.NSCoder) -&gt; HitupMe.CreateGroupsVC"
-                  moduleName = "HitupMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arthurshir/Documents/Local%20IOS/HitupMe/HitupMe/CreateGroupsVC.swift"
-                  timestampString = "464691038.822569"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -564,12 +487,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HitupMe/GroupsTVC.swift"
-            timestampString = "464842867.608797"
+            timestampString = "464921391.373039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "refreshTable()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HitupMe/GroupDetailTVC.swift"
+            timestampString = "465000796.498322"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

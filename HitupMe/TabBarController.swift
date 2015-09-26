@@ -67,7 +67,7 @@ class TabBarController: UITabBarController {
     // ----- Button Functions ----- //
     
     func touchCreate() {
-        var createView = self.storyboard!.instantiateViewControllerWithIdentifier("CreateVC") as! CreateController
+        var createView = self.storyboard!.instantiateViewControllerWithIdentifier("CreateNav") as! UINavigationController
         presentViewController(createView, animated: true, completion: nil)
     }
     

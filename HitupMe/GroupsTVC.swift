@@ -11,6 +11,7 @@ import Parse
 
 class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
 
+    
     func initialSetup() {
         configureTableView()
         refreshTable()
@@ -18,6 +19,7 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
         refreshController.addTarget(self, action: "refreshTable", forControlEvents: UIControlEvents.ValueChanged)
     }
     
+    var loadedOnce = false
     var groups = [AnyObject]()
     var refreshController = UIRefreshControl()
     let loginView : FBSDKLoginButton = FBSDKLoginButton()// Note for some reason this button must be allocated here.
@@ -50,6 +52,21 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
                 println("GTVC: Error refreshTable")
             }
             self.refreshController.endRefreshing()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if loadedOnce == false {
+            // First Load, don't do anything
+            loadedOnce = true
+        } else {
+            Functions.updateLocation()
+            if Functions.refreshTab(2) == true {
+                refreshTable()
+            } else {
+                tableView.reloadData()
+            }
         }
     }
     
@@ -95,12 +112,20 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
         } else {
             println("GTVC: joinedArray == nil?")
         }
+        cell.moreButton.tag = indexPath.row
+        cell.moreButton.addTarget(self, action: Selector("touchMore:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         cell.backgroundColor = Functions.defaultFadedColor()
         return cell
     }
+    
+    func touchMore(sender: UIButton) {
+        groupToSend = groups[sender.tag] as! PFObject
+        performSegueWithIdentifier("GroupDetail", sender: self)
+    }
 
-
+    var groupToSend = PFObject(className: "Groups")
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -136,14 +161,19 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "GroupDetail" {
+            var detailController = segue.destinationViewController as! GroupDetailTVC
+            detailController.group = groupToSend
+        }
+        // Get t
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

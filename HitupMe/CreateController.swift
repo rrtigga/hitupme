@@ -22,14 +22,16 @@ class CreateController: UIViewController, UITextViewDelegate {
     var defaultLocationText = "Don't worry, we'll take care of location for you! :)"
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var headerTextView: UITextView!
-    @IBOutlet var detailsTextView: UITextView!
-    @IBOutlet var locationTextField: UITextField!
-    @IBOutlet var cityLabel: UILabel!
-    
     @IBOutlet var stepper: UIStepper!
-    
     @IBOutlet var activeLabel: UILabel!
     
+    @IBAction func switchChange(sender: AnyObject) {
+        if (sender as! UISwitch).on == true {
+            performSegueWithIdentifier("chooseGroup", sender: self)
+        } else {
+            
+        }
+    }
     @IBAction func stepperChange(sender: AnyObject) {
         activeLabel.text = String(format:"Active for %0.1f hours", stepper.value)
     }
@@ -41,6 +43,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         } else if headerTextView.textColor != UIColor.lightGrayColor() {
             view.endEditing(true)
             
+            /*
             var details = " "
             if (detailsTextView.textColor != UIColor.lightGrayColor()) {details = detailsTextView.text}
             
@@ -48,7 +51,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             if locationTextField.hasText() { locationText = locationTextField.text
             } else {
                 locationText = cityLabel.text!
-            }
+            }*/
             
             // Load Information
             var user = PFUser.currentUser()
@@ -58,9 +61,9 @@ class CreateController: UIViewController, UITextViewDelegate {
             
             // Make PFObject
             var newHitup = PFObject(className:"Hitups")
-            newHitup["description"] = details
+           // newHitup["description"] = details
             newHitup["header"] = headerTextView.text
-            newHitup["location_name"] = locationText
+            //newHitup["location_name"] = locationText
             
             // Set Cooridinates
             var defaults = NSUserDefaults.standardUserDefaults()
@@ -141,12 +144,12 @@ class CreateController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         // Set TextViews
         setHeaderDefault()
-        setDetailsDefault()
-        setLocationDefault()
+        //setDetailsDefault()
+        //setLocationDefault()
         headerTextView.tag = FieldType.header.rawValue
-        detailsTextView.tag = FieldType.details.rawValue
+        //detailsTextView.tag = FieldType.details.rawValue
         headerTextView.delegate = self
-        detailsTextView.delegate = self
+        //detailsTextView.delegate = self
         
         // Set First Responder
         headerTextView.becomeFirstResponder()
@@ -170,6 +173,7 @@ class CreateController: UIViewController, UITextViewDelegate {
         headerTextView.text = defaultHeaderText
         headerTextView.textColor = UIColor.lightGrayColor()
     }
+    /*
     func setDetailsDefault() {
         detailsTextView.text = defaultDetailsText
         detailsTextView.textColor = UIColor.lightGrayColor()
@@ -185,7 +189,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     func touchLocation() {
         println("sdfds")
         locationTextField.becomeFirstResponder()
-    }
+    }*/
     
     
     // ---------- These Callbacks run when Actions take place ---------- //
@@ -242,7 +246,7 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             } else if textView.tag == FieldType.details.rawValue {
                 if textView.textColor == UIColor.lightGrayColor() {
-                    detailsTextView.selectedRange = NSRange(location: 0,length: 0)
+                    //detailsTextView.selectedRange = NSRange(location: 0,length: 0)
                 }
             }
         }
@@ -256,7 +260,7 @@ class CreateController: UIViewController, UITextViewDelegate {
                 }
             } else if textView.tag == FieldType.details.rawValue {
                 if textView.textColor == UIColor.lightGrayColor() {
-                    detailsTextView.selectedRange = NSRange(location: 0,length: 0)
+                    //detailsTextView.selectedRange = NSRange(location: 0,length: 0)
                 }
             }
         }
