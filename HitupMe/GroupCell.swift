@@ -11,17 +11,15 @@ import UIKit
 class GroupCell: UITableViewCell {
 
     @IBOutlet var groupName: UILabel!
+    @IBOutlet var moreButton: UIButton!
+    @IBOutlet var numberLabel: UILabel!
     
-    @IBOutlet var profilePic: UIImageView!
-    
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var headerLabel: UITextView!
-    
-    @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var joinedLabel: UILabel!
-    @IBOutlet var mileLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        var more = UIImageView(image: UIImage(named: "Cell_More"))
+        more.frame = CGRectMake(0, 0, 20, 20)
+        more.center = CGPointMake(moreButton.frame.width/2, moreButton.frame.height/2)
+        moreButton.addSubview(more)
         // Initialization code
     }
 

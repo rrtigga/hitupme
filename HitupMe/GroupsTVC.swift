@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class GroupsTVC: UITableViewController {
+class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
 
     func initialSetup() {
         configureTableView()
@@ -20,12 +20,26 @@ class GroupsTVC: UITableViewController {
     
     var groups = [AnyObject]()
     var refreshController = UIRefreshControl()
+    let loginView : FBSDKLoginButton = FBSDKLoginButton()// Note for some reason this button must be allocated here.
     
     func configureTableView() {
-        tableView.rowHeight = 130
+        tableView.rowHeight = 90
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.backgroundColor = Functions.defaultFadedColor()
     }
+    
+    @IBAction func touchLogout(sender: AnyObject) {
+        loginView.delegate = self
+        loginView.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+    }
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    }
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        PFUser.logOutInBackground()
+        performSegueWithIdentifier("logout", sender: nil)
+        println("User Logged Out of App")
+    }
+    // ----- End ----- //
     
     func refreshTable() {
         HighLevelCalls.getGroups { (success, objects) -> Void in
@@ -75,6 +89,13 @@ class GroupsTVC: UITableViewController {
         var group = groups[indexPath.row] as! PFObject
         cell.groupName.text = group.objectForKey("group_name") as? String
 
+        var joinedArray: [AnyObject]? = group.objectForKey("users_joined") as? [AnyObject]
+        if (joinedArray != nil) {
+            cell.numberLabel.text = String(format: "%i members", joinedArray!.count )
+        } else {
+            println("GTVC: joinedArray == nil?")
+        }
+        
         cell.backgroundColor = Functions.defaultFadedColor()
         return cell
     }
