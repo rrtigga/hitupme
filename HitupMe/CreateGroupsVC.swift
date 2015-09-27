@@ -64,6 +64,7 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             newGroup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
+                    PFUser.currentUser()?.fetchInBackground()
                     println("Group was stored")
                 } else {
                     println("Error adding Group")

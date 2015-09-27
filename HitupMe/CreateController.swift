@@ -17,6 +17,8 @@ class CreateController: UIViewController, UITextViewDelegate {
         case details
         case location
     }
+    
+    var chosenGroupID = String()
     var defaultHeaderText = "What are your friends joining you for?"
     var defaultDetailsText = "Details (optional)"
     var defaultLocationText = "Don't worry, we'll take care of location for you! :)"
@@ -24,6 +26,34 @@ class CreateController: UIViewController, UITextViewDelegate {
     @IBOutlet var headerTextView: UITextView!
     @IBOutlet var stepper: UIStepper!
     @IBOutlet var activeLabel: UILabel!
+    
+    func initialSetup() {
+        
+        // Set TextViews
+        setHeaderDefault()
+        //setDetailsDefault()
+        //setLocationDefault()
+        headerTextView.tag = FieldType.header.rawValue
+        //detailsTextView.tag = FieldType.details.rawValue
+        headerTextView.delegate = self
+        //detailsTextView.delegate = self
+        
+        // Set First Responder
+        headerTextView.becomeFirstResponder()
+        headerTextView.selectedRange = NSRange(location: 0,length: 0)
+        
+        Functions.updateLocation()
+        Functions.getPictureFromFBId( PFUser.currentUser()?.objectForKey("fb_id") as! String , completion: { (image) -> Void in
+            self.profilePic.image = image
+        })
+        
+        setupStepper()
+        activeLabel.text = String(format:"Active for %0.1f hours", stepper.value)
+        
+        //var defaults = NSUserDefaults.standardUserDefaults()
+        //cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
+        
+    }
     
     @IBAction func switchChange(sender: AnyObject) {
         if (sender as! UISwitch).on == true {
@@ -142,29 +172,7 @@ class CreateController: UIViewController, UITextViewDelegate {
     // ---------- This runs right after Create Hitup Button is touched ---------- //
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set TextViews
-        setHeaderDefault()
-        //setDetailsDefault()
-        //setLocationDefault()
-        headerTextView.tag = FieldType.header.rawValue
-        //detailsTextView.tag = FieldType.details.rawValue
-        headerTextView.delegate = self
-        //detailsTextView.delegate = self
-        
-        // Set First Responder
-        headerTextView.becomeFirstResponder()
-        headerTextView.selectedRange = NSRange(location: 0,length: 0)
-        
-        Functions.updateLocation()
-        Functions.getPictureFromFBId( PFUser.currentUser()?.objectForKey("fb_id") as! String , completion: { (image) -> Void in
-            self.profilePic.image = image
-        })
-        
-        setupStepper()
-        activeLabel.text = String(format:"Active for %0.1f hours", stepper.value)
-        
-        //var defaults = NSUserDefaults.standardUserDefaults()
-        //cityLabel.text = String(format: "%@, %@", defaults.objectForKey("city") as! String, defaults.objectForKey("state") as! String )
+        initialSetup()
     }
 
     
