@@ -18,14 +18,18 @@ class CreateController: UIViewController, UITextViewDelegate {
         case location
     }
     
-    var chosenGroupID = String()
+    var chosenSquadID = String()
+    var chosenSquadName = String()
     var defaultHeaderText = "What are your friends joining you for?"
     var defaultDetailsText = "Details (optional)"
     var defaultLocationText = "Don't worry, we'll take care of location for you! :)"
+    var defaultSquadText = "Post only to Squad?"
     @IBOutlet var profilePic: UIImageView!
     @IBOutlet var headerTextView: UITextView!
     @IBOutlet var stepper: UIStepper!
     @IBOutlet var activeLabel: UILabel!
+    @IBOutlet var squadSwitch: UISwitch!
+    @IBOutlet var squadLabel: UILabel!
     
     func initialSetup() {
         
@@ -55,11 +59,23 @@ class CreateController: UIViewController, UITextViewDelegate {
         
     }
     
+    func manageSwitchChange() {
+        if (chosenSquadID.isEmpty) {
+            squadSwitch.on = false
+            squadLabel.text = defaultSquadText
+        } else {
+            squadSwitch.on = true
+            squadLabel.text = String(format: "Only visible to %@", chosenSquadName)
+        }
+    }
+    
     @IBAction func switchChange(sender: AnyObject) {
         if (sender as! UISwitch).on == true {
             performSegueWithIdentifier("chooseGroup", sender: self)
         } else {
-            
+            chosenSquadID = ""
+            chosenSquadName = ""
+            manageSwitchChange() 
         }
     }
     @IBAction func stepperChange(sender: AnyObject) {
@@ -176,9 +192,8 @@ class CreateController: UIViewController, UITextViewDelegate {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if chosenGroupID == nil || chosenGroupID.isEmpty {
-            
-        }
+        
+        manageSwitchChange()
     }
 
     

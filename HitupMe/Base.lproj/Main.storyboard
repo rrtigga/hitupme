@@ -631,6 +631,8 @@
                         <outlet property="activeLabel" destination="zf2-dc-kgA" id="efM-b6-OFh"/>
                         <outlet property="headerTextView" destination="ZkZ-S8-5SN" id="nTd-4t-riO"/>
                         <outlet property="profilePic" destination="rhP-kc-0cg" id="5Dy-Qu-NFb"/>
+                        <outlet property="squadLabel" destination="egH-m9-1Tm" id="E6s-Fu-EHo"/>
+                        <outlet property="squadSwitch" destination="V0Z-Yi-biH" id="q4n-yc-bTS"/>
                         <outlet property="stepper" destination="VqL-IL-Bmf" id="IQo-Pe-Efw"/>
                         <segue destination="MgD-5J-dfT" kind="show" identifier="chooseGroup" id="6gR-ec-fTc"/>
                     </connections>
@@ -648,11 +650,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7Y0-C9-9Dl">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="7Y0-C9-9Dl" customClass="PickGroupCell" customModule="HitupMe" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Y0-C9-9Dl" id="HYt-QZ-U5w">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GroupName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAE-Iy-wPu">
+                                            <rect key="frame" x="14" y="11" width="94" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cell_Group" translatesAutoresizingMaskIntoConstraints="NO" id="gUw-W0-oIF">
+                                            <rect key="frame" x="148" y="10" width="20" height="20"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2 members    " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-Db-SQa">
+                                            <rect key="frame" x="183" y="11" width="106" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="GroupImage" destination="gUw-W0-oIF" id="o1s-fX-P5a"/>
+                                    <outlet property="GroupName" destination="FAE-Iy-wPu" id="55A-5H-yJd"/>
+                                    <outlet property="Num_Members" destination="eNz-Db-SQa" id="zfj-hu-Rlc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

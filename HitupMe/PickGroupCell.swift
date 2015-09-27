@@ -10,6 +10,13 @@ import UIKit
 
 class PickGroupCell: UITableViewCell {
 
+    @IBOutlet var GroupName: UILabel!
+    
+    @IBOutlet var GroupImage: UIImageView!
+    
+    @IBOutlet var Num_Members: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
