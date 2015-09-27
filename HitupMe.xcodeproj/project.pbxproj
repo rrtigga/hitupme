@@ -14,6 +14,7 @@
 		18202A6B1B96D3A300D41249 /* myHitupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18202A6A1B96D3A300D41249 /* myHitupCell.swift */; };
 		182789CD1B9A9C87003EF969 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */; };
 		1836611E1BA8C62800C608D6 /* PermissionRelatedCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */; };
+		18385E671BB8A4DA00543EDB /* PickGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385E661BB8A4DA00543EDB /* PickGroupCell.swift */; };
 		184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */; };
 		184A72311B96638E002194B0 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A72301B96638E002194B0 /* Hitup.swift */; };
 		185C1E2A1BA0CA6600D079DC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E241BA0CA6600D079DC /* Parse.framework */; };
@@ -93,6 +94,7 @@
 		18202A6A1B96D3A300D41249 /* myHitupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myHitupCell.swift; sourceTree = "<group>"; };
 		182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionRelatedCalls.swift; sourceTree = "<group>"; };
+		18385E661BB8A4DA00543EDB /* PickGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickGroupCell.swift; sourceTree = "<group>"; };
 		184A71FA1B965254002194B0 /* HitupModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HitupModel.xcdatamodel; sourceTree = "<group>"; };
 		184A72301B96638E002194B0 /* Hitup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hitup.swift; path = ../Hitup.swift; sourceTree = "<group>"; };
 		185C1E241BA0CA6600D079DC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				1884E5D01BB22E820092C1D6 /* ExplainationViewController.xib */,
 				180721111BB27B4800F53032 /* UserCellGroup.swift */,
 				180721131BB29DCC00F53032 /* GroupCell.swift */,
+				18385E661BB8A4DA00543EDB /* PickGroupCell.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */,
 				18E2D7051B926B3D009783D7 /* HighLevelCalls.swift in Sources */,
 				1884E5941BAE92230092C1D6 /* ProfileMapView.swift in Sources */,
+				18385E671BB8A4DA00543EDB /* PickGroupCell.swift in Sources */,
 				1884E5D11BB22E820092C1D6 /* ExplainationViewController.swift in Sources */,
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,
 				18BFF53F1BAA8F550037CF9D /* OnboardScreen.swift in Sources */,

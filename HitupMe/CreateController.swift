@@ -174,6 +174,12 @@ class CreateController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         initialSetup()
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if chosenGroupID == nil || chosenGroupID.isEmpty {
+            
+        }
+    }
 
     
     // ---------- These two functions Reset the TextViews to Placeholder Text ---------- //
