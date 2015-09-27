@@ -125,7 +125,12 @@ class CreateController: UIViewController, UITextViewDelegate {
             newHitup["expire_time"] = NSDate(timeIntervalSinceNow: 60 * 60 * stepper.value)
             newHitup["duration"] = stepper.value
             
-            
+            // Set Group
+            if squadSwitch.on {
+                newHitup["to_group"] = chosenSquadID
+                newHitup["to_group_name"] = chosenSquadName
+            }
+        
             newHitup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {

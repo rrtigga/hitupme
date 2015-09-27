@@ -75,13 +75,60 @@ class HighLevelCalls: NSObject {
         
     }
     
-    class func updateExploreHitups( isActiveOnly: Bool, isTodayOnly: Bool, completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
-        
-        var lastWeek = NSDate().dateByAddingTimeInterval(-432000.0)
-        
-        var query = PFQuery(className: "Hitups")
-        //query.whereKey("createdAt", greaterThan: lastWeek)
+    class func updateGroupHitups( groupID: String, isActiveOnly: Bool, isTodayOnly: Bool, completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+        // Update User and make Query
+        PFUser.currentUser()?.fetchInBackground()
+        var user = PFUser.currentUser()!
         var defaults = NSUserDefaults.standardUserDefaults()
+        var query = PFQuery(className: "Hitups")
+        
+        // Set Restrictions
+        if isActiveOnly == true {
+            query.whereKey("expire_time", greaterThan: NSDate())
+        }
+        if isTodayOnly == true {
+            var yesterday = NSDate().dateByAddingTimeInterval(-86400)
+            query.whereKey("createdAt", greaterThan: yesterday)
+        }
+        query.orderByDescending("createdAt")
+        query.limit = 30
+        query.whereKey("to_group", equalTo: groupID)
+        
+        // Find
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil {
+                completion(success: true, objects: objects)
+            } else {
+                println(error?.description)
+                completion(success: false, objects: [AnyObject]())
+            }
+        }
+    
+    }
+    
+    class func updateExploreHitups( isActiveOnly: Bool, isTodayOnly: Bool, completion: (( success: Bool?, objects: [AnyObject]? ) -> Void)) {
+        PFUser.currentUser()?.fetchInBackground()
+        var user = PFUser.currentUser()!
+        var defaults = NSUserDefaults.standardUserDefaults()
+
+        // Group Query
+        var groupQuery = PFQuery(className: "Hitups")
+        groupQuery.whereKey("to_group", containedIn: user.objectForKey("groups_joined") as! [AnyObject] )
+        
+        // Regular Query
+        var regularQuery = PFQuery(className: "Hitups")
+        var friendIds : [AnyObject]? = defaults.arrayForKey("friend_ids")
+        if friendIds != nil {
+            regularQuery.whereKey("user_host", containedIn: friendIds!)
+        } else {
+            println("HLC: friendIds was nil?")
+        }
+        regularQuery.whereKeyDoesNotExist("to_group")
+        
+        // Combine Queries (group or regular)
+        var query = PFQuery.orQueryWithSubqueries([groupQuery, regularQuery])
+        var lastWeek = NSDate().dateByAddingTimeInterval(-432000.0)
+        //query.whereKey("createdAt", greaterThan: lastWeek)
         var latitude = defaults.doubleForKey("latitude")
         var longitude = defaults.doubleForKey("longitude")
         if isActiveOnly == true {
@@ -92,16 +139,10 @@ class HighLevelCalls: NSObject {
             query.whereKey("createdAt", greaterThan: yesterday)
         }
         
-        var friendIds : [AnyObject]? = defaults.arrayForKey("friend_ids")
-        if friendIds != nil {
-            query.whereKey("user_host", containedIn: friendIds!)
-        } else {
-            println("HLC: friendIds was nil?")
-        }
-        
         query.whereKey("coordinates", nearGeoPoint: PFGeoPoint(latitude: latitude, longitude: longitude), withinMiles: 20.0)
         query.orderByDescending("createdAt")
         query.limit = 30;
+        
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 completion(success: true, objects: objects)
