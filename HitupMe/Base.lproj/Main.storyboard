@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wsG-Rl-yBR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wsG-Rl-yBR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -521,26 +521,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What are your friends joining?" translatesAutoresizingMaskIntoConstraints="NO" id="ZkZ-S8-5SN">
-                                <rect key="frame" x="68" y="83" width="516" height="70"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="512" id="48Y-h4-3nT"/>
-                                    <constraint firstAttribute="height" constant="70" id="AbG-I4-15r"/>
-                                    <constraint firstAttribute="height" constant="42" id="fgG-42-pEu"/>
-                                    <constraint firstAttribute="width" constant="516" id="xG7-Wa-LYG"/>
-                                </constraints>
-                                <color key="textColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="48Y-h4-3nT"/>
-                                        <exclude reference="fgG-42-pEu"/>
-                                        <exclude reference="xG7-Wa-LYG"/>
-                                    </mask>
-                                </variation>
-                            </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SHIBA" translatesAutoresizingMaskIntoConstraints="NO" id="rhP-kc-0cg">
                                 <rect key="frame" x="16" y="87" width="40" height="40"/>
                                 <constraints>
@@ -586,23 +566,42 @@
                                 <color key="textColor" red="0.30097853540000002" green="0.30097853540000002" blue="0.30097853540000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What are your friends joining?" translatesAutoresizingMaskIntoConstraints="NO" id="ZkZ-S8-5SN">
+                                <rect key="frame" x="74" y="78" width="516" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="512" id="48Y-h4-3nT"/>
+                                    <constraint firstAttribute="height" constant="70" id="WRe-7v-FYe"/>
+                                    <constraint firstAttribute="height" constant="42" id="fgG-42-pEu"/>
+                                    <constraint firstAttribute="width" constant="516" id="xG7-Wa-LYG"/>
+                                </constraints>
+                                <color key="textColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="48Y-h4-3nT"/>
+                                        <exclude reference="fgG-42-pEu"/>
+                                        <exclude reference="xG7-Wa-LYG"/>
+                                    </mask>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZkZ-S8-5SN" secondAttribute="trailing" constant="-6" id="5li-Cp-TQx"/>
                             <constraint firstItem="rhP-kc-0cg" firstAttribute="leading" secondItem="hm6-kc-ff6" secondAttribute="leadingMargin" id="7cm-rP-8vX"/>
-                            <constraint firstItem="ZkZ-S8-5SN" firstAttribute="trailing" secondItem="hm6-kc-ff6" secondAttribute="trailingMargin" id="Cuj-Yi-b12"/>
+                            <constraint firstItem="ZkZ-S8-5SN" firstAttribute="leading" secondItem="hm6-kc-ff6" secondAttribute="leadingMargin" constant="58" id="7nK-nI-tMc"/>
                             <constraint firstItem="ZkZ-S8-5SN" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="87" id="LzO-lh-z0Z"/>
-                            <constraint firstAttribute="centerX" secondItem="ZkZ-S8-5SN" secondAttribute="centerX" constant="-26" id="OjR-ib-laD"/>
                             <constraint firstAttribute="centerX" secondItem="V0Z-Yi-biH" secondAttribute="centerX" constant="-68.5" id="QAE-Li-xD7"/>
-                            <constraint firstItem="ZkZ-S8-5SN" firstAttribute="leading" secondItem="hm6-kc-ff6" secondAttribute="leadingMargin" constant="52" id="USm-Lw-Klv"/>
                             <constraint firstAttribute="centerX" secondItem="zf2-dc-kgA" secondAttribute="centerX" constant="46" id="VWY-PP-8MV"/>
                             <constraint firstAttribute="centerX" secondItem="egH-m9-1Tm" secondAttribute="centerX" constant="89" id="bcy-zQ-Aj7"/>
                             <constraint firstAttribute="centerX" secondItem="zf2-dc-kgA" secondAttribute="centerX" constant="57" id="iFh-Cd-bov"/>
                             <constraint firstItem="zf2-dc-kgA" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="123" id="ja0-Fr-nO7"/>
                             <constraint firstItem="rhP-kc-0cg" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="23" id="nvF-fZ-KN6"/>
-                            <constraint firstItem="ZkZ-S8-5SN" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="19" id="p4T-pq-mOO"/>
                             <constraint firstAttribute="centerX" secondItem="VqL-IL-Bmf" secondAttribute="centerX" constant="-68" id="pia-2Y-iRR"/>
                             <constraint firstItem="VqL-IL-Bmf" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="119" id="qlJ-e2-RzG"/>
+                            <constraint firstItem="ZkZ-S8-5SN" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="14" id="tEv-lT-y6v"/>
                             <constraint firstItem="egH-m9-1Tm" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="166" id="urj-1c-3GW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZkZ-S8-5SN" secondAttribute="trailing" constant="20" id="vxr-1Y-AY0"/>
                             <constraint firstItem="V0Z-Yi-biH" firstAttribute="top" secondItem="bKq-kv-NpZ" secondAttribute="bottom" constant="161" id="yLr-np-WMi"/>
@@ -631,7 +630,7 @@
                         <outlet property="activeLabel" destination="zf2-dc-kgA" id="efM-b6-OFh"/>
                         <outlet property="headerTextView" destination="ZkZ-S8-5SN" id="nTd-4t-riO"/>
                         <outlet property="profilePic" destination="rhP-kc-0cg" id="5Dy-Qu-NFb"/>
-                        <outlet property="squadLabel" destination="egH-m9-1Tm" id="E6s-Fu-EHo"/>
+                        <outlet property="squadLabel" destination="egH-m9-1Tm" id="jhP-RT-yzr"/>
                         <outlet property="squadSwitch" destination="V0Z-Yi-biH" id="q4n-yc-bTS"/>
                         <outlet property="stepper" destination="VqL-IL-Bmf" id="IQo-Pe-Efw"/>
                         <segue destination="MgD-5J-dfT" kind="show" identifier="chooseGroup" id="6gR-ec-fTc"/>
@@ -658,7 +657,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GroupName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAE-Iy-wPu">
                                             <rect key="frame" x="14" y="11" width="94" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cell_Group" translatesAutoresizingMaskIntoConstraints="NO" id="gUw-W0-oIF">
@@ -667,7 +666,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2 members    " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-Db-SQa">
                                             <rect key="frame" x="183" y="11" width="106" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -839,7 +838,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10 members" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gl8-1w-pEG">
                                                     <rect key="frame" x="42" y="42" width="116" height="21"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2s-Uj-zAM">
@@ -1450,7 +1449,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shibaaa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVr-rN-ngN">
                                                     <rect key="frame" x="70" y="23" width="353" height="21"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6YM-bU-ice">
@@ -1730,7 +1729,7 @@
                                     <constraint firstAttribute="width" constant="300" id="gKv-UQ-rVZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Snapshot_Create" translatesAutoresizingMaskIntoConstraints="NO" id="cUs-In-zcF">
@@ -1783,7 +1782,7 @@
                                     <constraint firstAttribute="width" constant="300" id="Xnh-e7-zkb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Snapshot_Nav" translatesAutoresizingMaskIntoConstraints="NO" id="Uqh-qs-JWR">
@@ -1843,7 +1842,7 @@
                                     <constraint firstAttribute="width" constant="100" id="ujd-8c-wi6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1886,7 +1885,7 @@
                                     <constraint firstAttribute="width" constant="208" id="lOe-eL-Zfz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="70"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rohit" translatesAutoresizingMaskIntoConstraints="NO" id="0ED-5U-23U">
@@ -1910,7 +1909,7 @@
                                     <constraint firstAttribute="height" constant="49" id="ZG6-cn-MHw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
