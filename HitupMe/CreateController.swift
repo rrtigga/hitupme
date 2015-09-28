@@ -129,6 +129,7 @@ class CreateController: UIViewController, UITextViewDelegate {
             if squadSwitch.on {
                 newHitup["to_group"] = chosenSquadID
                 newHitup["to_group_name"] = chosenSquadName
+                newHitup["has_group"] = true
             }
         
             newHitup.saveInBackgroundWithBlock {

@@ -15,6 +15,7 @@
 		182789CD1B9A9C87003EF969 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */; };
 		1836611E1BA8C62800C608D6 /* PermissionRelatedCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */; };
 		18385E671BB8A4DA00543EDB /* PickGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385E661BB8A4DA00543EDB /* PickGroupCell.swift */; };
+		18385E691BB8C61D00543EDB /* GroupMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18385E681BB8C61D00543EDB /* GroupMapVC.swift */; };
 		184A71FB1B965254002194B0 /* HitupModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 184A71F91B965254002194B0 /* HitupModel.xcdatamodeld */; };
 		184A72311B96638E002194B0 /* Hitup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A72301B96638E002194B0 /* Hitup.swift */; };
 		185C1E2A1BA0CA6600D079DC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185C1E241BA0CA6600D079DC /* Parse.framework */; };
@@ -95,6 +96,7 @@
 		182789CC1B9A9C87003EF969 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1836611D1BA8C62800C608D6 /* PermissionRelatedCalls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionRelatedCalls.swift; sourceTree = "<group>"; };
 		18385E661BB8A4DA00543EDB /* PickGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickGroupCell.swift; sourceTree = "<group>"; };
+		18385E681BB8C61D00543EDB /* GroupMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMapVC.swift; sourceTree = "<group>"; };
 		184A71FA1B965254002194B0 /* HitupModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HitupModel.xcdatamodel; sourceTree = "<group>"; };
 		184A72301B96638E002194B0 /* Hitup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hitup.swift; path = ../Hitup.swift; sourceTree = "<group>"; };
 		185C1E241BA0CA6600D079DC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				18E2D7021B925555009783D7 /* NotificationFeed.swift */,
 				185C1E451BA2092800D079DC /* ExploreMap.swift */,
 				1884E5931BAE92230092C1D6 /* ProfileMapView.swift */,
+				18385E681BB8C61D00543EDB /* GroupMapVC.swift */,
 				18F8C05C1BA504BC0035724A /* UserTable.swift */,
 				18BFF53E1BAA8F550037CF9D /* OnboardScreen.swift */,
 				1807210D1BB271E300F53032 /* GroupsTVC.swift */,
@@ -501,6 +504,7 @@
 				18E2D6FA1B8FE461009783D7 /* BackendAPI.swift in Sources */,
 				18E2D7051B926B3D009783D7 /* HighLevelCalls.swift in Sources */,
 				1884E5941BAE92230092C1D6 /* ProfileMapView.swift in Sources */,
+				18385E691BB8C61D00543EDB /* GroupMapVC.swift in Sources */,
 				18385E671BB8A4DA00543EDB /* PickGroupCell.swift in Sources */,
 				1884E5D11BB22E820092C1D6 /* ExplainationViewController.swift in Sources */,
 				18B48F561B87E02A0032C193 /* Functions.swift in Sources */,

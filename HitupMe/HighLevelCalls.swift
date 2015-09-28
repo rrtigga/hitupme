@@ -81,6 +81,7 @@ class HighLevelCalls: NSObject {
         var user = PFUser.currentUser()!
         var defaults = NSUserDefaults.standardUserDefaults()
         var query = PFQuery(className: "Hitups")
+        query.whereKey("has_group", equalTo: true)
         
         // Set Restrictions
         if isActiveOnly == true {
@@ -113,6 +114,7 @@ class HighLevelCalls: NSObject {
 
         // Group Query
         var groupQuery = PFQuery(className: "Hitups")
+        groupQuery.whereKey("has_group", equalTo: true)
         groupQuery.whereKey("to_group", containedIn: user.objectForKey("groups_joined") as! [AnyObject] )
         
         // Regular Query
@@ -123,7 +125,7 @@ class HighLevelCalls: NSObject {
         } else {
             println("HLC: friendIds was nil?")
         }
-        regularQuery.whereKeyDoesNotExist("to_group")
+        regularQuery.whereKey("has_group", notEqualTo: true)
         
         // Combine Queries (group or regular)
         var query = PFQuery.orQueryWithSubqueries([groupQuery, regularQuery])

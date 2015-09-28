@@ -12,6 +12,12 @@ import Parse
 
 class ExploreMap: UIViewController, MKMapViewDelegate {
     
+    var hitupToSend = PFObject(className: "Hitups")
+    var savedSegmentControl : UISegmentedControl?
+    var activeOnly = true
+    var todayOnly = true
+    var groupMode = false
+    
     func initialSetup() {
         var nc : DefaultNavController? = navigationController as? DefaultNavController
         if nc != nil {
@@ -41,11 +47,6 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         refreshMap { (success) -> Void in
         }
     }
-    
-    var hitupToSend = PFObject(className: "Hitups")
-    var savedSegmentControl : UISegmentedControl?
-    var activeOnly = true
-    var todayOnly = true
     
     func switchChange(sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0) {

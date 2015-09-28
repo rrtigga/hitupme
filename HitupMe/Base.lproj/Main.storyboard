@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wsG-Rl-yBR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wsG-Rl-yBR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -191,7 +191,7 @@
         <!--Explore Map-->
         <scene sceneID="ziB-If-Y6a">
             <objects>
-                <viewController id="XCh-VQ-Sbf" customClass="ExploreMap" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EMap" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XCh-VQ-Sbf" customClass="ExploreMap" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ru5-cs-5i4"/>
                         <viewControllerLayoutGuide type="bottom" id="u5c-iS-nHJ"/>
@@ -2215,6 +2215,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nky-zM-VrZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3279" y="-727"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="az3-gz-8PT">
+            <objects>
+                <viewController storyboardIdentifier="GroupMap" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QZ4-JG-Oex" customClass="GroupMapVC" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wbR-xg-rM4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zsp-N6-UFa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mAS-y1-5z7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UZc-4r-rRb">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zsp-N6-UFa" firstAttribute="top" secondItem="UZc-4r-rRb" secondAttribute="bottom" id="Ole-j3-Aig"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UZc-4r-rRb" secondAttribute="trailing" constant="-16" id="aZ9-Yl-U7s"/>
+                            <constraint firstItem="UZc-4r-rRb" firstAttribute="top" secondItem="wbR-xg-rM4" secondAttribute="bottom" id="qiG-xl-FJt"/>
+                            <constraint firstItem="UZc-4r-rRb" firstAttribute="leading" secondItem="mAS-y1-5z7" secondAttribute="leadingMargin" constant="-16" id="xNJ-SV-jQg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="NDg-FR-1o2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="eDp-4G-elN"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CTh-SM-0dq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3399" y="90"/>
         </scene>
     </scenes>
     <resources>
