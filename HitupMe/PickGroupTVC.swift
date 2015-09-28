@@ -60,7 +60,8 @@ class PickGroupTVC: UITableViewController {
         var memList = group.objectForKey("users_joined") as? [AnyObject]
         if (gName != nil && memList != nil) {
             cell.GroupName.text = group.objectForKey("group_name") as? String
-            cell.Num_Members.text = String(format:"%i", memList!.count)
+            cell.GroupImage.sizeToFit()
+            cell.Num_Members.text = String(format:"%i members", memList!.count)
         } else {
             println("PCGTVC: nil group name || users_joiend?")
         }

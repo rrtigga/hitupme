@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wsG-Rl-yBR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wsG-Rl-yBR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -654,22 +654,43 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Y0-C9-9Dl" id="HYt-QZ-U5w">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GroupName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAE-Iy-wPu">
-                                            <rect key="frame" x="14" y="11" width="94" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BAE$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAE-Iy-wPu">
+                                            <rect key="frame" x="26" y="12" width="212" height="20"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cell_Group" translatesAutoresizingMaskIntoConstraints="NO" id="gUw-W0-oIF">
-                                            <rect key="frame" x="148" y="10" width="20" height="20"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Cell_Group" translatesAutoresizingMaskIntoConstraints="NO" id="gUw-W0-oIF">
+                                            <rect key="frame" x="251" y="11" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="7RP-tX-DMG"/>
+                                                <constraint firstAttribute="height" constant="20" id="QEL-nf-5qr"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2 members    " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-Db-SQa">
-                                            <rect key="frame" x="183" y="11" width="106" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2 members    " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-Db-SQa">
+                                            <rect key="frame" x="279" y="14" width="89" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="89" id="Xvl-BT-y34"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eNz-Db-SQa" firstAttribute="leading" secondItem="gUw-W0-oIF" secondAttribute="trailing" constant="8" id="Aq6-o8-PSz"/>
+                                        <constraint firstItem="eNz-Db-SQa" firstAttribute="leading" secondItem="FAE-Iy-wPu" secondAttribute="trailing" constant="36" id="BQV-R2-szB"/>
+                                        <constraint firstAttribute="centerY" secondItem="gUw-W0-oIF" secondAttribute="centerY" constant="0.5" id="ERK-Jm-DMd"/>
+                                        <constraint firstAttribute="centerY" secondItem="eNz-Db-SQa" secondAttribute="centerY" constant="-1" id="MAe-4P-gxG"/>
+                                        <constraint firstItem="FAE-Iy-wPu" firstAttribute="leading" secondItem="HYt-QZ-U5w" secondAttribute="leadingMargin" constant="20" id="QSJ-BB-Uue"/>
+                                        <constraint firstAttribute="centerY" secondItem="FAE-Iy-wPu" secondAttribute="centerY" id="Yqb-6r-svE"/>
+                                        <constraint firstItem="gUw-W0-oIF" firstAttribute="leading" secondItem="FAE-Iy-wPu" secondAttribute="trailing" constant="22" id="o3P-la-pxm"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="BQV-R2-szB"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="GroupImage" destination="gUw-W0-oIF" id="o1s-fX-P5a"/>
@@ -809,7 +830,7 @@
             </objects>
             <point key="canvasLocation" x="2079" y="-1652"/>
         </scene>
-        <!--Your Squads-->
+        <!--Squads-->
         <scene sceneID="no5-DP-ZmX">
             <objects>
                 <tableViewController id="eDf-OU-bQ6" customClass="GroupsTVC" customModule="HitupMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -897,7 +918,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Your Squads" id="HR7-fW-DFj">
+                    <navigationItem key="navigationItem" title="Squads" id="HR7-fW-DFj">
                         <barButtonItem key="leftBarButtonItem" image="BB_Profile" id="hvA-xC-jWS">
                             <connections>
                                 <action selector="touchLogout:" destination="eDf-OU-bQ6" id="ec4-dA-ker"/>

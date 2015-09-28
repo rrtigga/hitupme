@@ -22,6 +22,7 @@ class GroupMapVC: UIViewController, MKMapViewDelegate {
     var groupMode = false
     
     func initialSetup() {
+        navigationItem.title = chosenSquadName
         var nc : DefaultNavController? = navigationController as? DefaultNavController
         if nc != nil {
             nc?.setIsMapTab(true)
@@ -83,6 +84,8 @@ class GroupMapVC: UIViewController, MKMapViewDelegate {
             Functions.promptLocationTo(self, message: "Aw 💩! Please enable location to see Hitups.")
             Functions.updateLocation()
         } else {
+            activeOnly = false
+            todayOnly = false
             HighLevelCalls.updateGroupHitups(chosenSquadID, isActiveOnly: activeOnly, isTodayOnly: todayOnly, completion: { (success, objects) -> Void in
                 if success == true {
                     println( objects!.count, "Objects")
@@ -294,18 +297,9 @@ class GroupMapVC: UIViewController, MKMapViewDelegate {
     }
     
     func touchCallout() {
-        performSegueWithIdentifier("showMapDetail", sender: nil)
-    }
-    
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        println("dd:")
-        
-        var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
-        if (annotation != nil) {
-            hitupToSend = annotation!.hitup!
-            performSegueWithIdentifier("showMapDetail", sender: nil)
-        }
-        
+        var pmv = storyboard!.instantiateViewControllerWithIdentifier("MapDetail") as! HitupDetailViewController
+        pmv.thisHitup = hitupToSend
+        navigationController!.showViewController(pmv, sender: self)
     }
     
     
@@ -317,7 +311,7 @@ class GroupMapVC: UIViewController, MKMapViewDelegate {
         
         mapView.delegate = self
         Functions.updateLocationinBack { (success) -> Void in
-            if Functions.refreshTab(1) == true {
+            if Functions.refreshTab(3) == true {
                 self.refreshMap({ (success) -> Void in
                     
                 })
@@ -333,15 +327,8 @@ class GroupMapVC: UIViewController, MKMapViewDelegate {
         Functions.updateFacebook { (success) -> Void in
             
         }
-        
-        showSwitch(true)
-        if Functions.refreshTab(1) == true {
-            self.refreshMap({ (success) -> Void in
-                
-            })
-        } else {
-            
-        }
+        showSwitch(false)
+        self.refreshMap({ (success) -> Void in})
     }
     
     
