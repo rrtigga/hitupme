@@ -127,9 +127,11 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
     var groupToSend = PFObject(className: "Groups")
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var EMap = storyboard?.instantiateViewControllerWithIdentifier("EMap") as! ExploreMap
-        EMap.groupMode = true
-        navigationController?.showViewController(EMap, sender: self)
+        var GMap = storyboard?.instantiateViewControllerWithIdentifier("GMap") as! GroupMapVC
+        var group = groups[indexPath.row] as! PFObject
+        GMap.chosenSquadID = group.objectForKey("group_id") as! String
+        GMap.chosenSquadName = group.objectForKey("group_name") as! String
+        navigationController?.showViewController(GMap, sender: self)
         
     }
 
