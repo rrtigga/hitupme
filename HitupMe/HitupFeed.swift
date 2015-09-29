@@ -169,6 +169,7 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
             cell.pastTimeLabel.text = String(format:"Ended  %@", formatter.stringFromDate(hitup.createdAt!))
         } else {
             if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
+                // expireDate hasn't happenned yet
                 cell.setActive(true)
                 var seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
                 
