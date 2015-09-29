@@ -115,7 +115,12 @@ class HighLevelCalls: NSObject {
         // Group Query
         var groupQuery = PFQuery(className: "Hitups")
         groupQuery.whereKey("has_group", equalTo: true)
-        groupQuery.whereKey("to_group", containedIn: user.objectForKey("groups_joined") as! [AnyObject] )
+        var groups_joined = user.objectForKey("groups_joined") as? [AnyObject]
+        if groups_joined == nil {
+            groupQuery.whereKey("to_group", containedIn: [] )
+        } else {
+            groupQuery.whereKey("to_group", containedIn: groups_joined! )
+        }
         
         // Regular Query
         var regularQuery = PFQuery(className: "Hitups")

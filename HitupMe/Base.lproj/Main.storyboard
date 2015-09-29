@@ -1923,7 +1923,7 @@
                                     <constraint firstAttribute="height" constant="88" id="al3-zX-wJ3"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for beta testing ❤️" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-VV-xul">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never miss a hangout again" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf1-VV-xul">
                                 <rect key="frame" x="144" y="181" width="312" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="312" id="2gW-zA-u0O"/>
@@ -1933,22 +1933,46 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We won't post anything to Facebook." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zs5-CN-g9S">
+                                <rect key="frame" x="194" y="576" width="212" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="212" id="3cc-Q5-qGf"/>
+                                    <constraint firstAttribute="height" constant="49" id="O3t-v6-geH"/>
+                                    <constraint firstAttribute="height" constant="23" id="e1D-db-y7Q"/>
+                                    <constraint firstAttribute="width" constant="312" id="vRo-zm-z5T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="O3t-v6-geH"/>
+                                        <exclude reference="vRo-zm-z5T"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Zs5-CN-g9S" secondAttribute="centerX" id="3iQ-5g-rwc"/>
                             <constraint firstAttribute="centerX" secondItem="xnP-Jg-sT6" secondAttribute="centerX" id="7Fx-dT-e1v"/>
+                            <constraint firstItem="HsI-WT-Yk9" firstAttribute="top" secondItem="Zs5-CN-g9S" secondAttribute="bottom" constant="1" id="CYa-rm-u6E"/>
                             <constraint firstAttribute="centerX" secondItem="kf1-VV-xul" secondAttribute="centerX" id="F6u-xn-jcv"/>
                             <constraint firstItem="kf1-VV-xul" firstAttribute="leading" secondItem="0ED-5U-23U" secondAttribute="trailing" constant="-131" id="LuO-6M-KOb"/>
                             <constraint firstItem="kf1-VV-xul" firstAttribute="top" secondItem="xnP-Jg-sT6" secondAttribute="bottom" constant="50" id="Rg4-mL-QgY"/>
                             <constraint firstItem="cfQ-tM-efS" firstAttribute="top" secondItem="xnP-Jg-sT6" secondAttribute="bottom" constant="138" id="WvW-YT-rJZ"/>
                             <constraint firstItem="0ED-5U-23U" firstAttribute="top" secondItem="xnP-Jg-sT6" secondAttribute="bottom" constant="138" id="b8o-01-NVs"/>
+                            <constraint firstItem="HsI-WT-Yk9" firstAttribute="top" secondItem="Zs5-CN-g9S" secondAttribute="bottom" constant="1" id="bYu-9U-ZwD"/>
                             <constraint firstItem="xnP-Jg-sT6" firstAttribute="top" secondItem="BnU-jn-gav" secondAttribute="top" constant="28" id="hAr-om-xaX"/>
+                            <constraint firstAttribute="centerX" secondItem="Zs5-CN-g9S" secondAttribute="centerX" id="kvG-QP-vRz"/>
                             <constraint firstItem="cfQ-tM-efS" firstAttribute="leading" secondItem="kf1-VV-xul" secondAttribute="trailing" constant="-131" id="lfd-HM-CCk"/>
                             <constraint firstItem="xnP-Jg-sT6" firstAttribute="top" secondItem="LgO-LX-puz" secondAttribute="bottom" constant="8" id="xT2-Xx-lU9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="xT2-Xx-lU9"/>
+                                <exclude reference="CYa-rm-u6E"/>
+                                <exclude reference="kvG-QP-vRz"/>
                             </mask>
                         </variation>
                     </view>
@@ -2293,7 +2317,7 @@
         <image name="Profile_Rohit" width="160" height="160"/>
         <image name="Refresh" width="27" height="27"/>
         <image name="Rohit" width="226" height="338"/>
-        <image name="SHIBA" width="135" height="135"/>
+        <image name="SHIBA" width="115" height="115"/>
         <image name="Snapshot_Create" width="746" height="550"/>
         <image name="Snapshot_Map" width="375" height="191"/>
         <image name="Snapshot_Nav" width="368" height="386"/>
