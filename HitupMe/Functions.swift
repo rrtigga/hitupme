@@ -78,8 +78,12 @@ class Functions: NSObject {
         var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=large", fbId) )!
         let request = NSURLRequest(URL: urL)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-            (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            completion( image: UIImage(data: data) )
+            (response: NSURLResponse!, data: NSData?, error: NSError!) -> Void in
+            if (data == nil) {
+                completion( image: UIImage(named: "SHIBA"))
+            } else {
+                completion( image: UIImage(data: data!) )
+            }
         }
     }
     
@@ -87,8 +91,12 @@ class Functions: NSObject {
         var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=small", fbId) )!
         let request = NSURLRequest(URL: urL)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-            (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            completion( image: UIImage(data: data) )
+            (response: NSURLResponse!, data: NSData?, error: NSError!) -> Void in
+            if (data == nil) {
+                completion( image: UIImage(named: "SHIBA"))
+            } else {
+                completion( image: UIImage(data: data!) )
+            }
         }
     }
     
@@ -96,8 +104,12 @@ class Functions: NSObject {
         var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture", fbId) )!
         let request = NSURLRequest(URL: urL)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-            (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            completion( image: UIImage(data: data) )
+            (response: NSURLResponse!, data: NSData?, error: NSError!) -> Void in
+            if (data == nil) {
+                completion( image: UIImage(named: "SHIBA"))
+            } else {
+                completion( image: UIImage(data: data!) )
+            }
         }
     }
     
