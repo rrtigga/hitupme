@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
     // ----- Setup Functions ----- //
     
     func initialSetup() {
-        addIntro()
+        //addIntro()
         setupCreateButton()
     }
     
