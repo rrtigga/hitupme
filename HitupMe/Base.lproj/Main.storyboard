@@ -1455,7 +1455,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hp4-94-Sbb">
-                                <rect key="frame" x="0.0" y="117" width="600" height="483"/>
+                                <rect key="frame" x="0.0" y="117" width="600" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" rowHeight="69" id="6KL-g1-4Fe" customClass="UserCellGroup" customModule="HitupMe" customModuleProvider="target">
@@ -1502,7 +1502,7 @@
                             <constraint firstItem="hp4-94-Sbb" firstAttribute="top" secondItem="suZ-CC-hyU" secondAttribute="bottom" constant="8" id="Aba-Rv-JRy"/>
                             <constraint firstItem="hp4-94-Sbb" firstAttribute="leading" secondItem="PqQ-Ak-jkd" secondAttribute="leadingMargin" constant="-16" id="L6R-99-R1b"/>
                             <constraint firstItem="suZ-CC-hyU" firstAttribute="top" secondItem="Ras-Uc-PHN" secondAttribute="bottom" constant="15" id="SmZ-mC-NGU"/>
-                            <constraint firstItem="eHu-BA-FBw" firstAttribute="top" secondItem="hp4-94-Sbb" secondAttribute="bottom" constant="-44" id="TOp-dX-qeT"/>
+                            <constraint firstItem="eHu-BA-FBw" firstAttribute="top" secondItem="hp4-94-Sbb" secondAttribute="bottom" id="TOp-dX-qeT"/>
                             <constraint firstItem="suZ-CC-hyU" firstAttribute="leading" secondItem="PqQ-Ak-jkd" secondAttribute="leadingMargin" id="YSV-ux-Vvm"/>
                             <constraint firstItem="suZ-CC-hyU" firstAttribute="trailing" secondItem="PqQ-Ak-jkd" secondAttribute="trailingMargin" id="pLe-dV-SXR"/>
                         </constraints>
