@@ -75,7 +75,7 @@ class GroupDetailTVC: UITableViewController {
             //header text
             var groupName =  self.group.objectForKey("group_name") as! String
             push.setMessage(groupName + "has been deleted" )
-            //push.sendPushInBackground()
+            push.sendPushInBackground()
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in

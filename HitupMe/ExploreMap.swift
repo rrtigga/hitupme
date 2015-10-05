@@ -154,7 +154,6 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 pinView!.canShowCallout = false
                 pinView!.animatesDrop = true
                 
-                
                 var hAnnotation = annotation as! HitupAnnotation
                 var hitup = hAnnotation.hitup
                 
@@ -163,36 +162,16 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
                 if (expireDate == nil) {
                     pinView!.pinColor = MKPinAnnotationColor.Red
+                    //pinView!.image = UIImage(named: "PinLocation_0")
                 } else {
                     if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
                         pinView!.pinColor = MKPinAnnotationColor.Green
+                        //pinView!.image = UIImage(named: "PinLocation_1")
                     } else {
                         pinView!.pinColor = MKPinAnnotationColor.Red
+                        //pinView!.image = UIImage(named: "PinLocation_0")
                     }
                 }
-                
-                /*
-                var leftView = UIView(frame: CGRectMake(0, 0, 52, 52))
-                var profilePicView = UIImageView(frame: CGRectMake(0, 9, 30, 30))
-                profilePicView.center = CGPointMake(leftView.frame.size.width/2, profilePicView.center.y)
-                var nameLabel = UILabel(frame: CGRectMake(0, 34, 52, 20))
-                nameLabel.textAlignment = NSTextAlignment.Center
-                nameLabel.font = nameLabel.font.fontWithSize(8)
-                nameLabel.text = hitup?.objectForKey("user_hostName") as? String
-                leftView.addSubview(nameLabel)
-                leftView.addSubview(profilePicView)
-                
-                pinView?.leftCalloutAccessoryView = leftView
-                pinView?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIView
-                // Set Profile Picture
-                var id = hitup?.objectForKey("user_host") as? String
-                Functions.getSmallPictureFromFBId(id!, completion: { (image) -> Void in
-                    profilePicView.image = image
-                })
-                */
-                
-                //var gest = UIGestureRecognizer(target: self, action: Selector(""))
-                //pinView?.addGestureRecognizer(gest)
                 
             } else {
                 pinView!.annotation = annotation
@@ -201,38 +180,24 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 var hAnnotation = annotation as! HitupAnnotation
                 var hitup = hAnnotation.hitup
                 
+                
                 // Set Active/nonActive
                 var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
                 if (expireDate == nil) {
                     pinView!.pinColor = MKPinAnnotationColor.Red
+                    //pinView!.image = UIImage(named: "PinLocation_0")
                 } else {
                     if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
                         pinView!.pinColor = MKPinAnnotationColor.Green
+                        //pinView!.image = UIImage(named: "PinLocation_1")
                     } else {
                         pinView!.pinColor = MKPinAnnotationColor.Red
+                        pinView!.image = UIImage(named: "PinLocation_0")
                     }
                 }
-                /*
-                var leftView = UIView(frame: CGRectMake(0, 0, 52, 52))
-                var profilePicView = UIImageView(frame: CGRectMake(0, 9, 30, 30))
-                profilePicView.center = CGPointMake(leftView.frame.size.width/2, profilePicView.center.y)
-                var nameLabel = UILabel(frame: CGRectMake(0, 34, 52, 20))
-                nameLabel.textAlignment = NSTextAlignment.Center
-                nameLabel.font = nameLabel.font.fontWithSize(8)
-                nameLabel.text = hitup?.objectForKey("user_hostName") as? String
-                leftView.addSubview(nameLabel)
-                leftView.addSubview(profilePicView)
-                
-                pinView?.leftCalloutAccessoryView = leftView
-                pinView?.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIView
-                // Set Profile Picture
-                var id = hitup?.objectForKey("user_host") as? String
-                Functions.getSmallPictureFromFBId(id!, completion: { (image) -> Void in
-                    profilePicView.image = image
-                })
-                */
+
             }
-            
+            pinView!.centerOffset = CGPointMake(0, -pinView!.frame.height/2)
             return pinView
         }
         

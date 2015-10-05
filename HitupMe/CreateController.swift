@@ -134,13 +134,13 @@ class CreateController: UIViewController, UITextViewDelegate {
                 // Create our query to notify all users joined
                 let pushQuery = PFInstallation.query()
                 pushQuery!.whereKey("groups_joined", containsAllObjectsInArray: [chosenSquadID])
-                pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
+                //pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
                 // Send push notification to query
                 let push = PFPush()
                 push.setQuery(pushQuery) // Set our Installation query
                 //header text
                 push.setMessage(chosenSquadName + ": " + firstName + "is " + headerTextView.text )
-                
+                push.sendPushInBackground()
             }
         
             newHitup.saveInBackgroundWithBlock {
