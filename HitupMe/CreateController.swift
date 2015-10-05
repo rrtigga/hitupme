@@ -131,16 +131,33 @@ class CreateController: UIViewController, UITextViewDelegate {
                 newHitup["to_group_name"] = chosenSquadName
                 newHitup["has_group"] = true
                 
-                // Create our query to notify all users joined
-                let pushQuery = PFInstallation.query()
-                pushQuery!.whereKey("groups_joined", containsAllObjectsInArray: [chosenSquadID])
-                //pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
-                // Send push notification to query
-                let push = PFPush()
-                push.setQuery(pushQuery) // Set our Installation query
-                //header text
-                push.setMessage(chosenSquadName + ": " + firstName + "is " + headerTextView.text )
-                push.sendPushInBackground()
+                //Query
+                var query_push = PFQuery(className: "Groups")
+                query_push.whereKey("group_id", equalTo: chosenSquadID)
+                
+                query_push.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                    if error == nil && objects?.first != nil {
+                        var group = objects!.first as! PFObject
+                        
+                        var push_ids = group.objectForKey("users_joined") as! [AnyObject]
+                        
+                        // Create our query to notify all users joined
+                        let pushQuery = PFInstallation.query()
+                        pushQuery?.whereKey("fb_id", containedIn: push_ids)
+                        //pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
+                        // Send push notification to query
+                        let push = PFPush()
+                        push.setQuery(pushQuery) // Set our Installation query
+                        //header text
+                        push.setMessage(self.chosenSquadName + ": " + firstName + "is " + self.headerTextView.text )
+                        push.sendPushInBackground()
+                        
+                    }
+                })
+                
+                
+                
+
             }
         
             newHitup.saveInBackgroundWithBlock {
