@@ -19,7 +19,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     var groupMode = false
     
     func initialSetup() {
-        var nc : DefaultNavController? = navigationController as? DefaultNavController
+        let nc : DefaultNavController? = navigationController as? DefaultNavController
         if nc != nil {
             nc?.setIsMapTab(true)
             savedSegmentControl = nc?.passSwitch()
@@ -29,12 +29,12 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     func showSwitch(show: Bool) {
         if show == true {
-            var nc : DefaultNavController? = navigationController as? DefaultNavController
+            let nc : DefaultNavController? = navigationController as? DefaultNavController
             if nc != nil {
                 nc?.showSwitch(show)
             }
         } else {
-            var nc : DefaultNavController? = navigationController as? DefaultNavController
+            let nc : DefaultNavController? = navigationController as? DefaultNavController
             if nc != nil {
                 nc?.showSwitch(show)
             }
@@ -83,24 +83,24 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             
             HighLevelCalls.updateExploreHitups(activeOnly, isTodayOnly: todayOnly, completion: { (success, objects) -> Void in
                 if success == true {
-                    println( objects!.count, "Objects")
+                    print( objects!.count, "Objects")
                     self.mapView.removeAnnotations(self.mapView.annotations)
                     
-                    var defaults = NSUserDefaults.standardUserDefaults()
-                    var latitude = defaults.doubleForKey("latitude")
-                    var longitude = defaults.doubleForKey("longitude")
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    let latitude = defaults.doubleForKey("latitude")
+                    let longitude = defaults.doubleForKey("longitude")
                     
                     self.mapView.showsUserLocation = true
                     
                     if let objects = objects as? [PFObject] {
                         for object in objects {
-                            var thisHitup = object
-                            var coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
+                            let thisHitup = object
+                            let coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
                             
-                            var annotation = HitupAnnotation()
+                            let annotation = HitupAnnotation()
                             var host = thisHitup.objectForKey("user_hostName") as? String
-                            var header = thisHitup.objectForKey("header") as? String
-                            var users_joined = thisHitup.objectForKey("users_joined") as! [AnyObject]
+                            let header = thisHitup.objectForKey("header") as? String
+                            let users_joined = thisHitup.objectForKey("users_joined") as! [AnyObject]
                             
                             annotation.title = header
                             annotation.subtitle = String(format: "%i joined", (users_joined.count - 1) )
@@ -140,7 +140,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         self.mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         
         if (annotation is MKUserLocation) {
             return nil
@@ -154,12 +154,12 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 pinView!.canShowCallout = false
                 pinView!.animatesDrop = true
                 
-                var hAnnotation = annotation as! HitupAnnotation
-                var hitup = hAnnotation.hitup
+                let hAnnotation = annotation as! HitupAnnotation
+                let hitup = hAnnotation.hitup
                 
                 
                 // Set Active/nonActive
-                var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
+                let expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
                 if (expireDate == nil) {
                     pinView!.pinColor = MKPinAnnotationColor.Red
                     //pinView!.image = UIImage(named: "PinLocation_0")
@@ -177,12 +177,12 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 pinView!.annotation = annotation
                 
                 
-                var hAnnotation = annotation as! HitupAnnotation
-                var hitup = hAnnotation.hitup
+                let hAnnotation = annotation as! HitupAnnotation
+                let hitup = hAnnotation.hitup
                 
                 
                 // Set Active/nonActive
-                var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
+                let expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
                 if (expireDate == nil) {
                     pinView!.pinColor = MKPinAnnotationColor.Red
                     //pinView!.image = UIImage(named: "PinLocation_0")
@@ -192,7 +192,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                         //pinView!.image = UIImage(named: "PinLocation_1")
                     } else {
                         pinView!.pinColor = MKPinAnnotationColor.Red
-                        pinView!.image = UIImage(named: "PinLocation_0")
+                        //pinView!.image = UIImage(named: "PinLocation_0")
                     }
                 }
 
@@ -203,18 +203,18 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         
     }
 
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
         // Save Hitup to be used in Segue
-        var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
+        let annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
         if (annotation != nil) {
             
-            var calloutView = HitupCalloutView.initView()
+            let calloutView = HitupCalloutView.initView()
             
             hitupToSend = annotation!.hitup!
-            var hitup = hitupToSend
-            var header = hitup.objectForKey("header") as! String
-            var name = hitup.objectForKey("user_hostName") as? String
+            let hitup = hitupToSend
+            let header = hitup.objectForKey("header") as! String
+            let name = hitup.objectForKey("user_hostName") as? String
             calloutView.headerLabel.text = header
             calloutView.nameLabel.text = name
             
@@ -225,14 +225,14 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
                 })
             }
             
-            var formatter = NSDateFormatter()
+            let formatter = NSDateFormatter()
             formatter.dateFormat = "M/d"
-            var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
+            let expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
             if (expireDate == nil) {
                 calloutView.timeLabel.text = "Ended"
             } else {
                 if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
-                    var seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
+                    let seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
                     calloutView.timeLabel.text = String(format: "%.0f min left", seconds / 60)
                 } else {
                     calloutView.timeLabel.text = String(format:"Ended %@", formatter.stringFromDate(expireDate!))
@@ -240,7 +240,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
             }
             
             
-            var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
+            let joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
             calloutView.joinLabel.text = String(format: "%i joined", joinedArray.count - 1)
             
             calloutView.addTarget(self, action: Selector("touchCallout"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -250,7 +250,7 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     /// If user unselects callout annotation view, then remove it.
     
-    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         for subView in view.subviews {
             subView.removeFromSuperview()
         }
@@ -260,10 +260,10 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
         performSegueWithIdentifier("showMapDetail", sender: nil)
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        println("dd:")
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("dd:")
         
-        var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
+        let annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
         if (annotation != nil) {
             hitupToSend = annotation!.hitup!
             performSegueWithIdentifier("showMapDetail", sender: nil)
@@ -309,11 +309,11 @@ class ExploreMap: UIViewController, MKMapViewDelegate {
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("Showing Detail")
+        print("Showing Detail")
         showSwitch(false)
         if segue.identifier == "showMapDetail" {
             //showSwitch(false)
-            var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
+            let detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
             detailController.thisHitup = hitupToSend
         }
         

@@ -13,7 +13,7 @@ class PermissionRelatedCalls: NSObject {
 
     class func requestNotifications() {
         let application = UIApplication.sharedApplication()
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [UIUserNotificationType.Sound, UIUserNotificationType.Alert, UIUserNotificationType.Badge], categories: nil))
         application.registerForRemoteNotifications()
     }
     

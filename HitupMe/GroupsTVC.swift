@@ -39,7 +39,7 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         PFUser.logOutInBackground()
         performSegueWithIdentifier("logout", sender: nil)
-        println("User Logged Out of App")
+        print("User Logged Out of App")
     }
     // ----- End ----- //
     
@@ -49,7 +49,7 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
                 self.groups = objects!
                 self.tableView.reloadData()
             } else {
-                println("GTVC: Error refreshTable")
+                print("GTVC: Error refreshTable")
             }
             self.refreshController.endRefreshing()
         }
@@ -103,14 +103,14 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! GroupCell
-        var group = groups[indexPath.row] as! PFObject
+        let group = groups[indexPath.row] as! PFObject
         cell.groupName.text = group.objectForKey("group_name") as? String
 
-        var joinedArray: [AnyObject]? = group.objectForKey("users_joined") as? [AnyObject]
+        let joinedArray: [AnyObject]? = group.objectForKey("users_joined") as? [AnyObject]
         if (joinedArray != nil) {
             cell.numberLabel.text = String(format: "%i members", joinedArray!.count )
         } else {
-            println("GTVC: joinedArray == nil?")
+            print("GTVC: joinedArray == nil?")
         }
         cell.moreButton.tag = indexPath.row
         cell.moreButton.addTarget(self, action: Selector("touchMore:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -127,8 +127,8 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
     var groupToSend = PFObject(className: "Groups")
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var GMap = storyboard?.instantiateViewControllerWithIdentifier("GMap") as! GroupMapVC
-        var group = groups[indexPath.row] as! PFObject
+        let GMap = storyboard?.instantiateViewControllerWithIdentifier("GMap") as! GroupMapVC
+        let group = groups[indexPath.row] as! PFObject
         GMap.chosenSquadID = group.objectForKey("group_id") as! String
         GMap.chosenSquadName = group.objectForKey("group_name") as! String
         navigationController?.showViewController(GMap, sender: self)
@@ -141,7 +141,7 @@ class GroupsTVC: UITableViewController, FBSDKLoginButtonDelegate {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "GroupDetail" {
-            var detailController = segue.destinationViewController as! GroupDetailTVC
+            let detailController = segue.destinationViewController as! GroupDetailTVC
             detailController.group = groupToSend
         }
         // Get t

@@ -12,7 +12,7 @@ import MapKit
 class HitupAnnotationView: MKPinAnnotationView {
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        var hitView = super.hitTest(point, withEvent: event)
+        let hitView = super.hitTest(point, withEvent: event)
         if hitView != nil {
             superview?.bringSubviewToFront(self)
         }
@@ -20,7 +20,7 @@ class HitupAnnotationView: MKPinAnnotationView {
     }
     
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        var rect = bounds
+        let rect = bounds
         var isInside = CGRectContainsPoint(rect, point)
         if (isInside == false) {
             for view in subviews {

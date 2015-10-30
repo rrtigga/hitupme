@@ -14,9 +14,9 @@ class BackendAPI: NSObject {
         let headers = ["content-type": "application/json"]
         let parameters = ["apiKey": "U5KMDLQ9KHN4G8MO54EH9DKG896NUETMH4DYT98W3N0HAMSO4E"]
         
-        let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: nil)
+        let postData = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
         
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/connect")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/connect")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"
@@ -26,12 +26,12 @@ class BackendAPI: NSObject {
         let session = NSURLSession.sharedSession()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                println(error)
+                print(error)
             } else {
                 if let httpResponse = response as? NSHTTPURLResponse {
-                    println(httpResponse)
+                    print(httpResponse)
                     if let sid = httpResponse.allHeaderFields["sid"] as? String {
-                        var defaults = NSUserDefaults.standardUserDefaults()
+                        let defaults = NSUserDefaults.standardUserDefaults()
                         defaults.setObject(sid, forKey: "sid")
                         completion(success: true)
                     }
@@ -45,8 +45,8 @@ class BackendAPI: NSObject {
     
     class func addUser(userId:String, first_Name:String, last_Name:String, friends:NSArray, completion: ((success: Bool?) -> Void)) {
         // Uses Saved SID
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var sid = defaults.objectForKey("sid") as! String
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let sid = defaults.objectForKey("sid") as! String
         
         let headers = [
             "content-type": "application/json",
@@ -67,9 +67,9 @@ class BackendAPI: NSObject {
             "friends": ["123", "153"]
         ]
         
-        let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: nil)
+        let postData = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
         
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/user/addUser")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/user/addUser")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"
@@ -79,11 +79,11 @@ class BackendAPI: NSObject {
         let session = NSURLSession.sharedSession()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                println(error)
+                print(error)
                 completion(success: false)
             } else {
                 let httpResponse = response as? NSHTTPURLResponse
-                println(httpResponse)
+                print(httpResponse)
                 completion(success: true)
             }
         })
@@ -93,8 +93,8 @@ class BackendAPI: NSObject {
     
     class func getUser(userId:String, completion: ((success: Bool?) -> Void)) {
         // Uses Saved SID
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var sid = defaults.objectForKey("sid") as! String
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let sid = defaults.objectForKey("sid") as! String
         let headers = [
             "content-type": "application/json",
             "sid": sid
@@ -103,9 +103,9 @@ class BackendAPI: NSObject {
             "userId": userId,
         ]
         
-        let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: nil)
+        let postData = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
         
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/user/getUser")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/user/getUser")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "GET"
@@ -115,11 +115,11 @@ class BackendAPI: NSObject {
         let session = NSURLSession.sharedSession()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                println(error)
+                print(error)
                 completion(success: false)
             } else {
                 let httpResponse = response as? NSHTTPURLResponse
-                println(httpResponse)
+                print(httpResponse)
                 completion(success: true)
             }
         })
@@ -130,7 +130,7 @@ class BackendAPI: NSObject {
     class func addHitup(header:String, description:String, locationName:String, coordinates:String, timeCreated:String, userId:String, firstName:String, completion: ((success: Bool?) -> Void)) {
         // Uses Saved SID
         var sid : String?
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         if let tempSid = defaults.objectForKey("sid") as? String {
             sid = tempSid
         } else {
@@ -154,9 +154,9 @@ class BackendAPI: NSObject {
             ]
         ]
         
-        let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: nil)
+        let postData = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
         
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/hitup/addHitup")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/hitup/addHitup")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"
@@ -166,11 +166,11 @@ class BackendAPI: NSObject {
         let session = NSURLSession.sharedSession()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                println(error)
+                print(error)
                 completion(success: false)
             } else {
                 let httpResponse = response as? NSHTTPURLResponse
-                println(httpResponse)
+                print(httpResponse)
                 completion(success: true)
             }
         })
@@ -180,17 +180,17 @@ class BackendAPI: NSObject {
     
     class func removeHitup(hitupId:String, completion: ((success: Bool?) -> Void)) {
         // Uses Saved SID
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var sid = defaults.objectForKey("sid") as! String
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let sid = defaults.objectForKey("sid") as! String
         let headers = [
             "content-type": "application/json",
             "sid": sid
         ]
         let parameters = ["hitupId": hitupId]
         
-        let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: nil, error: nil)
+        let postData = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
         
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/hitup/removeHitup")!,
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://52.26.33.46/api/hitup/removeHitup")!,
             cachePolicy: .UseProtocolCachePolicy,
             timeoutInterval: 10.0)
         request.HTTPMethod = "POST"
@@ -200,10 +200,10 @@ class BackendAPI: NSObject {
         let session = NSURLSession.sharedSession()
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                println(error)
+                print(error)
             } else {
                 let httpResponse = response as? NSHTTPURLResponse
-                println(httpResponse)
+                print(httpResponse)
             }
         })
         

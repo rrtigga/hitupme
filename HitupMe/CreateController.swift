@@ -100,21 +100,21 @@ class CreateController: UIViewController, UITextViewDelegate {
             }*/
             
             // Load Information
-            var user = PFUser.currentUser()
-            var userId = user?.objectForKey("fb_id") as! String
-            var firstName = user?.objectForKey("first_name") as! String
-            var lastName = user?.objectForKey("last_name") as! String
+            let user = PFUser.currentUser()
+            let userId = user?.objectForKey("fb_id") as! String
+            let firstName = user?.objectForKey("first_name") as! String
+            let lastName = user?.objectForKey("last_name") as! String
             
             // Make PFObject
-            var newHitup = PFObject(className:"Hitups")
+            let newHitup = PFObject(className:"Hitups")
            // newHitup["description"] = details
             newHitup["header"] = headerTextView.text
             //newHitup["location_name"] = locationText
             
             // Set Cooridinates
-            var defaults = NSUserDefaults.standardUserDefaults()
-            var latitude = defaults.doubleForKey("latitude")
-            var longitude = defaults.doubleForKey("longitude")
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let latitude = defaults.doubleForKey("latitude")
+            let longitude = defaults.doubleForKey("longitude")
             newHitup["coordinates"] = PFGeoPoint(latitude: latitude,longitude: longitude)
             newHitup["user_host"] = userId
             newHitup["user_hostName"] = firstName + " " + lastName
@@ -132,19 +132,19 @@ class CreateController: UIViewController, UITextViewDelegate {
                 newHitup["has_group"] = true
                 
                 //Query
-                var query_push = PFQuery(className: "Groups")
+                let query_push = PFQuery(className: "Groups")
                 query_push.whereKey("group_id", equalTo: chosenSquadID)
                 
                 query_push.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
                     if error == nil && objects?.first != nil {
-                        var group = objects!.first as! PFObject
+                        let group = objects!.first as! PFObject
                         
-                        var push_ids = group.objectForKey("users_joined") as! [AnyObject]
+                        let push_ids = group.objectForKey("users_joined") as! [AnyObject]
                         
                         // Create our query to notify all users joined
                         let pushQuery = PFInstallation.query()
-                        pushQuery?.whereKey("fb_id", containedIn: push_ids)
-                        //pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
+                        pushQuery!.whereKey("fb_id", containedIn: push_ids)
+                        pushQuery!.whereKey("fb_id", notEqualTo: user?.objectForKey("fb_id") as! String)
                         // Send push notification to query
                         let push = PFPush()
                         push.setQuery(pushQuery) // Set our Installation query
@@ -163,13 +163,13 @@ class CreateController: UIViewController, UITextViewDelegate {
             newHitup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
-                    println("Hitup was stored")
+                    print("Hitup was stored")
                     let rel = PFUser.currentUser()?.relationForKey("my_hitups")
                     rel?.addObject(newHitup)
                     PFUser.currentUser()?.incrementKey("num")
                     PFUser.currentUser()?.saveInBackground()
                 } else {
-                    println("Error adding Hitup")
+                    print("Error adding Hitup")
                 }
             }
                 
@@ -181,25 +181,25 @@ class CreateController: UIViewController, UITextViewDelegate {
     }
     
     func promptLocation() {
-        var alert = UIAlertController(title: "Please enable location to post", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Please enable location to post", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
-            println("Yes")
-            var appSettings = NSURL(string: UIApplicationOpenSettingsURLString)
+            print("Yes")
+            let appSettings = NSURL(string: UIApplicationOpenSettingsURLString)
             UIApplication.sharedApplication().openURL(appSettings!)
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
-            println("No")
+            print("No")
         }))
         
         presentViewController(alert, animated: true, completion: nil)
     }
     
     func popToMainFeed() {
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var tabBarController = storyboard.instantiateViewControllerWithIdentifier("mainTab") as! UITabBarController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewControllerWithIdentifier("mainTab") as! UITabBarController
         tabBarController.selectedIndex = 0
         var num = 0
-        var firstNav = tabBarController.viewControllers![0] as! UINavigationController
+        let firstNav = tabBarController.viewControllers![0] as! UINavigationController
         firstNav.popToRootViewControllerAnimated(true)
         //var hitupFeed = firstNav.viewControllers![0] as! HitupFeed
         dismissViewControllerAnimated(true, completion: {})

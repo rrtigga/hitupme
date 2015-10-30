@@ -22,7 +22,7 @@ class HitupCalloutView: UIButton {
     
     class func initView() -> HitupCalloutView {
         
-        var hcv = HitupCalloutView()
+        let hcv = HitupCalloutView()
         hcv.layoutUI()
         hcv.profilePic.image = UIImage(named: "SHIBA")
         hcv.nameLabel.text = "SHIBA"

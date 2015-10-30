@@ -55,10 +55,10 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
             
             HighLevelCalls.updateProfileMapHitups(userID!, completion: { (success, objects) -> Void in
                 if success == true {
-                    println( objects!.count, "Objects")
+                    print( objects!.count, "Objects")
                     self.mapView.removeAnnotations(self.mapView.annotations)
                     
-                    var defaults = NSUserDefaults.standardUserDefaults()
+                    let defaults = NSUserDefaults.standardUserDefaults()
                     var latitude = defaults.doubleForKey("latitude")
                     var longitude = defaults.doubleForKey("longitude")
                     
@@ -67,13 +67,13 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
                     
                     if let objects = objects as? [PFObject] {
                         for object in objects {
-                            var thisHitup = object
-                            var coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
+                            let thisHitup = object
+                            let coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
                             
-                            var annotation = HitupAnnotation()
+                            let annotation = HitupAnnotation()
                             var host = thisHitup.objectForKey("user_hostName") as? String
-                            var header = thisHitup.objectForKey("header") as? String
-                            var users_joined = thisHitup.objectForKey("users_joined") as! [AnyObject]
+                            let header = thisHitup.objectForKey("header") as? String
+                            let users_joined = thisHitup.objectForKey("users_joined") as! [AnyObject]
                             
                             annotation.title = header
                             annotation.subtitle = String(format: "%i joined", (users_joined.count - 1) )
@@ -102,7 +102,7 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
         self.mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         
         if (annotation is MKUserLocation) {
             return nil
@@ -117,12 +117,12 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
                 pinView!.animatesDrop = true
                 
                 
-                var hAnnotation = annotation as! HitupAnnotation
-                var hitup = hAnnotation.hitup
+                let hAnnotation = annotation as! HitupAnnotation
+                let hitup = hAnnotation.hitup
                 
                 
                 // Set Active/nonActive
-                var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
+                let expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
                 if (expireDate == nil) {
                     pinView!.pinColor = MKPinAnnotationColor.Red
                 } else {
@@ -138,12 +138,12 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
                 pinView!.annotation = annotation
                 
                 
-                var hAnnotation = annotation as! HitupAnnotation
-                var hitup = hAnnotation.hitup
+                let hAnnotation = annotation as! HitupAnnotation
+                let hitup = hAnnotation.hitup
                 
                 
                 // Set Active/nonActive
-                var expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
+                let expireDate : NSDate? = hitup!.objectForKey("expire_time") as? NSDate
                 if (expireDate == nil) {
                     pinView!.pinColor = MKPinAnnotationColor.Red
                 } else {
@@ -161,18 +161,18 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
         
     }
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         
         // Save Hitup to be used in Segue
-        var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
+        let annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
         if (annotation != nil) {
             
-            var calloutView = HitupCalloutView.initView()
+            let calloutView = HitupCalloutView.initView()
             
             hitupToSend = annotation!.hitup!
-            var hitup = hitupToSend
-            var header = hitup.objectForKey("header") as! String
-            var name = hitup.objectForKey("user_hostName") as? String
+            let hitup = hitupToSend
+            let header = hitup.objectForKey("header") as! String
+            let name = hitup.objectForKey("user_hostName") as? String
             calloutView.headerLabel.text = header
             calloutView.nameLabel.text = name
             
@@ -183,14 +183,14 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
                 })
             }
             
-            var formatter = NSDateFormatter()
+            let formatter = NSDateFormatter()
             formatter.dateFormat = "M/d"
-            var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
+            let expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
             if (expireDate == nil) {
                 calloutView.timeLabel.text = "Ended"
             } else {
                 if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
-                    var seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
+                    let seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
                     calloutView.timeLabel.text = String(format: "%.0f min left", seconds / 60)
                 } else {
                     calloutView.timeLabel.text = String(format:"Ended %@", formatter.stringFromDate(expireDate!))
@@ -198,7 +198,7 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
             }
             
             
-            var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
+            let joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
             calloutView.joinLabel.text = String(format: "%i joined", joinedArray.count - 1)
             
             calloutView.addTarget(self, action: Selector("touchCallout"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -208,22 +208,22 @@ class ProfileMapView: UIViewController, MKMapViewDelegate {
     
     /// If user unselects callout annotation view, then remove it.
     
-    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         for subView in view.subviews {
             subView.removeFromSuperview()
         }
     }
     
     func touchCallout() {
-        var pmv = storyboard!.instantiateViewControllerWithIdentifier("MapDetail") as! HitupDetailViewController
+        let pmv = storyboard!.instantiateViewControllerWithIdentifier("MapDetail") as! HitupDetailViewController
         pmv.thisHitup = hitupToSend
         navigationController!.showViewController(pmv, sender: self)
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        println("dd:")
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("dd:")
         
-        var annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
+        let annotation: HitupAnnotation? = view.annotation as? HitupAnnotation
         if (annotation != nil) {
             hitupToSend = annotation!.hitup!
             performSegueWithIdentifier("showMapDetail", sender: nil)

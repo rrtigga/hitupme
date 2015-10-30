@@ -32,7 +32,7 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         PFUser.logOutInBackground()
         performSegueWithIdentifier("logout", sender: nil)
-        println("User Logged Out of App")
+        print("User Logged Out of App")
     }
     // ----- End ----- //
     
@@ -49,6 +49,7 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
         configureTableView()
         
         // Refresh Controller
+        
         Functions.updateLocationinBack { (success) -> Void in
             
             self.pullRefresh()
@@ -82,17 +83,17 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
             Functions.promptLocationTo(self, message: "Aw 💩! Please enable location to see Hitups.")
             self.refreshController.endRefreshing()
         } else {
-            println("refresh")
+            print("refresh")
             tableView.userInteractionEnabled = false
             HighLevelCalls.updateNearbyHitups { (success, objects) -> Void in
                 self.hitups = objects!
                 self.refreshController.endRefreshing()
                 self.tableView.reloadData()
                 self.tableView.userInteractionEnabled = true
-                println("Number of objects", objects!.count)
+                print("Number of objects", objects!.count)
                 
                 if objects!.count == 0 {
-                    var label = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 80))
+                    let label = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 80))
                     label.textAlignment = NSTextAlignment.Center
                     label.text = "No Active Hitups Nearby!"
                     label.font = UIFont(name: "Avenir-Medium", size: 15)
@@ -138,20 +139,22 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! HitupCell
-        var hitup = hitups[indexPath.row] as! PFObject
+        let hitup = hitups[indexPath.row] as! PFObject
         
         cell.HeaderLabel.text = hitup.objectForKey("header") as! String
         cell.locationLabel.text = hitup.objectForKey("location_name") as? String
         cell.nameLabel.text = hitup.objectForKey("user_hostName") as? String
         
         // Set Number Joined
-        var joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
+        let joinedArray = hitup.objectForKey("users_joined") as! [AnyObject]
         cell.joinedLabel.text = String(format: "%i joined", joinedArray.count - 1)
         
         // Set Distance Label
-        var coords = hitup.objectForKey("coordinates") as! PFGeoPoint
-        var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
+        /*
+        let coords = hitup.objectForKey("coordinates") as! PFGeoPoint
+        let dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
         cell.distanceLabel.text = String(format: "%.1f miles away", dist)
+*/
         
         // Set Image
         if let fb_id = hitup.objectForKey("user_host") as? String {
@@ -161,21 +164,21 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
         }
         
         // Set Active/nonActive
-        var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
+        let expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
         if (expireDate == nil) {
             cell.setActive(false)
-            var formatter = NSDateFormatter()
+            let formatter = NSDateFormatter()
             formatter.dateFormat = "M/d"
             cell.pastTimeLabel.text = String(format:"Ended  %@", formatter.stringFromDate(hitup.createdAt!))
         } else {
             if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
                 // expireDate hasn't happenned yet
                 cell.setActive(true)
-                var seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
+                let seconds =  NSDate().timeIntervalSinceDate(expireDate!) * -1
                 
                 cell.pastTimeLabel.text = String(format: "%.0f min left", seconds / 60)
             } else {
-                var formatter = NSDateFormatter()
+                let formatter = NSDateFormatter()
                 cell.setActive(false)
                 formatter.dateFormat = "M/d"
                 cell.pastTimeLabel.text = String(format:"Ended  %@", formatter.stringFromDate(expireDate!))
@@ -187,9 +190,9 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
         
         
         // Set Cell Type
-        var user_hosted = hitup["user_host"] as! String
-        var users_joined = hitup["users_joined"] as! [AnyObject]
-        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        let user_hosted = hitup["user_host"] as! String
+        let users_joined = hitup["users_joined"] as! [AnyObject]
+        let currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
         if(currentUser_fbId == user_hosted){
             cell.setCellType(HitupCell.cellType.Hosted)
         }
@@ -207,7 +210,7 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
         
         // Create a variable that you want to send based on the destination view controller
         // You can get a reference to the data by using indexPath shown below
-        println("select")
+        print("select")
         hitupToSend = hitups[indexPath.row] as! PFObject
         performSegueWithIdentifier("detail", sender: self)
     }
@@ -217,10 +220,10 @@ class HitupFeed: UITableViewController, FBSDKLoginButtonDelegate  {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("Showing Detail")
+        print("Showing Detail")
         
         if segue.identifier == "detail" {
-            var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
+            let detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
             //detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
             
             detailController.thisHitup = hitupToSend

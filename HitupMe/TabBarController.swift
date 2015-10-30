@@ -20,10 +20,10 @@ class TabBarController: UITabBarController {
     
     func addIntro() {
         
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var installed: Bool? = defaults.boolForKey("installed_once")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let installed: Bool? = defaults.boolForKey("installed_once")
         if (installed == nil || installed == false) {
-            var evc = ExplainationViewController(nibName: "ExplainationViewController", bundle: nil)
+            let evc = ExplainationViewController(nibName: "ExplainationViewController", bundle: nil)
             //var evc = ExplainationViewController()
             evc.view.frame = view.frame
             introView = evc.view
@@ -53,10 +53,10 @@ class TabBarController: UITabBarController {
     
     func setupCreateButton() {
         // Set up CreateButton
-        var button = UIButton(frame: CGRectMake(0, 0, self.tabBar.frame.size.width/3, self.tabBar.frame.size.height-1))
+        let button = UIButton(frame: CGRectMake(0, 0, self.tabBar.frame.size.width/3, self.tabBar.frame.size.height-1))
         button.center = CGPointMake(self.tabBar.frame.size.width/2, button.center.y)
         button.backgroundColor = UIColor.clearColor()
-        var buttonImage = UIImageView(frame: CGRectMake(0, 3, 30, 30))
+        let buttonImage = UIImageView(frame: CGRectMake(0, 3, 30, 30))
         buttonImage.center = CGPointMake(button.frame.size.width/2, buttonImage.center.y)
         buttonImage.image = UIImage(named: "BB_Create")
         button.addSubview(buttonImage)
@@ -67,7 +67,7 @@ class TabBarController: UITabBarController {
     // ----- Button Functions ----- //
     
     func touchCreate() {
-        var createView = self.storyboard!.instantiateViewControllerWithIdentifier("CreateNav") as! UINavigationController
+        let createView = self.storyboard!.instantiateViewControllerWithIdentifier("CreateNav") as! UINavigationController
         presentViewController(createView, animated: true, completion: nil)
     }
     

@@ -15,26 +15,26 @@ class Functions: NSObject {
     
     class func refreshTab(num:NSNumber) -> Bool {
         
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         switch num {
             case 0:
-                var refresh = defaults.objectForKey("refreshTab0") as! Bool
+                let refresh = defaults.objectForKey("refreshTab0") as! Bool
                 defaults.setObject(false, forKey: "refreshTab0")
                 return refresh
             case 1:
-                var refresh = defaults.objectForKey("refreshTab1") as! Bool
+                let refresh = defaults.objectForKey("refreshTab1") as! Bool
                 defaults.setObject(false, forKey: "refreshTab1")
                 return refresh
             case 2:
-                var refresh = defaults.objectForKey("refreshTab2") as! Bool
+                let refresh = defaults.objectForKey("refreshTab2") as! Bool
                 defaults.setObject(false, forKey: "refreshTab2")
                 return refresh
             case 3:
-                var refresh = defaults.objectForKey("refreshTab3") as! Bool
+                let refresh = defaults.objectForKey("refreshTab3") as! Bool
                 defaults.setObject(false, forKey: "refreshTab3")
                 return refresh
             default:
-                println("Unexpected number: %i", num)
+                print("Unexpected number: %i", num)
                 return true
             }
     }
@@ -45,8 +45,18 @@ class Functions: NSObject {
         }
     }
     
+    class func updateLocation() {
+        LocationManager.sharedInstance.startUpdatingLocation()
+    }
+    
+    class func updateLocationinBack( completion:(success: Bool) -> Void) {
+        LocationManager.sharedInstance.waitForLocation { (success2) -> Void in
+            completion(success: true)
+        }
+    }
+    
     class func setRefreshTabTrue(num:NSNumber) {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         switch num {
         case 0:
             defaults.setObject(true, forKey: "refreshTab0")
@@ -57,7 +67,7 @@ class Functions: NSObject {
         case 3:
             defaults.setObject(true, forKey: "refreshTab3")
         default:
-            println("Unexpected number:", num)
+            print("Unexpected number:", num)
         }
     }
     
@@ -75,10 +85,10 @@ class Functions: NSObject {
     }
     
     class func getPictureFromFBId(fbId:String, completion: ((image: UIImage?) -> Void)) {
-        var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=large", fbId) )!
+        let urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=large", fbId) )!
         let request = NSURLRequest(URL: urL)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-            (response: NSURLResponse!, data: NSData?, error: NSError!) -> Void in
+            (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             if (data == nil) {
                 completion( image: UIImage(named: "SHIBA"))
             } else {
@@ -88,10 +98,10 @@ class Functions: NSObject {
     }
     
     class func getSmallPictureFromFBId(fbId:String, completion: ((image: UIImage?) -> Void)) {
-        var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=small", fbId) )!
+        let urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture?type=small", fbId) )!
         let request = NSURLRequest(URL: urL)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-            (response: NSURLResponse!, data: NSData?, error: NSError!) -> Void in
+            (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             if (data == nil) {
                 completion( image: UIImage(named: "SHIBA"))
             } else {
@@ -101,10 +111,10 @@ class Functions: NSObject {
     }
     
     class func getMediumPictureFromFBId(fbId:String, completion: ((image: UIImage?) -> Void)) {
-        var urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture", fbId) )!
+        let urL: NSURL = NSURL(string: String(format: "https://graph.facebook.com/%@/picture", fbId) )!
         let request = NSURLRequest(URL: urL)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-            (response: NSURLResponse!, data: NSData?, error: NSError!) -> Void in
+            (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             if (data == nil) {
                 completion( image: UIImage(named: "SHIBA"))
             } else {
@@ -114,7 +124,7 @@ class Functions: NSObject {
     }
     
     class func initializeUserDefaults() {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         if nil == defaults.objectForKey("city") {
             defaults.setObject("Location Not Enabled? 😢", forKey: "city")
         }
@@ -136,98 +146,31 @@ class Functions: NSObject {
         if nil == defaults.objectForKey("longtitude") {
             defaults.setObject( 122.0419, forKey: "longtitude")
         }
-        LocationManager.sharedInstance.lastKnownLatitude = 37.3175
-        LocationManager.sharedInstance.lastKnownLongitude = 122.0419
     }
     
-    class func updateLocationinBack(completion: ((success: Bool?) -> Void)) {
-        var locationManager = LocationManager.sharedInstance
+    /*class func updateLocationinBack(completion: ((success: Bool?) -> Void)) {
+        let locationManager = LocationManager.sharedInstance
+        
+        
         locationManager.showVerboseMessage = false
         locationManager.autoUpdate = true
         locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
             if error != nil {
-                var defaults = NSUserDefaults.standardUserDefaults()
+                let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setDouble(latitude, forKey: "latitude")
                 defaults.setDouble(longitude, forKey: "longitude")
                 completion(success: false)
             } else {
-                 println("lat:\(latitude) lon:\(longitude)")
+                 print("lat:\(latitude) lon:\(longitude)")
                 completion(success: true)
             }
         }
-    }
-    
-    class func updateLocation() {
-        
-        var defaults = NSUserDefaults.standardUserDefaults()
-        
-        // Update one Guaranteed
-        var locationManager = LocationManager.sharedInstance
-        locationManager.showVerboseMessage = false
-        locationManager.autoUpdate = true
-        locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMessage, error) -> () in
-            
-            if error != nil {
-                println("Erorr updating Location, trying again", error)
-                defaults.setBool(false, forKey: "locationEnabled")
-                
-            } else if error == nil {
-                println("lat:\(latitude) lon:\(longitude)")
-                //println(verboseMessage)
-                var defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setDouble(latitude, forKey: "latitude")
-                defaults.setDouble(longitude, forKey: "longitude")
-                locationManager.stopUpdatingLocation()
-                defaults.setBool(true, forKey: "locationEnabled")
-                
-                locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
-                    if error == nil {
-                        var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
-                        println( geoInfo["locality"], geoInfo["postalCode"])
-                        defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
-                        defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
-                        defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
-                        defaults.setBool(true, forKey: "locationEnabled")
-                    } else {
-                        defaults.setBool(false, forKey: "locationEnabled")
-                        println(error)
-                    }
-                })
-            
-                
-                // Update Location when significant changes
-                locationManager.autoUpdate = false
-                locationManager.startUpdatingLocationWithCompletionHandler(completionHandler: { (latitude, longitude, status, verboseMessage, error) -> () in
-                    println("lat:\(latitude) lon:\(longitude) status:\(status) error:\(error)")
-                    //println(verboseMessage)
-                    defaults.setDouble(latitude, forKey: "latitude")
-                    defaults.setDouble(longitude, forKey: "longitude")
-                    
-                    locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude, onReverseGeocodingCompletionHandler: { (reverseGecodeInfo, placemark, error) -> Void in
-                        if error == nil {
-                            var geoInfo: NSDictionary = reverseGecodeInfo! as NSDictionary
-                            println( geoInfo["locality"], geoInfo["postalCode"])
-                            defaults.setValue( geoInfo["locality"] as! String, forKey: "city")
-                            defaults.setValue( geoInfo["administrativeArea"] as! String, forKey: "state")
-                            defaults.setValue( geoInfo["postalCode"] as! String, forKey: "postalCode")
-                            defaults.setBool(true, forKey: "locationEnabled")
-                        } else {
-                            println(error)
-                            defaults.setBool(false, forKey: "locationEnabled")
-                        }
-                    })
-                })
-            
-            }
-        }
-        
-
-    }
+    }*/
     
     class func promptLocationTo(vc: UIViewController, message:String) {
-        var alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: message, message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Enable", style: UIAlertActionStyle.Default, handler: { action in
-            var appSettings = NSURL(string: UIApplicationOpenSettingsURLString)
+            let appSettings = NSURL(string: UIApplicationOpenSettingsURLString)
             UIApplication.sharedApplication().openURL(appSettings!)
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
@@ -237,12 +180,12 @@ class Functions: NSObject {
     }
     
     class func updateFacebook( completion: ((success: Bool?) -> Void)) {
-        var requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
-        var requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
-        var connection = FBSDKGraphRequestConnection()
+        let requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
+        let requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
+        let connection = FBSDKGraphRequestConnection()
         connection.addRequest(requestMe, completionHandler: { (connection, result, error) -> Void in
             if error == nil {
-            var defaults = NSUserDefaults.standardUserDefaults()
+            let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(result, forKey: "userInfo_dict")
             } else {
                 completion(success: false)
@@ -252,27 +195,27 @@ class Functions: NSObject {
         
             if error == nil {
                 // Save Raw Friend Information
-                var friends = result["friends"] as! NSDictionary
-                var friendData = friends["data"] as! NSArray
-                var defaults = NSUserDefaults.standardUserDefaults()
+                let friends = result["friends"] as! NSDictionary
+                let friendData = friends["data"] as! NSArray
+                let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(friendData, forKey: "arrayOfFriend_dicts")
                 
                 // Save Array of friend IDs
                 var idArray = [AnyObject]()
-                var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+                let userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
                 idArray.insert(userInfo_dict.objectForKey("id") as! String, atIndex:0)
                 for friend in friendData {
-                    var dict : NSDictionary? = friend as? NSDictionary
+                    let dict : NSDictionary? = friend as? NSDictionary
                     
                     if dict != nil {
                         if var id = dict!.objectForKey("id") as? String {
                             idArray.insert(dict!.objectForKey("id")!, atIndex:0)
                         } else {
-                            println("Functions: id missing?")
+                            print("Functions: id missing?")
                         }
 
                     } else {
-                        println("Functions: dict missing?")
+                        print("Functions: dict missing?")
                     }
                     
                 }
@@ -294,13 +237,13 @@ class Functions: NSObject {
             cString = (cString as NSString).substringFromIndex(1)
         }
         
-        if (count(cString) != 6) {
+        if (cString.characters.count != 6) {
             return UIColor.grayColor()
         }
         
-        var rString = (cString as NSString).substringToIndex(2)
-        var gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
-        var bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
+        let rString = (cString as NSString).substringToIndex(2)
+        let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
+        let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
         
         var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
         NSScanner(string: rString).scanHexInt(&r)

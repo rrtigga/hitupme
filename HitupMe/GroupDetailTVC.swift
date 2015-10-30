@@ -18,9 +18,9 @@ class GroupDetailTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var user = PFUser.currentUser()
-        var host = group.objectForKey("user_host") as! String
-        var userId = user?.objectForKey("fb_id") as! String
+        let user = PFUser.currentUser()
+        let host = group.objectForKey("user_host") as! String
+        let userId = user?.objectForKey("fb_id") as! String
         setIsOwner(host == userId)
         
         // Uncomment the following line to preserve selection between presentations
@@ -51,11 +51,11 @@ class GroupDetailTVC: UITableViewController {
     }
     
     func promptDeleteAlert() {
-        var alert = UIAlertController(title: "Delete Group?", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Delete Group?", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
-            println("Yes")
+            print("Yes")
             
-            var user = PFUser.currentUser()
+            let user = PFUser.currentUser()
             var fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
             
             self.group.deleteInBackground()
@@ -73,13 +73,13 @@ class GroupDetailTVC: UITableViewController {
             let push = PFPush()
             push.setQuery(pushQuery) // Set our Installation query
             //header text
-            var groupName =  self.group.objectForKey("group_name") as! String
+            let groupName =  self.group.objectForKey("group_name") as! String
             push.setMessage(groupName + "has been deleted" )
             push.sendPushInBackground()
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
-            println("No")
+            print("No")
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -87,13 +87,13 @@ class GroupDetailTVC: UITableViewController {
 
     
     func promptLeaveAlert() {
-        var alert = UIAlertController(title: "Leave Group?", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Leave Group?", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
-            println("Yes")
+            print("Yes")
             Functions.setRefreshTabTrue(2)
             //self.navigationController?.popViewControllerAnimated(true)
-            var user = PFUser.currentUser()
-            var fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
+            let user = PFUser.currentUser()
+            let fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
             
             self.group.removeObjectsInArray([user!.objectForKey("fb_id") as! String], forKey: "users_joined")
             self.group.removeObjectsInArray([fullName], forKey: "users_joined")
@@ -118,7 +118,7 @@ class GroupDetailTVC: UITableViewController {
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
-            println("No")
+            print("No")
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -140,7 +140,7 @@ class GroupDetailTVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        var joined = group.objectForKey("users_joined") as! [AnyObject]
+        let joined = group.objectForKey("users_joined") as! [AnyObject]
         return joined.count
     }
 

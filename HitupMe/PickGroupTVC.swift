@@ -14,7 +14,7 @@ class PickGroupTVC: UITableViewController {
     var group_list = [AnyObject]()
     
     @IBAction func touchNone(sender: AnyObject) {
-        var createVC = navigationController?.viewControllers.first as! CreateController
+        let createVC = navigationController?.viewControllers.first as! CreateController
         createVC.chosenSquadName = ""
         createVC.chosenSquadID = ""
         navigationController!.popToRootViewControllerAnimated(true)
@@ -55,15 +55,15 @@ class PickGroupTVC: UITableViewController {
     // For each Row, Return a cell. Here you can do customization / fill in information
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> PickGroupCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! PickGroupCell
-        var group = group_list[indexPath.row] as! PFObject
-        var gName = group.objectForKey("group_name") as? String
-        var memList = group.objectForKey("users_joined") as? [AnyObject]
+        let group = group_list[indexPath.row] as! PFObject
+        let gName = group.objectForKey("group_name") as? String
+        let memList = group.objectForKey("users_joined") as? [AnyObject]
         if (gName != nil && memList != nil) {
             cell.GroupName.text = group.objectForKey("group_name") as? String
             cell.GroupImage.sizeToFit()
             cell.Num_Members.text = String(format:"%i members", memList!.count)
         } else {
-            println("PCGTVC: nil group name || users_joiend?")
+            print("PCGTVC: nil group name || users_joiend?")
         }
         return cell
     }
@@ -104,15 +104,15 @@ class PickGroupTVC: UITableViewController {
     */
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var createVC = navigationController?.viewControllers.first as! CreateController
-        var group = group_list[indexPath.row] as! PFObject
-        var groupName = group.objectForKey("group_name") as? String
-        var groupID = group.objectForKey("group_id") as? String
+        let createVC = navigationController?.viewControllers.first as! CreateController
+        let group = group_list[indexPath.row] as! PFObject
+        let groupName = group.objectForKey("group_name") as? String
+        let groupID = group.objectForKey("group_id") as? String
         if (groupID != nil && groupName != nil) {
             createVC.chosenSquadName = groupName!
             createVC.chosenSquadID = groupID!
         } else {
-            println("PGTVC: group name or group nil?")
+            print("PGTVC: group name or group nil?")
         }
         navigationController!.popToRootViewControllerAnimated(true)
     }
@@ -121,7 +121,7 @@ class PickGroupTVC: UITableViewController {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("dd")
+        print("dd")
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }

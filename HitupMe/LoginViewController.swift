@@ -29,11 +29,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 //if user.isNew {
                 //    println("User signed up and logged in through Facebook!")
                 //} else {
-                    println("User logged in through Facebook!")
+                    print("User logged in through Facebook!")
                     Functions.updateFacebook({ (success) -> Void in
                         if (success == true) {
-                            var defaults = NSUserDefaults.standardUserDefaults()
-                            var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+                            let defaults = NSUserDefaults.standardUserDefaults()
+                            let userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
                             
                             user["first_name"] = userInfo_dict.objectForKey("first_name") as! String
                             user["last_name"] = userInfo_dict.objectForKey("last_name") as! String
@@ -61,13 +61,13 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             self.performSegueWithIdentifier("afterLogin", sender: nil)
                             
                         } else {
-                            println("error retrieving FB infromation")
+                            print("error retrieving FB infromation")
                         }
                         
                     })
                 //}
             } else {
-                println("Uh oh. The user cancelled the Facebook login.")
+                print("Uh oh. The user cancelled the Facebook login.")
             }
         }
     }
@@ -89,22 +89,22 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if ((error) != nil)
         {
             // Process error
-            println("error %@", error.description)
+            print("error %@", error.description)
         }
         else if result.isCancelled {
             // Handle cancellations
-            println("FB Login was Canceled")
+            print("FB Login was Canceled")
         }
         else {
             // Check if specific permissions missing
             if result.grantedPermissions == NSSet( array: askedPermissions )
             {
-                println("Login Success")
+                print("Login Success")
             
                 Functions.updateFacebook({ (success) -> Void in
                     BackendAPI.connect({ (success) -> Void in
-                        var defaults = NSUserDefaults.standardUserDefaults()
-                        var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        let userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
 
                         
                         BackendAPI.addUser(userInfo_dict.objectForKey("id") as! String,
@@ -120,27 +120,27 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     self.performSegueWithIdentifier("afterLogin", sender: nil)
                 })
             } else {
-                println("Missing Permissions?")
+                print("Missing Permissions?")
             }
         }
     }
 
     func updateFacebook() {
-        var requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
-        var requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
-        var connection = FBSDKGraphRequestConnection()
+        let requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
+        let requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
+        let connection = FBSDKGraphRequestConnection()
         connection.addRequest(requestMe, completionHandler: { (connection, result, error) -> Void in
             if error == nil {
-                var defaults = NSUserDefaults.standardUserDefaults()
+                let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(result, forKey: "userInfo_dict")
             }
         })
         connection.addRequest(requestFriends, completionHandler: { (connection, result, error: NSError!) -> Void in
             
             if error == nil {
-                var friends = result["friends"] as! NSDictionary
-                var friendData = friends["data"] as! NSArray
-                var defaults = NSUserDefaults.standardUserDefaults()
+                let friends = result["friends"] as! NSDictionary
+                let friendData = friends["data"] as! NSArray
+                let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(friendData, forKey: "arrayOfFriend_dicts")
                 
             }
@@ -151,7 +151,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("User Logged Out")
+        print("User Logged Out")
     }
     
 

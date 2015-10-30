@@ -29,7 +29,7 @@ class UserTable: UITableViewController {
     }
     
     func pullRefresh() {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
         self.users = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
         self.refreshController.endRefreshing()
@@ -51,7 +51,7 @@ class UserTable: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! userTableCell
-        var user = users[indexPath.row] as! NSDictionary
+        let user = users[indexPath.row] as! NSDictionary
         //cell.numberLabel.text = String(format:"%i.", users.count - indexPath.row)
         cell.numberLabel.text = String(format:"%i.", indexPath.row + 1)
         cell.nameLabel.text = (user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String)
@@ -66,9 +66,9 @@ class UserTable: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             
-        var user = users[indexPath.row] as! NSDictionary
+        let user = users[indexPath.row] as! NSDictionary
         
-        var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
+        let pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
         pmv.userName = (user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String)
         pmv.userID = user.objectForKey("id") as? String
         navigationController!.showViewController(pmv, sender: self)

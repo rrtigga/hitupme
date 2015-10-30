@@ -12,7 +12,7 @@ class ExplainationViewController: UIViewController {
     
     @IBOutlet var doneButton: UIButton!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

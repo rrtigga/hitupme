@@ -14,7 +14,7 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var users = NSArray()
 
     func initialSetup() {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         users = defaults.objectForKey("arrayOfFriend_dicts") as! NSArray
         nameTextField.returnKeyType = UIReturnKeyType.Done
         tableView.allowsMultipleSelection = true
@@ -36,13 +36,13 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         Functions.setRefreshTabTrue(2)
         
         // Get Array of selected rows
-        var selectedRows = tableView.indexPathsForSelectedRows()
+        var selectedRows = tableView.indexPathsForSelectedRows
         if(selectedRows == nil || nameTextField.hasText() == false  || nameTextField.text == " "){
-            println("selectedRows or nameTextField was null")
+            print("selectedRows or nameTextField was null")
         }
         else {
             for (var i = 0; i < selectedRows!.count; i++) {
-                var rowPath = selectedRows![i] as! NSIndexPath
+                var rowPath = selectedRows![i] 
                 // Get dictionary of the ith selected User
                 var user = users.objectAtIndex(rowPath.row) as! NSDictionary
                 users_joined.addObject(user.objectForKey("id") as! String)
@@ -59,15 +59,15 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             newGroup["user_host"] = user_host
             newGroup["user_hostName"] = user_hostName
             newGroup["group_name"] = group_name
-            newGroup["group_id"] = String(format: "%d-%@-%@", NSDate().timeIntervalSince1970, group_name, user_host)
+            newGroup["group_id"] = String(format: "%d-%@-%@", NSDate().timeIntervalSince1970, group_name!, user_host)
 
             newGroup.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
                     PFUser.currentUser()?.fetchInBackground()
-                    println("Group was stored")
+                    print("Group was stored")
                 } else {
-                    println("Error adding Group")
+                    print("Error adding Group")
                 }
             }
             navigationController?.popToRootViewControllerAnimated(true)
@@ -104,7 +104,7 @@ class CreateGroupsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UserCellGroup
-        var user = users[indexPath.row] as! NSDictionary
+        let user = users[indexPath.row] as! NSDictionary
         //cell.numberLabel.text = String(format:"%i.", users.count - indexPath.row)
         cell.userName.text = (user.objectForKey("first_name") as! String) + " " + (user.objectForKey("last_name") as! String)
         Functions.getPictureFromFBId(user.objectForKey("id") as! String, completion: { (image) -> Void in

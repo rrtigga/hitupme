@@ -32,12 +32,12 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.delegate = self
-        var user = PFUser.currentUser()
-        var first = user?.objectForKey("first_name") as? String
-        var last = user?.objectForKey("last_name") as? String
+        let user = PFUser.currentUser()
+        let first = user?.objectForKey("first_name") as? String
+        let last = user?.objectForKey("last_name") as? String
         
         // Set Profile Information
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         var userInfo = defaults.objectForKey("userInfo_dict") as! NSDictionary
         
         
@@ -55,7 +55,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     }
 
     func updateBetaUsers() {
-        var query = PFUser.query()
+        let query = PFUser.query()
         query?.countObjectsInBackgroundWithBlock({ (num, error) -> Void in
             if (error == nil) {
                 self.friendCountLabel.text = String(format:"%i", num)
@@ -98,7 +98,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         PFUser.logOutInBackground()
         performSegueWithIdentifier("logout", sender: nil)
-        println("User Logged Out of App")
+        print("User Logged Out of App")
     }
     
     
@@ -120,13 +120,13 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! myHitupCell
-        var hitup = hitups[indexPath.row] as! PFObject
+        let hitup = hitups[indexPath.row] as! PFObject
         
         cell.headerLabel.text = hitup.objectForKey("header") as? String
        
         // Set Cell Type
-        var user_hosted = hitup["user_host"] as! String
-        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        let user_hosted = hitup["user_host"] as! String
+        let currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
         if(currentUser_fbId == user_hosted){
             cell.setCellType(myHitupCell.cellType.Hosted)
         }
@@ -135,12 +135,12 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         }
         
         // Set Time Label
-        var created = hitup.createdAt
-        var seconds =  NSDate().timeIntervalSinceDate(created!)
+        let created = hitup.createdAt
+        let seconds =  NSDate().timeIntervalSinceDate(created!)
         cell.timeLabel.text = String(format: "%.1fhr", seconds/3600)
         
         // Set Active/nonActive
-        var expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
+        let expireDate : NSDate? = hitup.objectForKey("expire_time") as? NSDate
         if (expireDate == nil) {
             cell.setActive(false)
         } else {
@@ -157,9 +157,9 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         }
         
         // Set Number Joined
-        var number_joined = hitup.objectForKey("users_joined") as! [AnyObject]
-        var joined_size = number_joined.count
-        var num = joined_size - 1
+        let number_joined = hitup.objectForKey("users_joined") as! [AnyObject]
+        let joined_size = number_joined.count
+        let num = joined_size - 1
         cell.joinLabel.text = String(format: "+ %i", num )
         
 
@@ -208,7 +208,7 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
         
         // Create a variable that you want to send based on the destination view controller
         // You can get a reference to the data by using indexPath shown below
-        println("select")
+        print("select")
         hitupToSend = hitups[indexPath.row] as! PFObject
         performSegueWithIdentifier("detailOfMy", sender: self)
     }
@@ -218,9 +218,9 @@ class MyHitupsTab: UITableViewController, FBSDKLoginButtonDelegate {
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("Showing Detail")
+        print("Showing Detail")
         if segue.identifier == "detailOfMy" {
-            var detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
+            let detailController : HitupDetailViewController = segue.destinationViewController as! HitupDetailViewController
             //detailController.savedHitup = hitups.objectAtIndex(hitupToBeSentIndex) as? Hitup
             
             detailController.thisHitup = hitupToSend

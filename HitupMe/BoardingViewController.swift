@@ -43,11 +43,11 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
                 //if user.isNew {
                 //    println("User signed up and logged in through Facebook!")
                 //} else {
-                println("User logged in through Facebook!")
+                print("User logged in through Facebook!")
                 Functions.updateFacebook({ (success) -> Void in
                     if (success == true) {
-                        var defaults = NSUserDefaults.standardUserDefaults()
-                        var userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+                        let defaults = NSUserDefaults.standardUserDefaults()
+                        let userInfo_dict = defaults.objectForKey("userInfo_dict") as! NSDictionary
                         
                         user["first_name"] = userInfo_dict.objectForKey("first_name") as! String
                         user["last_name"] = userInfo_dict.objectForKey("last_name") as! String
@@ -76,33 +76,33 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
                         self.performSegueWithIdentifier("afterLogin", sender: nil)
                         
                     } else {
-                        println("error retrieving FB infromation")
+                        print("error retrieving FB infromation")
                     }
                     
                 })
                 //}
             } else {
-                println("Uh oh. The user cancelled the Facebook login.")
+                print("Uh oh. The user cancelled the Facebook login.")
             }
         }
     }
     
     func updateFacebook() {
-        var requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
-        var requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
-        var connection = FBSDKGraphRequestConnection()
+        let requestMe = FBSDKGraphRequest(graphPath: "me?fields=id,first_name,last_name", parameters: nil)
+        let requestFriends = FBSDKGraphRequest(graphPath: "me?fields=friends{first_name,last_name}", parameters: nil)
+        let connection = FBSDKGraphRequestConnection()
         connection.addRequest(requestMe, completionHandler: { (connection, result, error) -> Void in
             if error == nil {
-                var defaults = NSUserDefaults.standardUserDefaults()
+                let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(result, forKey: "userInfo_dict")
             }
         })
         connection.addRequest(requestFriends, completionHandler: { (connection, result, error: NSError!) -> Void in
             
             if error == nil {
-                var friends = result["friends"] as! NSDictionary
-                var friendData = friends["data"] as! NSArray
-                var defaults = NSUserDefaults.standardUserDefaults()
+                let friends = result["friends"] as! NSDictionary
+                let friendData = friends["data"] as! NSArray
+                let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject(friendData, forKey: "arrayOfFriend_dicts")
                 
             }
@@ -128,10 +128,10 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
         if controllerNames.count > 0 {
             let firstController = getViewController(0)!
             let startingViewControllers: NSArray = [firstController]
-            pageController.setViewControllers(startingViewControllers as [AnyObject], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+            pageController.setViewControllers(startingViewControllers as? [UIViewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
         }
         
-        var pageViewController = pageController
+        let pageViewController = pageController
         pageViewController.view.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height - 80)
         addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
@@ -167,7 +167,7 @@ class BoardingViewController: UIViewController, UIPageViewControllerDataSource {
     func getViewController(itemIndex: Int) -> UIViewController? {
         
         if itemIndex < controllerNames.count && itemIndex >= 0 {
-            var name = controllerNames[itemIndex] as String
+            let name = controllerNames[itemIndex] as String
             let screen = self.storyboard!.instantiateViewControllerWithIdentifier(name) as? OnboardScreen
             screen?.itemIndex = itemIndex
             return screen

@@ -16,7 +16,7 @@ class GroupCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        var more = UIImageView(image: UIImage(named: "Cell_More"))
+        let more = UIImageView(image: UIImage(named: "Cell_More"))
         more.frame = CGRectMake(0, 0, 20, 20)
         more.center = CGPointMake(moreButton.frame.width/2, moreButton.frame.height/2)
         moreButton.addSubview(more)

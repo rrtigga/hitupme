@@ -19,7 +19,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     func touchProfilePic() {
-        var pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
+        let pmv = storyboard!.instantiateViewControllerWithIdentifier("ProfileMapView") as! ProfileMapView
         pmv.userName = thisHitup.objectForKey("user_hostName") as? String
         pmv.userID = thisHitup.objectForKey("user_host") as? String
         pmv.hitupToSend = thisHitup
@@ -94,8 +94,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         joinedLabel.text = "2 Joined"
         
         // Set Number Joined
-        var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
-        var num = joinedArray.count
+        let joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
+        let num = joinedArray.count
         joinedLabel.text = String(format: "%i Joined", num - 1 )
         
         // Set Profile Picture
@@ -104,15 +104,15 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         })
         
         // Set Distance Label
-        var coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
-        var dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lastKnownLatitude, longitude: LocationManager.sharedInstance.lastKnownLongitude))
+        let coords = thisHitup.objectForKey("coordinates") as! PFGeoPoint
+        let dist = coords.distanceInMilesTo(PFGeoPoint(latitude: LocationManager.sharedInstance.lat, longitude: LocationManager.sharedInstance.lng) )
         distanceLabel.text = String(format: "%.1f miles away", dist)
         
         
         // Set Active/nonActive
-        var formatter = NSDateFormatter()
+        let formatter = NSDateFormatter()
         formatter.dateFormat = "h:mm a, M/d"
-        var expireDate : NSDate? = thisHitup.objectForKey("expire_time") as? NSDate
+        let expireDate : NSDate? = thisHitup.objectForKey("expire_time") as? NSDate
         if (expireDate == nil) {
             setActive(false)
             timeLabel.text = String(format:"posted %@", formatter.stringFromDate(thisHitup.createdAt!))
@@ -120,7 +120,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             if ( NSDate().compare(expireDate!) == NSComparisonResult.OrderedAscending) {
                 // Still Going on
                 setActive(true)
-                var seconds = NSDate().timeIntervalSinceDate(expireDate!) * -1
+                let seconds = NSDate().timeIntervalSinceDate(expireDate!) * -1
                 timeLabel.text = String(format: "%.0f min left", seconds / 60)
             } else {
                 // Not going on
@@ -132,9 +132,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
 
         
         // Set Joined / Hosted Status
-        var user_hosted = thisHitup["user_host"] as! String
+        let user_hosted = thisHitup["user_host"] as! String
         var users_joined = thisHitup["users_joined"] as! [AnyObject]
-        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        let currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
         if(currentUser_fbId == user_hosted){
             // Set Self Hosted
             setType(0)
@@ -167,7 +167,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             var header = thisHitup["user_hostName"] as! String
             
             let addressDict =
-            [ kABPersonAddressStreetKey as NSString: header ]
+            [ kABPersonAddressStreetKey as String: header ]
 
             var place = MKPlacemark(coordinate: destination, addressDictionary: addressDict)
             var options =  [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
@@ -182,9 +182,9 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     func joinAndNotify() {
         var user_hosted = thisHitup["user_host"] as! String
         var users_joined = thisHitup["users_joined"] as! [AnyObject]
-        var currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
-        var user = PFUser.currentUser()
-        var fullName = (user?.objectForKey("first_name") as! String) + " " + (user?.objectForKey("last_name") as! String)
+        let currentUser_fbId = PFUser.currentUser()!.objectForKey("fb_id") as! String
+        let user = PFUser.currentUser()
+        let fullName = (user?.objectForKey("first_name") as! String) + " " + (user?.objectForKey("last_name") as! String)
         
         thisHitup.addUniqueObjectsFromArray( [ currentUser_fbId ], forKey: "users_joined")
         thisHitup.addUniqueObjectsFromArray( [ fullName ] , forKey: "users_joinedNames")
@@ -206,7 +206,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             let push = PFPush()
             push.setQuery(pushQuery) // Set our Installation query
             //header text
-            var header_text = thisHitup.objectForKey("header") as! String
+            let header_text = thisHitup.objectForKey("header") as! String
             push.setMessage(fullName + " is coming to " + header_text)
             push.sendPushInBackground()
             joined_before = true
@@ -214,17 +214,17 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func promptDeleteAlert() {
-        var alert = UIAlertController(title: "Cancel Hitup?", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Cancel Hitup?", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { action in
-            println("Yes")
+            print("Yes")
             self.navigationController?.popViewControllerAnimated(true)
             //var feed = self.navigationController?.topViewController as! HitupFeed
             
             self.thisHitup.deleteInBackground()
             Functions.setRefreshAllTabsTrue()
             
-            var user = PFUser.currentUser()
-            var fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
+            let user = PFUser.currentUser()
+            let fullName = (user?.objectForKey("first_name") as! String) + (user?.objectForKey("last_name") as! String)
             
             // Create our query to notify all users joined
             let pushQuery = PFInstallation.query()
@@ -234,14 +234,14 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             let push = PFPush()
             push.setQuery(pushQuery) // Set our Installation query
             //header text
-            var header_text = self.thisHitup.objectForKey("header") as! String
+            let header_text = self.thisHitup.objectForKey("header") as! String
             push.setMessage(fullName + " has deleted " + header_text)
             push.sendPushInBackground()
             self.joined_before = true
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Destructive, handler: { action in
-            println("No")
+            print("No")
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -279,7 +279,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
             tableView.reloadData()
             break;
         default:
-            println("Error: In Detail Controller, unrecognized type Number")
+            print("Error: In Detail Controller, unrecognized type Number")
         }
     }
     
@@ -293,8 +293,8 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         // Set Number Joined
-        var joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
-        var num = joinedArray.count
+        let joinedArray = thisHitup.objectForKey("users_joined") as! [AnyObject]
+        let num = joinedArray.count
         return num
         //return 0
     }
@@ -311,7 +311,7 @@ class HitupDetailViewController: UIViewController, UITableViewDelegate, UITableV
         
         // set profile picture
         var joinedIds = thisHitup.objectForKey("users_joined") as! [AnyObject]
-        var currentJoinedId = joinedIds[indexPath.row] as? String
+        let currentJoinedId = joinedIds[indexPath.row] as? String
         
         Functions.getPictureFromFBId(currentJoinedId!) { (image) -> Void in
             cell.profilePicture.image = image

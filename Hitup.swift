@@ -32,11 +32,11 @@ class Hitup: NSManagedObject {
     class func makeHitup(header:String, desc:String, latitude:NSNumber, locationName:String, longtitude:NSNumber) {
         
         // Preliminary Information
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
-        var userId = userDict.objectForKey("id") as! String
-        var firstName = userDict.objectForKey("first_name") as! String
-        var lastName = userDict.objectForKey("last_name") as! String
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+        let userId = userDict.objectForKey("id") as! String
+        let firstName = userDict.objectForKey("first_name") as! String
+        let lastName = userDict.objectForKey("last_name") as! String
 
         // 1 Core Data object creation
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -63,10 +63,12 @@ class Hitup: NSManagedObject {
         
         
         // 5
-        if !context.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        } else {
+        do {
+            try context.save()
             Hitup.checkCoreData()
+        } catch let error1 as NSError {
+            error = error1
+            print("Could not save \(error), \(error?.userInfo)")
         }
     }
     
@@ -74,9 +76,9 @@ class Hitup: NSManagedObject {
     class func addHitupFromServer(header:String, desc:String, latitude:NSNumber, locationName:String, longtitude:NSNumber, userId:String, firstName:String, lastName:String, joined:Bool) {
         
         // Preliminary Information
-        var defaults = NSUserDefaults.standardUserDefaults()
-        var userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
-        var savedId = userDict.objectForKey("id") as! String
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let userDict = defaults.objectForKey("userInfo_dict") as! NSDictionary
+        let savedId = userDict.objectForKey("id") as! String
         
         // 1 Core Data object creation
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -109,59 +111,63 @@ class Hitup: NSManagedObject {
         }
         
         // 5
-        if !context.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        } else {
+        do {
+            try context.save()
             Hitup.checkCoreData()
+        } catch let error1 as NSError {
+            error = error1
+            print("Could not save \(error), \(error?.userInfo)")
         }
     }
     
     // Good
     func toggleJoin() {
         
-        println(String(format: "  Join Toggle Started for %@", uniqueId))
+        print(String(format: "  Join Toggle Started for %@", uniqueId))
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
         
-        var fetch = NSFetchRequest(entityName: "Hitup")
-        var predicate = NSPredicate(format: "uniqueId == %@", uniqueId)
+        let fetch = NSFetchRequest(entityName: "Hitup")
+        let predicate = NSPredicate(format: "uniqueId == %@", uniqueId)
         fetch.predicate = predicate
         var error: NSError?
-        if let result = context.executeFetchRequest(fetch, error: nil) as? [NSManagedObject] {
-            var hitup = result.first as! Hitup
+        if let result = (try? context.executeFetchRequest(fetch)) as? [NSManagedObject] {
+            let hitup = result.first as! Hitup
             if hitup.hosted == false {
                 
                 // Toggle Join
                 if hitup.joined == true {
                     hitup.joined = false
-                    println("   -unJoined")
+                    print("   -unJoined")
                 } else {
                     hitup.joined = true
-                    println("   -Joined")
+                    print("   -Joined")
                 }
                 
                 // Save Changes
                 var error: NSError?
-                if !context.save(&error) {
-                    println("Could not save \(error), \(error?.userInfo)")
-                } else {
+                do {
+                    try context.save()
                     //println("CoreData Update Success")
-                    if (joined == true) { println("   ^Joined")}
-                    else { println("   ^unJoined (Just checking if Synchronized)")}
+                    if (joined == true) { print("   ^Joined")}
+                    else { print("   ^unJoined (Just checking if Synchronized)")}
+                } catch let error1 as NSError {
+                    error = error1
+                    print("Could not save \(error), \(error?.userInfo)")
                 }
                 
                 // Check for overlap in uniqueIds
                 if result.count != 1 {
-                    println("Warning (Hitup.uniqueId): More than one object with the same uniqueId :/")
+                    print("Warning (Hitup.uniqueId): More than one object with the same uniqueId :/")
                 }
                 
             } else {
-                println("You can't Join/Unjoin your own event!")
+                print("You can't Join/Unjoin your own event!")
             } // hosted == true
             
         } else {
-            println("Error with Fetch")
+            print("Error with Fetch")
         } // result was successful
         
     }
@@ -182,22 +188,24 @@ class Hitup: NSManagedObject {
         }*/
         
         var error: NSError?
-        if !context.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        } else {
+        do {
+            try context.save()
+        } catch let error1 as NSError {
+            error = error1
+            print("Could not save \(error), \(error?.userInfo)")
         }
     }
 
     class func resetCoreData() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
-        var fetch = NSFetchRequest(entityName: "Hitup")
+        let fetch = NSFetchRequest(entityName: "Hitup")
         
-        if let fetchResults = context.executeFetchRequest(fetch, error: nil) as? [NSManagedObject] {
+        if let fetchResults = (try? context.executeFetchRequest(fetch)) as? [NSManagedObject] {
             for h in fetchResults {
                 context.deleteObject(h)
             }
-            println("Finished Deleting")
+            print("Finished Deleting")
         }
     }
     
@@ -205,17 +213,17 @@ class Hitup: NSManagedObject {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
-        var fetch = NSFetchRequest(entityName: "Hitup")
-        var sort = NSSortDescriptor(key: "timeCreated", ascending: true)
+        let fetch = NSFetchRequest(entityName: "Hitup")
+        let sort = NSSortDescriptor(key: "timeCreated", ascending: true)
         fetch.sortDescriptors = [sort]
         
-        if let fetchResults = context.executeFetchRequest(fetch, error: nil) as? [NSManagedObject] {
-            println("Checking Core Data")
+        if let fetchResults = (try? context.executeFetchRequest(fetch)) as? [NSManagedObject] {
+            print("Checking Core Data")
             for h in fetchResults {
-                var hit = h as! Hitup
-                println(String(format: " - %@, %d, %@", hit.firstName, hit.timeCreated, hit.uniqueId))
+                let hit = h as! Hitup
+                print(String(format: " - %@, %d, %@", hit.firstName, hit.timeCreated, hit.uniqueId))
             }
-            println("Fin Checking")
+            print("Fin Checking")
         }
     }
     
